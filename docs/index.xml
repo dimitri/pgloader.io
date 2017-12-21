@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pgloader</title>
+    <link>https://pgloader.io/</link>
+    <description>Recent content on pgloader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2017-2018 Dimitri Fontaine</copyright>
+    <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://pgloader.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>https://pgloader.io/about/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/about/</guid>
+      <description>pgloader loads data into PostgreSQL. It knows how to load data from several kinds of source:
+ Files Live Databases  Let&amp;rsquo;s dive into those two different behaviours of pgloader, starting with its support for migrating a whole database from a connection string.
+Database Migration pgloader is able to connect to an existing database hosted in one of MySQL, MariaDB, SQLite or Microsoft SQL Server instance, and migrate this database to PostgreSQL.</description>
+    </item>
+    
+    <item>
+      <title>Continuous Migration</title>
+      <link>https://pgloader.io/blog/continuous-migration/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/blog/continuous-migration/</guid>
+      <description>From your current RDBMS to PostgreSQL A migration project may take a little more than a week-end, so you need to consider it as a real project. Follow this methodology and it&amp;rsquo;s all going to be fine, I promise:
+When migrating from MySQL to PostgreSQL, follow those steps:
+ Setup your target PostgreSQL Architecture Fork a Continuous Integration environment that uses PostgreSQL Migrate the data over and over again every night, from production As soon as the CI is all green using PostgreSQL, schedule the D-Day Migrate without suprise and enjoy!</description>
+    </item>
+    
+    <item>
+      <title>pgloader, Your Migration Companion</title>
+      <link>https://pgloader.io/blog/pgloader-your-migration-companion/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/blog/pgloader-your-migration-companion/</guid>
+      <description>PostgreSQL Conference Europe 2017 PGConf.EU is a unique chance for European PostgreSQL users and developers to catch up, learn, build relationships, get to know each other and consolidate a real network of professionals that use and work with PostgreSQL.
+pgloader, your migration companion Migrating data from another RDBMS to PostgreSQL should be really easy. After all it’s all relations and tables and the same data types everywhere or abouts, with text, dates and numbers.</description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>https://pgloader.io/home/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/home/</guid>
+      <description>pgloader loads data into PostgreSQL, and allows you to implement Continuous Migration from your current database to PostgreSQL. Start today!
+Buy a pgloader licence   Have a look at the RoadMap and contribute to it either by send Pull Requests to the project, or buying a pgloader Moral Licence!</description>
+    </item>
+    
+    <item>
+      <title>Moral Licence</title>
+      <link>https://pgloader.io/moral-licence/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/moral-licence/</guid>
+      <description>The pgloader project is fully Open Source and released under The PostgreSQL License so that anyone can easily contribute to the project. The whole project management (issue tracking, feature proposals, etc) happens on the pgloader github page, in public.
+Software development may be open, and the result shared with an Open Source Software licence, but the actual hours of programming are not gratis.
+Just like everybody else, I need money for mortgage, kids and food, money I make by doing things with computers, for people who are willing to pay for that.</description>
+    </item>
+    
+    <item>
+      <title>RoadMap</title>
+      <link>https://pgloader.io/roadmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/roadmap/</guid>
+      <description>Some of the items in the pgloader Road Map will only happen given some financial contributions to the project. You are most welcome to participate into the progress of pgloader!
+ pgloader licence, starting $349.  
+The following projects are part of the pgloader Road Map, and after you&amp;rsquo;ve bought a pgloader Moral Licence you are entitled to vote for them so see them delivered in a time frame that makes sense for your migration projects.</description>
+    </item>
+    
+  </channel>
+</rss>

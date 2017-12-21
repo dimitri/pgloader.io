@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on pgloader</title>
+    <link>https://pgloader.io/blog/</link>
+    <description>Recent content in Blog on pgloader</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2017-2018 Dimitri Fontaine</copyright>
+    <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://pgloader.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Continuous Migration</title>
+      <link>https://pgloader.io/blog/continuous-migration/</link>
+      <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/blog/continuous-migration/</guid>
+      <description>From your current RDBMS to PostgreSQL A migration project may take a little more than a week-end, so you need to consider it as a real project. Follow this methodology and it&amp;rsquo;s all going to be fine, I promise:
+When migrating from MySQL to PostgreSQL, follow those steps:
+ Setup your target PostgreSQL Architecture Fork a Continuous Integration environment that uses PostgreSQL Migrate the data over and over again every night, from production As soon as the CI is all green using PostgreSQL, schedule the D-Day Migrate without suprise and enjoy!</description>
+    </item>
+    
+    <item>
+      <title>pgloader, Your Migration Companion</title>
+      <link>https://pgloader.io/blog/pgloader-your-migration-companion/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/blog/pgloader-your-migration-companion/</guid>
+      <description>PostgreSQL Conference Europe 2017 PGConf.EU is a unique chance for European PostgreSQL users and developers to catch up, learn, build relationships, get to know each other and consolidate a real network of professionals that use and work with PostgreSQL.
+pgloader, your migration companion Migrating data from another RDBMS to PostgreSQL should be really easy. After all it’s all relations and tables and the same data types everywhere or abouts, with text, dates and numbers.</description>
+    </item>
+    
+  </channel>
+</rss>
