@@ -15,3 +15,5 @@ PostgreSQL. Start today!_
 Have a look at the RoadMap and contribute to it either by send *Pull
 Requests* to the project, or buying a *pgloader Moral Licence*!
 
+Looking for pgloader's *documentation*? It is now hosted at
+<http://pgloader.readthedocs.io/en/latest/>.

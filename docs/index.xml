@@ -51,7 +51,8 @@ pgloader, your migration companion Migrating data from another RDBMS to PostgreS
       
       <guid>https://pgloader.io/home/</guid>
       <description>pgloader loads data into PostgreSQL, and allows you to implement Continuous Migration from your current database to PostgreSQL. Start today!
-Buy a pgloader licence   Have a look at the RoadMap and contribute to it either by send Pull Requests to the project, or buying a pgloader Moral Licence!</description>
+Buy a pgloader licence   Have a look at the RoadMap and contribute to it either by send Pull Requests to the project, or buying a pgloader Moral Licence!
+Looking for pgloader&amp;rsquo;s documentation? It is now hosted at http://pgloader.readthedocs.io/en/latest/.</description>
     </item>
     
     <item>
