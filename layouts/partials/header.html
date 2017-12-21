@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+{{ partial "head.html" . }}
+
+<body>
+
+  <a href="https://github.com/dimitri/pgloader"><img style="position: absolute; top: 0; left: 0; border: 0; width=151px; height=151px;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+<script src="https://gumroad.com/js/gumroad.js"></script>
+  
+{{ if or (.Site.Params.small_banner_logo) (.IsPage) }}
+<div class="header column">
+{{ else }}
+<div class="header header-home column">
+{{ end }}
+    <div class="container">
+        <a href="{{ .Site.BaseURL }}"><img class="logo" src="{{ .Site.Params.logofile | absURL }}" alt="logo" /></a>
+        <div class="content">
+            <a href="{{ .Site.BaseURL }}"><div class="name"><h1>{{ .Site.Title }}</h1></div></a>
+            <nav>
+                <ul>
+                    {{ if ne (len (where .Site.RegularPages "Section" "blog")) 0 }}
+                        <li><a href="{{ .Site.BaseURL }}blog/">Blog</a></li>
+                    {{ end }}
+                    {{ range $.Site.Home.Sections }}
+                        {{ range first 1 (where .Pages "Section" "ne" "")}}
+                            {{ if ne .Section "blog"}}
+                            <li><a href="{{ .Section | urlize | absURL }}">{{ .Section }}</a></li>
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    {{ range where .Site.RegularPages "Section" ""}}
+                        {{ if and (ne .Title "License") (ne .Title "Home")}}
+                            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                        {{ end }}
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
