@@ -1110,7 +1110,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         <div class="author middot" title="Dimitri Fontaine">Dimitri Fontaine</div>
                         
                     
-                    <div class="reading-time middot">7 minute read</div>
+                    <div class="reading-time middot">8 minute read</div>
                     <div class="tags">
                         <ul>
                           
@@ -1129,14 +1129,37 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
+<figure style="float: right; clear: left; display: block; width: 200px; margin-right: 0em; margin-left: 1em;">
+    <a href="https://pgloader.io/white-paper/">
+        <img style="width:200px; height: 229px; border: 1px solid lightblue; box-shadow: 15px 0 20px -20px lightblue, -15px 0 20px -20px lightblue;"
+               src="https://pgloader.io/img/MigratingToPostgreSQL-Cover.png">
+    </a>
+</figure>
+
+<p>After having been involved in many migration projects over the last 10
+years, I decided to publish the following <a href="https://pgloader.io/white-paper">White
+Paper</a> in order to share my learnings.</p>
+
+<p>The paper is titled <a href="https://pgloader.io/white-paper">Migrating to PostgreSQL, Tools and
+Methodology</a> and details the <strong>Continuous
+Migration</strong> approach. It describes how to migrate from another relational
+database server technology to PostgreSQL. The reasons to do so are many, and
+first among them is often the licensing model.</p>
+
+<h1 id="from-mysql-to-postgresql-over-the-week-end">From MySQL to PostgreSQL over the Week-End!</h1>
+
 <p>On February the 18th, 2015 I received a pretty interesting mention on
 Twitter:</p>
 
-<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> thank you for pgloader, it made our migration from mysql to postgresql really easy (~1Tb)</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568053907370450944?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<p><center>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> thank you for pgloader, it made our migration from mysql to postgresql really easy (~1Tb)</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568053907370450944?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center></p>
 
 <p>Their story follows:</p>
 
-<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> it was almost too easy, I just ran the one-liner and waited for 48 hours. Nothing to change in the app, thanks to hibernate.</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568055592704716800?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<p><center>
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> it was almost too easy, I just ran the one-liner and waited for 48 hours. Nothing to change in the app, thanks to hibernate.</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568055592704716800?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</center></p>
 
 <p>While this is awesome news for this particular project, it is still pretty
 rare that having to change your connection string is all you need to do to
@@ -1307,8 +1330,18 @@ seldom good.</p>
 <p><strong>Albert King</strong>, Born Under a Bad Sign</p>
 </blockquote>
 
-<p>We&rsquo;ll see how to implement this step in the <a href="#tooling">Tooling: pgloader</a>
-section of this document.</p>
+<figure style="float: right; clear: left; display: block; width: 200px; margin-right: 0em; margin-left: 1em;">
+    <a href="https://pgloader.io/white-paper/">
+        <img style="width:200px; height: 229px; border: 1px solid lightblue; box-shadow: 15px 0 20px -20px lightblue, -15px 0 20px -20px lightblue;"
+               src="https://pgloader.io/img/MigratingToPostgreSQL-Cover.png">
+    </a>
+</figure>
+
+<p>We see how to implement this step in details in the <strong>Migrating to
+PostgreSQL, Tools and Methodology</strong> White Paper. Also, the <a href="https://pgloader.io/about">About</a>
+page of this website contains more detailed information about how pgloader
+implements fully automated database migrations, from MySQL, MS SQL or SQLite
+live connections.</p>
 
 <h2 id="migrating-code-and-sql-queries">Migrating Code and SQL Queries</h2>
 
@@ -1362,7 +1395,7 @@ implements fully automated database migrations!</p>
 
 <figure >
     
-        <img src="https://pgloader.io/img/keep-calm-and-automate-all-the-things-13.png" />
+        <img src="https://pgloader.io/img/keep-calm-and-automate-all-the-things-cushion.jpg" width="280px" />
     
     
 </figure>

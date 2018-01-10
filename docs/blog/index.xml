@@ -29,12 +29,8 @@ The paper is titled Migrating to PostgreSQL, Tools and Methodology and proposed 
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://pgloader.io/blog/continuous-migration/</guid>
-      <description>On February the 18th, 2015 I received a pretty interesting mention on Twitter:
-@tapoueh thank you for pgloader, it made our migration from mysql to postgresql really easy (~1Tb)
-&amp;mdash; CommaFeed (@CommaFeed) February 18, 2015 
-Their story follows:
-@tapoueh it was almost too easy, I just ran the one-liner and waited for 48 hours. Nothing to change in the app, thanks to hibernate.
-&amp;mdash; CommaFeed (@CommaFeed) February 18, 2015</description>
+      <description>After having been involved in many migration projects over the last 10 years, I decided to publish the following White Paper in order to share my learnings.
+The paper is titled Migrating to PostgreSQL, Tools and Methodology and details the Continuous Migration approach. It describes how to migrate from another relational database server technology to PostgreSQL. The reasons to do so are many, and first among them is often the licensing model.</description>
     </item>
     
     <item>

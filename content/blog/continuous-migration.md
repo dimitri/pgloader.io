@@ -5,14 +5,37 @@ title: Continuous Migration
 best: false
 ---
 
+<figure style="float: right; clear: left; display: block; width: 200px; margin-right: 0em; margin-left: 1em;">
+    <a href="https://pgloader.io/white-paper/">
+        <img style="width:200px; height: 229px; border: 1px solid lightblue; box-shadow: 15px 0 20px -20px lightblue, -15px 0 20px -20px lightblue;"
+               src="/img/MigratingToPostgreSQL-Cover.png">
+    </a>
+</figure>
+
+After having been involved in many migration projects over the last 10
+years, I decided to publish the following [White
+Paper](https://pgloader.io/white-paper) in order to share my learnings.
+
+The paper is titled [Migrating to PostgreSQL, Tools and
+Methodology](https://pgloader.io/white-paper) and details the **Continuous
+Migration** approach. It describes how to migrate from another relational
+database server technology to PostgreSQL. The reasons to do so are many, and
+first among them is often the licensing model.
+
+# From MySQL to PostgreSQL over the Week-End!
+
 On February the 18th, 2015 I received a pretty interesting mention on
 Twitter:
 
+<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> thank you for pgloader, it made our migration from mysql to postgresql really easy (~1Tb)</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568053907370450944?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</center>
 
 Their story follows:
 
+<center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> it was almost too easy, I just ran the one-liner and waited for 48 hours. Nothing to change in the app, thanks to hibernate.</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568055592704716800?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</center>
 
 While this is awesome news for this particular project, it is still pretty
 rare that having to change your connection string is all you need to do to
@@ -168,8 +191,18 @@ seldom good.
 >
 > **Albert King**, Born Under a Bad Sign
 
-We'll see how to implement this step in the [Tooling: pgloader](#tooling)
-section of this document.
+<figure style="float: right; clear: left; display: block; width: 200px; margin-right: 0em; margin-left: 1em;">
+    <a href="https://pgloader.io/white-paper/">
+        <img style="width:200px; height: 229px; border: 1px solid lightblue; box-shadow: 15px 0 20px -20px lightblue, -15px 0 20px -20px lightblue;"
+               src="/img/MigratingToPostgreSQL-Cover.png">
+    </a>
+</figure>
+
+We see how to implement this step in details in the **Migrating to
+PostgreSQL, Tools and Methodology** White Paper. Also, the [About](/about)
+page of this website contains more detailed information about how pgloader
+implements fully automated database migrations, from MySQL, MS SQL or SQLite
+live connections.
 
 ## Migrating Code and SQL Queries
 
@@ -218,4 +251,4 @@ The third step isn't always as easy to implement as it should be, and that's
 why the [pgloader](https://pgloader.io) open source project exists: it
 implements fully automated database migrations!
 
-{{< figure src="/img/keep-calm-and-automate-all-the-things-13.png" >}}
+{{< figure src="/img/keep-calm-and-automate-all-the-things-cushion.jpg" width="280px" >}}
