@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/</loc>
+    <lastmod>2018-01-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pgloader.io/about/</loc>
     <lastmod>2017-12-21T00:00:00+00:00</lastmod>
   </url>
@@ -19,7 +24,7 @@
   
   <url>
     <loc>https://pgloader.io/blog/</loc>
-    <lastmod>2017-12-21T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -29,11 +34,11 @@
   </url>
   
   <url>
-    <loc>https://pgloader.io/home/</loc>
+    <loc>https://pgloader.io/moral-licence/</loc>
   </url>
   
   <url>
-    <loc>https://pgloader.io/moral-licence/</loc>
+    <loc>https://pgloader.io/home/</loc>
   </url>
   
   <url>
@@ -46,8 +51,12 @@
   </url>
   
   <url>
+    <loc>https://pgloader.io/white-paper/</loc>
+  </url>
+  
+  <url>
     <loc>https://pgloader.io/</loc>
-    <lastmod>2017-12-21T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

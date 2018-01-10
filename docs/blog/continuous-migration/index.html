@@ -1071,13 +1071,17 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         
                     
                         
-                    
+                            <li><a href="https://pgloader.io/moral-licence/">Contribute</a></li>
                         
-                            <li><a href="https://pgloader.io/moral-licence/">Moral Licence</a></li>
+                    
                         
                     
                         
                             <li><a href="https://pgloader.io/roadmap/">RoadMap</a></li>
+                        
+                    
+                        
+                            <li><a href="https://pgloader.io/white-paper/">White Paper</a></li>
                         
                     
                 </ul>
@@ -1106,7 +1110,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         <div class="author middot" title="Dimitri Fontaine">Dimitri Fontaine</div>
                         
                     
-                    <div class="reading-time middot">4 minute read</div>
+                    <div class="reading-time middot">7 minute read</div>
                     <div class="tags">
                         <ul>
                           
@@ -1125,69 +1129,144 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     
     
 
-<h2 id="from-your-current-rdbms-to-postgresql">From your current RDBMS to PostgreSQL</h2>
+<p>On February the 18th, 2015 I received a pretty interesting mention on
+Twitter:</p>
 
-<p>A migration project may take a little more than a week-end, so you need to
-consider it as a real project. Follow this methodology and it&rsquo;s all going to
-be fine, I promise:</p>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> thank you for pgloader, it made our migration from mysql to postgresql really easy (~1Tb)</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568053907370450944?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
-<p>When migrating from MySQL to PostgreSQL, follow those steps:</p>
+<p>Their story follows:</p>
 
-<ol>
-<li>Setup your target PostgreSQL Architecture</li>
-<li>Fork a Continuous Integration environment that uses PostgreSQL</li>
-<li>Migrate the data over and over again every night, from production</li>
-<li>As soon as the CI is all green using PostgreSQL, schedule the D-Day</li>
-<li>Migrate without suprise and enjoy!
-<br /></li>
-</ol>
+<p><blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/tapoueh?ref_src=twsrc%5Etfw">@tapoueh</a> it was almost too easy, I just ran the one-liner and waited for 48 hours. Nothing to change in the app, thanks to hibernate.</p>&mdash; CommaFeed (@CommaFeed) <a href="https://twitter.com/CommaFeed/status/568055592704716800?ref_src=twsrc%5Etfw">February 18, 2015</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>While this is awesome news for this particular project, it is still pretty
+rare that having to change your connection string is all you need to do to
+handle a migration!</p>
+
+<p>If you&rsquo;re less lucky than <em>CommaFeed</em>, you might want to prepare for a long
+running project and activate the necessary resources, both servers and
+people availability. Even if you&rsquo;re using an ORM and never wrote a SQL query
+yourself, your application is still sending SQL queries to the database, and
+maybe not all of them can be written in a PostgreSQL compatible way.</p>
+
+<h1 id="continuous-migration">Continuous Migration</h1>
+
+<p>Migrating to PostgreSQL is a project in its own right, and requires a good
+methodology in order to be successful. One important criteria for success is
+being able to deliver on time and on budget. This doesn&rsquo;t mean that the
+first budget and timing estimates are going to be right — it means that the
+project is kept under control.</p>
+
+<p>The best methodology to keep things under control is still a complex
+research area in our field of computer science, though some ideas seem to
+keep being considered as the basis for enabling such a goal: split projects
+in smaller chunks and allow incremental progress towards the final goal.</p>
+
+<p>To make it possible to split a migration project into chunks and allow for
+incremental progress, we are going to implement <strong><em>continuous migration</em></strong>:</p>
+
+<ul>
+<li><p>Continuous migration is comparable to continuous integration and
+continuous deployments, or <em>CI/CD</em>.</p></li>
+
+<li><p>The main idea is to first setup a target PostgreSQL environment and then
+use it everyday as developers work on <em>porting</em> your software to this
+PostgreSQL platform.</p></li>
+
+<li><p>As soon as a PostgreSQL environment exists, it&rsquo;s possible to fork a
+<em>CI/CD</em> setup using the PostgreSQL branch of your code repository.</p></li>
+
+<li><p>In parallel to porting the code to PostgreSQL, it&rsquo;s then possible for
+the ops and DBA teams to make the PostgreSQL environment production
+ready by implementing backups, automated recovery, high availability,
+load balancing, and all the usual ops quality standards.</p></li>
+</ul>
+
+<p>Setting up a continuous migration environment does more than allow for
+progress to happen in small chunks and in parallel with other work — it also
+means that your team members all have an opportunity to familiarize
+themselves with the new piece of technology that PostgreSQL might represent
+for them.</p>
 
 <h1 id="postgresql-architecture">PostgreSQL Architecture</h1>
 
-<p>That needs to be done first. Setup your <em>High Availability</em> before doing
-anything else. The goal is for both the service and the data to be highly
-available, so first setup a fully automated <em>backup and restore</em> solution.</p>
+<p>In order to be able to implement the <em>Continuous Migration</em> methodology, the
+first step involves setting up a PostgreSQL environment. A classic
+anti-pattern here is to simply host PostgreSQL on a virtual machine and just
+use that, putting off production-ready PostgreSQL architecture until later.</p>
 
-<h2 id="highly-available-data-automated-recevery">Highly Available Data: Automated Recevery</h2>
+<h2 id="high-availability">High Availability</h2>
 
-<p>For that, use either <a href="http://www.pgbarman.org">pgbarman</a> or
-<a href="http://pgbackrest.org">pgbackrest</a>, or maybe
-<a href="https://github.com/wal-e/wal-e">WAL-e</a> if you want to use Amazon S3.
-Consider its replacement <a href="https://github.com/wal-g/wal-g">WAL-G</a> too.</p>
+<p>A very classic PostgreSQL architecture to begin with involves WAL archiving
+and a standby server, and it looks like this:</p>
 
-<p>Don&rsquo;t roll it yourself. It&rsquo;s really easy to do it wrong, and what you want
-is an all automated <strong>recovery</strong> solution. Go for that.</p>
 
-<h2 id="highly-available-data-standby-servers">Highly Available Data: Standby Servers</h2>
+<figure >
+    
+        <img src="https://pgloader.io/img/sr-hs-2s.png" />
+    
+    
+</figure>
+
+
+<h3 id="automated-recovery">Automated Recovery</h3>
+
+<p>In the previous schema you can see the generic terms <code>archive_command</code> and
+<code>restore_command</code>. Those PostgreSQL configuration hooks allow one to
+implement WAL archiving and <em>point in time recovery</em> thanks to management of
+an archive of the <em>change log</em> of your production database service.</p>
+
+<p>Now, rather than implementing those crucial scripts on your own, you can use
+production ready WAL management applications such as
+<a href="http://www.pgbarman.org">pgbarman</a> or <a href="http://pgbackrest.org">pgbackrest</a>.
+If you&rsquo;re using cloud services, have a look at
+<a href="https://github.com/wal-e/wal-e">WAL-e</a> if you want to use Amazon S3.</p>
+
+<p>Don&rsquo;t roll your own <em>PITR</em> script. It&rsquo;s really easy to do it wrong, and what
+you want is an entirely automated <strong>recovery</strong> solution, where most projects
+would only implement the backup parts. A backup that you can&rsquo;t restore is
+useless, so you need to implement a <em>fully automated recovery solution</em>. The
+projects listed above just do that.</p>
+
+<h3 id="postgresql-standby-servers">PostgreSQL Standby Servers</h3>
 
 <p>Once you have an <em>automated recovery</em> solution in place, you might want to
-reduce the possible down-time by having a <em>stanby server</em> always ready to
-take over.</p>
+reduce the possible downtime by having a <em>standby server</em> ready to take
+over.</p>
 
-<p>If you want to understand all the details about the setup, you can read the
-whole PostgreSQL documentation about <a href="https://www.postgresql.org/docs/current/static/high-availability.html">High Availability, Load Balancing, and
-Replication</a>
-and then about <a href="https://www.postgresql.org/docs/current/static/logical-replication.html">Logical
-Replication</a>.</p>
+<p>To understand all the details about the setup, read all of the PostgreSQL
+documentation about <a href="https://www.postgresql.org/docs/current/static/high-availability.html">high availability, load balancing, and
+replication</a>
+and then read about <a href="https://www.postgresql.org/docs/current/static/logical-replication.html">logical
+replication</a>.</p>
 
-<p>The PostgreSQL documentation best in class, and patches that add or modify
-PostgreSQL features are only accepted when they also update all the impacted
-documentation. Which means that our documentation is always uptodate and
-trustworthy. That&rsquo;s why you don&rsquo;t see much comments in there. If any.</p>
+<p>Note that the PostgreSQL documentation is best in class. Patches that add or
+modify PostgreSQL features are only accepted when they also update all the
+affected documentation. This means that the documentation is always
+up-to-date and reliable. So when using PostgreSQL, get used to reading the
+official documentation a lot.</p>
 
 <p>If you&rsquo;re not sure about what to do now, setup a PostgreSQL Hot Standby
-physical replica by following the steps at <a href="https://wiki.postgresql.org/wiki/Hot_Standby">Hot
-Standby</a>. It looks more
-complex than it is. All you need to do is :</p>
+physical replica by following the steps under <a href="https://wiki.postgresql.org/wiki/Hot_Standby">hot
+standby</a>. It looks more
+complex than it is. All you need to do is the following:</p>
 
 <ol>
-<li>check your <code>postgresql.conf</code> to allow for replication</li>
-<li>open replication privileges on the network in <code>pg_hba.conf</code></li>
-<li>use <code>pg_basebackup</code> to have a remote copy of your <em>Primary</em> data</li>
-<li>start your <em>Replica</em> with a setup that connects to the <em>Primary</em></li>
+<li>Check your <code>postgresql.conf</code> and allow for replication</li>
+<li>Open replication privileges on the network in <code>pg_hba.conf</code></li>
+<li>Use <code>pg_basebackup</code> to have a remote copy of your <em>primary</em> data</li>
+<li>Start your <em>replica</em> with a setup that connects to the <em>primary</em></li>
 </ol>
 
-<p>That&rsquo;s it really.</p>
+<p>A PostgreSQL <em>hot standby</em> server replays its primary <em>write ahead log</em>,
+applying the same binary file level modifications as the primary itself,
+allowing the standby to be a <em>streaming copy</em> of the primary server. Also
+the PostgreSQL <em>hot standby</em> server is open for read-only SQL traffic.</p>
+
+<blockquote>
+<p>It&rsquo;s called a <em>hot standby</em> because not only is the server open for
+read-only SQL queries — this read-only traffic also doesn&rsquo;t get
+interrupted in case of a standby promotion!</p>
+</blockquote>
 
 <h2 id="load-balancing-and-fancy-architectures">Load Balancing and Fancy Architectures</h2>
 
@@ -1210,31 +1289,34 @@ migration project.</p>
 <p>So we now are going to setup <strong><em>Continuous Migration</em></strong> to back you up for
 the duration of the migration project.</p>
 
-<h1 id="nightly-data-migration">Nightly Data Migration</h1>
+<h2 id="nightly-migration-of-the-production-data">Nightly Migration of the Production Data</h2>
 
 <p>Chances are that once your data migration script is tweaked for all the data
-you&rsquo;ve seen through, some new data is going to show up in production that
+you&rsquo;ve gone through, some new data is going to show up in production that
 will defeat your script.</p>
 
-<p>To avoid data related surprises on the D-Day, just run the whole data
-migration script for the production&rsquo;s data every night, for the whole
-duration of the project. You will have such a track record of catering with
-new data that you will fear no surprises. In a migration project, surprises
-seldom are the good ones.</p>
+<p>To avoid data related surprises on D-day, just run the whole data migration
+script from the production data every night, for the whole duration of the
+project. You will have such a good track record in terms of dealing with new
+data that you will fear no surprises. In a migration project, surprises are
+seldom good.</p>
 
 <blockquote>
 <p><em>“If it wasn&rsquo;t for bad luck, I wouldn&rsquo;t have no luck at all.”</em></p>
 
-<p>Albert King, Born Under a Bad Sign</p>
+<p><strong>Albert King</strong>, Born Under a Bad Sign</p>
 </blockquote>
 
-<h1 id="porting-the-code-from-mysql-to-postgresql">Porting the Code from MySQL to PostgreSQL</h1>
+<p>We&rsquo;ll see how to implement this step in the <a href="#tooling">Tooling: pgloader</a>
+section of this document.</p>
 
-<p>Now that you have a CI/CD environment fresh with yesterday&rsquo;s production data
+<h2 id="migrating-code-and-sql-queries">Migrating Code and SQL Queries</h2>
+
+<p>Now that you have a fresh CI/CD environment with yesterday&rsquo;s production data
 every morning, it&rsquo;s time to rewrite those SQL queries for PostgreSQL.
 Depending on the RDBMS your are migrating from, the differences in the SQL
-engines are going to be either mainly syntactic sugar, or sometimes whole
-missing features.</p>
+engines are either going to be mainly syntactic sugar, or sometimes there
+will be completely missing features.</p>
 
 <figure style="float: right; clear: left; display: block; width: 200px; margin-left: 0em;">
     <a href="http://masteringpostgresql.com">
@@ -1244,25 +1326,38 @@ missing features.</p>
 </figure>
 
 <p>Take your time and try to understand how to do things in PostgreSQL if you
-want to <em>migrate</em> your application rather than just <em>porting</em> it, that is,
-making so that it runs the same feature set on-top of PostgreSQL rather than
-your previous choice.</p>
+want to <em>migrate</em> your application rather than just <em>porting</em> it, that is
+making it run the same feature set on top of PostgreSQL rather than your
+previous choice.</p>
 
-<p>The book <a href="https://masteringpostgresql.com">Mastering PostgreSQL in Application
-Development</a> is a good companion to learn
-how to best use PostgreSQL and its advanced SQL feature set.</p>
+<p>My book <a href="https://masteringpostgresql.com">Mastering PostgreSQL in Application
+Development</a> is a good companion when
+learning how to best use PostgreSQL and its advanced SQL feature set.</p>
 
-<h1 id="continuous-migration">Continuous Migration</h1>
+<h1 id="continuous-migration-1">Continuous Migration</h1>
 
-<p>In conclusion, the idea of <em>Continuous Migration</em> is that you setup a target
-production environment for your PostgreSQL based architecture first, and
-then migrate over your current production data to that new environment in a
-nightly basis.</p>
+<p>Migrating from one database technology to PostgreSQL requires solid project
+methodology. In this document we have shown a simple and effective database
+migration method, named <strong><em>Continuous Migration</em></strong>:</p>
 
-<p>Now that can run a <em>fork</em> of your CI/CD pipeline that targets that new
-PostgreSQL based environement, and when it&rsquo;s all green, you can decide to
-push it to production when it best suits you. Almost all last minute
-surprise factors have been taken out with this approach.</p>
+<ol>
+<li>Setup your target PostgreSQL architecture</li>
+<li>Fork a continuous integration environment that uses PostgreSQL</li>
+<li>Migrate the data over and over again every night, from your current
+ production RDBMS</li>
+<li>As soon as the CI is all green using PostgreSQL, schedule the D-day</li>
+<li>Migrate without any unpleasant suprises… and enjoy!</li>
+</ol>
+
+<p>This method makes it possible to break down a huge migration effort into
+smaller chunks, and also to pause and resume the project if need be. It also
+ensures that your migration process is well understood and handled by your
+team, drastically limiting the number of surprises you may otherwise
+encounter on migration D-day.</p>
+
+<p>The third step isn&rsquo;t always as easy to implement as it should be, and that&rsquo;s
+why the <a href="https://pgloader.io">pgloader</a> open source project exists: it
+implements fully automated database migrations!</p>
 
 
 <figure >
@@ -1293,6 +1388,11 @@ surprise factors have been taken out with this approach.</p>
                     </div>
                     
                     <div style="width: 100%;"></div>
+                    
+                    <div>
+                        <a href="https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/">Migrating to PostgreSQL, the White Paper</a>
+                        <img class="icon" src="https://pgloader.io/img/next.svg" alt="next" />
+                    </div>
                     
                 </div>
             

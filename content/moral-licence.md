@@ -1,5 +1,5 @@
 +++
-title = "Moral Licence"
+title = "Contribute"
 +++
 
 The pgloader project is fully Open Source and released under [The PostgreSQL

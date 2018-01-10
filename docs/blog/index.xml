@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © 2017-2018 Dimitri Fontaine</copyright>
-    <lastBuildDate>Thu, 21 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://pgloader.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Migrating to PostgreSQL, the White Paper</title>
+      <link>https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/</link>
+      <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/</guid>
+      <description>After having been involved in many migration projects in the last 10 years, I decided to publish the following White Paper in order to share my learnings.
+The paper is titled Migrating to PostgreSQL, Tools and Methodology and proposed the Continuous Migration approach. Get the book now:
+ Continuous Migration makes it easy to make incremental progress over a period of time, and also to pause and resume the migration work later on, should you need to do that.</description>
+    </item>
     
     <item>
       <title>Continuous Migration</title>
@@ -18,9 +29,12 @@
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://pgloader.io/blog/continuous-migration/</guid>
-      <description>From your current RDBMS to PostgreSQL A migration project may take a little more than a week-end, so you need to consider it as a real project. Follow this methodology and it&amp;rsquo;s all going to be fine, I promise:
-When migrating from MySQL to PostgreSQL, follow those steps:
- Setup your target PostgreSQL Architecture Fork a Continuous Integration environment that uses PostgreSQL Migrate the data over and over again every night, from production As soon as the CI is all green using PostgreSQL, schedule the D-Day Migrate without suprise and enjoy!</description>
+      <description>On February the 18th, 2015 I received a pretty interesting mention on Twitter:
+@tapoueh thank you for pgloader, it made our migration from mysql to postgresql really easy (~1Tb)
+&amp;mdash; CommaFeed (@CommaFeed) February 18, 2015 
+Their story follows:
+@tapoueh it was almost too easy, I just ran the one-liner and waited for 48 hours. Nothing to change in the app, thanks to hibernate.
+&amp;mdash; CommaFeed (@CommaFeed) February 18, 2015</description>
     </item>
     
     <item>
