@@ -22,7 +22,7 @@ Requests* to the project, or buying a *pgloader Moral Licence*!
     </a>
 </figure>
 
-I am puslishing a [White Paper](/white-paper/) titled “Migrating to
+I am publishing a [White Paper](/white-paper/) titled “Migrating to
 PostgreSQL, Tools and Methodology” where the idea of [Continuous
 Migration](/continuous-migration/) is explained in more details. The paper
 also covers migration projects budget decisions and risks mitigation. It's
