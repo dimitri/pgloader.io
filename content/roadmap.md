@@ -111,12 +111,13 @@ github](https://github.com/dimitri/pgloader) and get started, then submit a
 
 If you don't want to do that — maybe because you don't have enough time to
 both hack pgloader and migrate your database — then contribute financially
-to the project here:
+to the project by subscribing the pgloader Patrons Membership as shown
+above.
 
-<center>
-    <a class="gumroad-button" href="https://gum.co/pgloader">
-        pgloader licence, starting $349.
-    </a>
+<center style="margin-bottom: 2em">
+ <a class="btn" href="https://gum.co/CjXn?wanted=true" target="_blank">
+    Become a pgloader Patron!
+ </a> 
 </center>
 
 Then we will raise your missing feature's priority and assign someone to

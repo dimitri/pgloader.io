@@ -35,6 +35,8 @@ support to pgloader and get custom services as described in the following:
 They have bough a pgloader Moral Licence and got special development,
 features and help from the project. Here's what they say about it:
 
+<hr />
+
 ## Iwoca
 
 {{< figure src="/img/iwoca.png" link="https://www.iwoca.co.uk/" >}}
@@ -73,11 +75,3 @@ Microsoft SQL Server to our beloved PostgreSQL by one of their customers,
 they asked me to add support for SQL Server in pgloader. Thanks to Redpill
 Linpro now everyone can do the same, as the result is Open Source and fully
 integrated into pgloader!
-
-<hr />
-
-<center>
-    <a class="gumroad-button" href="https://gum.co/pgloader">
-        pgloader licence, starting $349.
-    </a>
-</center>

@@ -18,8 +18,8 @@ title = "Home"
  </a> 
 </div>
 
-Have a look at the RoadMap and contribute to it either by sending a *Pull
-Requests* to the project, or buying a **pgloader Moral Licence**!
+Have a look at the [RoadMap](/roadmap) and contribute to it either by
+sending a *Pull Requests* to the project, or becoming a **pgloader Patron**.
 
 <h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
   Migrating to PostgreSQL: the White Paper
