@@ -71,8 +71,8 @@ Just like everybody else, I need money for mortgage, kids and food, money I make
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://pgloader.io/home/</guid>
-      <description>pgloader loads data into PostgreSQL, and allows you to implement Continuous Migration from your current database to PostgreSQL. Start today!
-Buy a pgloader licence   Have a look at the RoadMap and contribute to it either by send Pull Requests to the project, or buying a pgloader Moral Licence!
+      <description>pgloader loads data into PostgreSQL and allows you to implement Continuous Migration from your current database to PostgreSQL. Start today!
+Become a pgloader Patron!   Have a look at the RoadMap and contribute to it either by sending a Pull Requests to the project, or buying a pgloader Moral Licence!
   I am publishing a White Paper titled “Migrating to PostgreSQL, Tools and Methodology” where the idea of Continuous Migration is explained in more details.</description>
     </item>
     
@@ -83,7 +83,6 @@ Buy a pgloader licence   Have a look at the RoadMap and contribute to it either 
       
       <guid>https://pgloader.io/roadmap/</guid>
       <description>Some of the items in the pgloader Road Map will only happen given some financial contributions to the project. You are most welcome to participate into the progress of pgloader!
- pgloader licence, starting $349.  
 The following projects are part of the pgloader Road Map, and after you&amp;rsquo;ve bought a pgloader Moral Licence you are entitled to vote for them so see them delivered in a time frame that makes sense for your migration projects.</description>
     </item>
     

@@ -22,12 +22,13 @@ License](http://phk.freebsd.dk/VML/). See the [Varnish Moral License
 FAQ](http://phk.freebsd.dk/VML/vmlfaq.html) and How To to see how PHK does
 it.
 
-# Buy Your Licence Here
+# Become a pgLoader Patron
+
+By subscribing to the *pgLoader Patrons Membership* you can show your
+support to pgloader and get custom services as described in the following:
 
 <script src="https://gumroad.com/js/gumroad-embed.js"></script>
-
-<div class="gumroad-product-embed" data-gumroad-product-id="pgloader" data-outbound-embed="true"><a href="https://gumroad.com/l/pgloader">Loading...</a></div>
-
+<div class="gumroad-product-embed" data-gumroad-product-id="CjXn"><a href="https://gumroad.com/l/CjXn">Loading...</a></div>
 
 # pgloader Sponsors
 

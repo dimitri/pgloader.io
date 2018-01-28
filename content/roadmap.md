@@ -6,12 +6,6 @@ Some of the items in the pgloader Road Map will only happen given some
 financial contributions to the project. You are most welcome to participate
 into the progress of pgloader!
 
-<center>
-    <a class="gumroad-button" href="https://gum.co/pgloader">
-        pgloader licence, starting $349.
-    </a>
-</center>
-
 The following projects are part of the pgloader Road Map, and after you've
 bought a pgloader Moral Licence you are entitled to vote for them so see
 them delivered in a time frame that makes sense for your migration projects.
@@ -26,12 +20,22 @@ them delivered in a time frame that makes sense for your migration projects.
   
     - View Definitions
     - Stored Procedures
+    - Native PostgreSQL 10 Partitioned Tables, see [Issue #732](https://github.com/dimitri/pgloader/issues/732)
 
   - Quality and Delivery
   
     - More frequent releases
     - Binaries for all platforms, including Windows
     - Continuous Integration for database sources
+
+## Support pgLoader development, be a Patron!
+
+<center>
+    <script src="https://gumroad.com/js/gumroad-embed.js"></script>
+    <div class="gumroad-product-embed" data-gumroad-product-id="CjXn">
+        <a href="https://gumroad.com/l/CjXn">Loading...</a>
+    </div>
+</center>
 
 ## Adding Support for a new Database 
 
