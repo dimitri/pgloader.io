@@ -4,22 +4,34 @@ title = "Home"
 
 > pgloader loads data into PostgreSQL and allows you to implement
 > [Continuous Migration](/white-paper) from your current database to
-> PostgreSQL. Read the White Paper to learn how to limit risks and control
-> your budget, and start your PostgreSQL migration today!
+> PostgreSQL. Read the [White Paper](/white-paper) to learn how to limit
+> risks and control your budget, and start your PostgreSQL migration today!
 
 <h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
-  Sustainable Open Source Development
+  Introduction
 </h1>
 
-<div style="float: right; clear: left; margin: 1em; margin-top: 2em;">
- <a class="btn" href="https://gum.co/CjXn?wanted=true" target="_blank">
-    Become a
-    pgloader Patron!
- </a> 
-</div>
+<figure style="float: left; clear: right; display: block; width: 200px; margin-right: 1em;">
+    <img width="200px" src="/img/logo.png">
+</figure>
 
-Have a look at the [RoadMap](/roadmap) and contribute to it either by
-sending a *Pull Requests* to the project, or becoming a **pgloader Patron**.
+pgLoader has two modes of operation. It can either load data from files,
+such as CSV or Fixed-File Format; or migrate a whole database to PostgreSQL.
+  
+pgLoader supports several RDBMS solutions as a migration source, and fetches
+information from the catalog tables over a connection to then create an
+equivalent schema in PostgreSQL. This means that you can [migrate to
+PostgreSQL in a single command-line](/about/)!
+
+Supported operations include:
+
+  - Migrate from MySQL to PostgreSQL
+  - Migrate from SQLite to PostgreSQL
+  - Migrate from MS SQL Server® to PostgreSQL
+
+You can also _migrate from database files_ in the DBF and IXF formats, where
+pgLoader can inspect the target table format for you automatically in the
+file headers.
 
 <h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
   Migrating to PostgreSQL: the White Paper
@@ -32,14 +44,13 @@ sending a *Pull Requests* to the project, or becoming a **pgloader Patron**.
     </a>
 </figure>
 
-I am publishing a [White Paper](/white-paper/) titled “Migrating to
-PostgreSQL, Tools and Methodology” where the idea of [Continuous
-Migration](/blog/continuous-migration/) is explained in more details. The
-paper also covers migration projects budget decisions and risks mitigation.
-It's free and contains all you need to get started, including a PostgreSQL
-Architecture primer!
+The [White Paper](/white-paper/) titled “Migrating to PostgreSQL, Tools and
+Methodology” explains the idea of [Continuous
+Migration](/blog/continuous-migration/). The paper also covers migration
+projects budget decisions and risks mitigation. It's free and contains all
+you need to get started, including a PostgreSQL Architecture primer!
 
-<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
+<h1 style="border-bottom: 1px solid black; margin-top: 3em; text-align: right;">
   pgLoader documentation
 </h1>
 
@@ -55,4 +66,17 @@ Looking for pgloader's *documentation*? It is now hosted at
 It contains a tutorial for the many different source types supported, code
 samples, simple and complex load files and command line examples, and a full
 reference of every option available.
+
+<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
+  Sustainable Open Source Development
+</h1>
+
+<div style="float: left; clear: right; margin: 2em;">
+ <a class="btn" href="https://gum.co/CjXn" target="_blank">
+    Become a pgloader Patron!
+ </a> 
+</div>
+
+Have a look at the [RoadMap](/roadmap) and contribute to it either by
+sending a *Pull Requests* to the project, or becoming a **pgloader Patron**.
 

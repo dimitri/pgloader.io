@@ -1125,23 +1125,37 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     <blockquote>
 <p>pgloader loads data into PostgreSQL and allows you to implement
 <a href="https://pgloader.io/white-paper">Continuous Migration</a> from your current database to
-PostgreSQL. Read the White Paper to learn how to limit risks and control
-your budget, and start your PostgreSQL migration today!</p>
+PostgreSQL. Read the <a href="https://pgloader.io/white-paper">White Paper</a> to learn how to limit
+risks and control your budget, and start your PostgreSQL migration today!</p>
 </blockquote>
 
 <h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
-  Sustainable Open Source Development
+  Introduction
 </h1>
 
-<div style="float: right; clear: left; margin: 1em; margin-top: 2em;">
- <a class="btn" href="https://gum.co/CjXn?wanted=true" target="_blank">
-    Become a
-    pgloader Patron!
- </a> 
-</div>
+<figure style="float: left; clear: right; display: block; width: 200px; margin-right: 1em;">
+    <img width="200px" src="https://pgloader.io/img/logo.png">
+</figure>
 
-<p>Have a look at the <a href="https://pgloader.io/roadmap">RoadMap</a> and contribute to it either by
-sending a <em>Pull Requests</em> to the project, or becoming a <strong>pgloader Patron</strong>.</p>
+<p>pgLoader has two modes of operation. It can either load data from files,
+such as CSV or Fixed-File Format; or migrate a whole database to PostgreSQL.</p>
+
+<p>pgLoader supports several RDBMS solutions as a migration source, and fetches
+information from the catalog tables over a connection to then create an
+equivalent schema in PostgreSQL. This means that you can <a href="https://pgloader.io/about/">migrate to
+PostgreSQL in a single command-line</a>!</p>
+
+<p>Supported operations include:</p>
+
+<ul>
+<li>Migrate from MySQL to PostgreSQL</li>
+<li>Migrate from SQLite to PostgreSQL</li>
+<li>Migrate from MS SQL Server® to PostgreSQL</li>
+</ul>
+
+<p>You can also <em>migrate from database files</em> in the DBF and IXF formats, where
+pgLoader can inspect the target table format for you automatically in the
+file headers.</p>
 
 <h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
   Migrating to PostgreSQL: the White Paper
@@ -1154,14 +1168,13 @@ sending a <em>Pull Requests</em> to the project, or becoming a <strong>pgloader 
     </a>
 </figure>
 
-<p>I am publishing a <a href="https://pgloader.io/white-paper/">White Paper</a> titled “Migrating to
-PostgreSQL, Tools and Methodology” where the idea of <a href="https://pgloader.io/blog/continuous-migration/">Continuous
-Migration</a> is explained in more details. The
-paper also covers migration projects budget decisions and risks mitigation.
-It&rsquo;s free and contains all you need to get started, including a PostgreSQL
-Architecture primer!</p>
+<p>The <a href="https://pgloader.io/white-paper/">White Paper</a> titled “Migrating to PostgreSQL, Tools and
+Methodology” explains the idea of <a href="https://pgloader.io/blog/continuous-migration/">Continuous
+Migration</a>. The paper also covers migration
+projects budget decisions and risks mitigation. It&rsquo;s free and contains all
+you need to get started, including a PostgreSQL Architecture primer!</p>
 
-<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
+<h1 style="border-bottom: 1px solid black; margin-top: 3em; text-align: right;">
   pgLoader documentation
 </h1>
 
@@ -1177,6 +1190,19 @@ Architecture primer!</p>
 <p>It contains a tutorial for the many different source types supported, code
 samples, simple and complex load files and command line examples, and a full
 reference of every option available.</p>
+
+<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
+  Sustainable Open Source Development
+</h1>
+
+<div style="float: left; clear: right; margin: 2em;">
+ <a class="btn" href="https://gum.co/CjXn" target="_blank">
+    Become a pgloader Patron!
+ </a> 
+</div>
+
+<p>Have a look at the <a href="https://pgloader.io/roadmap">RoadMap</a> and contribute to it either by
+sending a <em>Pull Requests</em> to the project, or becoming a <strong>pgloader Patron</strong>.</p>
 
 
             </div>

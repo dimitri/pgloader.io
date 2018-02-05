@@ -72,7 +72,8 @@ Just like everybody else, I need money for mortgage, kids and food, money I make
       
       <guid>https://pgloader.io/home/</guid>
       <description>pgloader loads data into PostgreSQL and allows you to implement Continuous Migration from your current database to PostgreSQL. Read the White Paper to learn how to limit risks and control your budget, and start your PostgreSQL migration today!
- Sustainable Open Source Development  Become a pgloader Patron!   Have a look at the RoadMap and contribute to it either by sending a Pull Requests to the project, or becoming a pgloader Patron.</description>
+ Introduction   pgLoader has two modes of operation. It can either load data from files, such as CSV or Fixed-File Format; or migrate a whole database to PostgreSQL.
+pgLoader supports several RDBMS solutions as a migration source, and fetches information from the catalog tables over a connection to then create an equivalent schema in PostgreSQL.</description>
     </item>
     
     <item>

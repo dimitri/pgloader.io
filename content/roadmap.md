@@ -115,7 +115,7 @@ to the project by subscribing the pgloader Patrons Membership as shown
 above.
 
 <center style="margin-bottom: 2em">
- <a class="btn" href="https://gum.co/CjXn?wanted=true" target="_blank">
+ <a class="btn" href="https://gum.co/CjXn" target="_blank">
     Become a pgloader Patron!
  </a> 
 </center>
