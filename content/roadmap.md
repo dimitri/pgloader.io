@@ -21,6 +21,7 @@ them delivered in a time frame that makes sense for your migration projects.
     - View Definitions
     - Stored Procedures
     - Native PostgreSQL 10 Partitioned Tables, see [Issue #732](https://github.com/dimitri/pgloader/issues/732)
+    - Materialize Views support for MS SQL, see [Issue #316](https://github.com/dimitri/pgloader/issues/316)
 
   - Quality and Delivery
   
