@@ -15,10 +15,10 @@ title = "Home"
     <img width="200px" src="/img/logo.png">
 </figure>
 
-pgLoader has two modes of operation. It can either load data from files,
+pgloader has two modes of operation. It can either load data from files,
 such as CSV or Fixed-File Format; or migrate a whole database to PostgreSQL.
   
-pgLoader supports several RDBMS solutions as a migration source, and fetches
+pgloader supports several RDBMS solutions as a migration source, and fetches
 information from the catalog tables over a connection to then create an
 equivalent schema in PostgreSQL. This means that you can [migrate to
 PostgreSQL in a single command-line](/about/)!
@@ -30,7 +30,7 @@ Supported operations include:
   - Migrate from MS SQL Server® to PostgreSQL
 
 You can also _migrate from database files_ in the DBF and IXF formats, where
-pgLoader can inspect the target table format for you automatically in the
+pgloader can inspect the target table format for you automatically in the
 file headers.
 
 <h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
@@ -51,7 +51,7 @@ projects budget decisions and risks mitigation. It's free and contains all
 you need to get started, including a PostgreSQL Architecture primer!
 
 <h1 style="border-bottom: 1px solid black; margin-top: 3em; text-align: right;">
-  pgLoader documentation
+  pgloader documentation
 </h1>
 
 <figure style="float: right; clean: left; display: block; width: 200px;">
@@ -71,12 +71,23 @@ reference of every option available.
   Sustainable Open Source Development
 </h1>
 
-<div style="float: left; clear: right; margin: 2em;">
- <a class="btn" href="https://gum.co/CjXn" target="_blank">
-    Become a pgloader Patron!
- </a> 
-</div>
+Open Source Software development is a magic that happens when people form a
+team and create a product together. Multiple roles take part of the magic,
+including developers and also users, bug reporters, testers, packagers, etc.
 
-Have a look at the [RoadMap](/roadmap) and contribute to it either by
-sending a *Pull Requests* to the project, or becoming a **pgloader Patron**.
+You can contribute to pgloader development by either [contributing your time
+on the github project](https://github.com/dimitr/pgloader) or [purchasing a
+moral license](/licensing).
 
+
+<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
+  Professional Services
+</h1>
+
+If you require assistance for migrating to PostgreSQL, contact us!
+
+<center>
+    <script async data-uid="b150f0424c" 
+        src="https://yesql.ck.page/b150f0424c/index.js">
+    </script>
+</center>

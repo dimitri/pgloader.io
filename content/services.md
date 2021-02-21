@@ -16,4 +16,8 @@ Postgres, taking into account many different situations, constraints, and
 platforms. Whether you are migrating from MySQL or Oracle, MS SQL server or
 RDS/Aurora, we can make it easier, and ensure a successful result.
 
-<script async data-uid="b150f0424c" src="https://yesql.ck.page/b150f0424c/index.js"></script>
+<center>
+    <script async data-uid="b150f0424c" 
+        src="https://yesql.ck.page/b150f0424c/index.js">
+    </script>
+</center>

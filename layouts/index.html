@@ -10,12 +10,14 @@
 
             {{ if isset .Site.Params "latestpostcount" }}
                 <div class="posts">
-                {{ $nbPosts := len (where .Data.Pages "Section" "blog") }}
+                {{ $nbPosts := len (where .Site.Pages "Section" "blog") }}
                 {{ if gt $nbPosts 0 }}
                     <div class="page-heading">Latest posts</div>
                     <ul>
-                    {{ range (first .Site.Params.latestpostcount (where .Pages "Section" "blog")) }}
+                    {{ range (first .Site.Params.latestpostcount (where .Site.Pages "Section" "blog")) }}
+                      {{ if ne .Title "Blog" }}
                             {{ partial "li.html" . }}
+                      {{ end }}
                     {{ end }}
                     </ul>
 
