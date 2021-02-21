@@ -6,14 +6,14 @@
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
+
 <meta name="description" content="Continuous Migration to PostgreSQL">
 
 
     <meta property="twitter:site" content="@tapoueh">
 
 <meta property="og:site_name" content="pgloader" />
-<meta property="og:locale" content="nn_NO" />
+<meta property="og:locale" content="en-us" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://pgloader.io/blog/" />
 <meta property="og:title" content="Blog" />
@@ -195,7 +195,9 @@ div.header .content {
   align-items: center;
 }
 div.header .container .logo {
+  
   max-width: 100px;
+  
   margin-left: -2em;
 }
 div.header .name {
@@ -203,12 +205,13 @@ div.header .name {
   font-size: 28px;
   font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
+  
   text-transform: uppercase;
+  
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   color: #333333;
-  color: #555555;
 }
 div.header nav {
   margin-bottom: 16px;
@@ -316,7 +319,8 @@ div.main .content .title-container {
   justify-content: space-between;
 }
 div.main .content .posts {
-  margin-bottom: 4em;
+  
+  
 }
 div.main .content .page-heading {
   font-size: 20px;
@@ -383,6 +387,7 @@ div.main .content .front-matter .tags ul li:hover {
 div.main .content .front-matter .tags ul li a {
   color: #666666;
 }
+
 div.main .container.f04 {
   -webkit-justify-content: center;
   -moz-justify-content: center;
@@ -727,8 +732,28 @@ div.main .content .share {
 div.main .content .share a {
   margin: 0 6px;
 }
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
 
 /* Fonts */
+
 
 .wf-raleway-n4-active body, 
 .wf-raleway-n4-active div.header nav ul a,
@@ -740,17 +765,18 @@ div.main .content .share a {
 .wf-raleway-n7-active div.main .content .markdown h4,
 .wf-raleway-n7-active div.main .content .markdown h5,
 .wf-raleway-n7-active div.main .content .markdown h6 {
-  font-family: 'Raleway';
+      font-family: 'Raleway';
 }
 
 .wf-merriweather-n3-active div.main .content .markdown {
-  font-family: 'Merriweather';
+      font-family: 'Merriweather';
 }
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-  font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';
 }
+
 
 </style>
 <style media="(min-width: 600px)">
@@ -767,13 +793,15 @@ section {
 padding: 0 16px;
 margin-left: 100px;
 margin-right: 100px;
+
 max-width: 750px;
+
 }
 div.column {
 padding: 0 16px;
-margin-left: 100px;
-margin-right: 100px;
+
 max-width: 750px;
+
 }
 div.header {
 background-color: transparent;
@@ -788,8 +816,8 @@ div.header .container .logo {
 margin: 0;
 }
 div.header-home .container .logo {
-max-width: 180px;
-margin-left: 20px;
+max-width: 216px;
+margin-left: 24px;
 }
 div.header-home .name-home {
 padding-top: 30px;
@@ -874,11 +902,16 @@ padding-top: 60px;
 padding-bottom: 60px;
 }
 div.footer {
-padding-top: 30px;
+padding-top: 60px;
 padding-bottom: 60px;
 }
 div.main {
 padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
 }
 div.main .container .content .post-item {
 display: flex;
@@ -887,10 +920,6 @@ padding-left: 1.5em;
 }
 div.main .container .content .post-item .meta {
 display: block;
-}
-div.main.post {
-padding-top: 60px;
-padding-bottom: 60px;
 }
 div.main .content .markdown blockquote {
 padding-right: 5rem;
@@ -938,7 +967,8 @@ margin-left: -4%;
 
 
   <style type="text/css" media="screen">
-    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);animation:a .5s both}@keyframes a{0%{filter:blur(20px)}to{filter:blur(0)}}
+
   </style>
 
 
@@ -1028,8 +1058,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-
-
 <link rel="shortcut icon"
 
     href="https://pgloader.io/img/logo.png"
@@ -1045,41 +1073,228 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 <style>
-.btn {
-  background: #d9347e;
-  background-image: -webkit-linear-gradient(top, #d9347e, #b82b4e);
-  background-image: -moz-linear-gradient(top, #d9347e, #b82b4e);
-  background-image: -ms-linear-gradient(top, #d9347e, #b82b4e);
-  background-image: -o-linear-gradient(top, #d9347e, #b82b4e);
-  background-image: linear-gradient(to bottom, #d9347e, #b82b4e);
-  -webkit-border-radius: 28;
-  -moz-border-radius: 28;
-  border-radius: 28px;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 1.2em;
-  padding: 20px;
-  text-decoration: none;
-}
+  .btn {
+      background: #d9347e;
+      background-image: -webkit-linear-gradient(top, #d9347e, #b82b4e);
+      background-image: -moz-linear-gradient(top, #d9347e, #b82b4e);
+      background-image: -ms-linear-gradient(top, #d9347e, #b82b4e);
+      background-image: -o-linear-gradient(top, #d9347e, #b82b4e);
+      background-image: linear-gradient(to bottom, #d9347e, #b82b4e);
+      -webkit-border-radius: 28;
+      -moz-border-radius: 28;
+      border-radius: 28px;
+      font-family: Arial;
+      color: #ffffff;
+      font-size: 1.2em;
+      padding: 20px;
+      text-decoration: none;
+  }
+
+  .wrapper-card {
+      display: flex;
+      flex-wrap: nowrap;
+      margin: 40px auto;
+      width: 77%;
+  }
+  
+  .card {
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 1px transparent;
+      flex: 1;
+      margin: 8px;
+      padding: 30px;
+      position: relative;
+      text-align: center;
+      transition: all 0.5s ease-in-out;
+  }
+  
+  .card.popular {
+      margin-top: -10px;
+      margin-bottom: -10px;
+  }
+  
+  .card.popular .card-title h3 {
+      color: #3498db;
+      font-size: 22px;
+  }
+  
+  .card.popular .card-price {
+      margin: 50px;
+  }
+  
+  .card.popular .card-price h1 {
+      color: #3498db;
+      font-size: 60px;
+  }
+  
+  .card.popular .card-action button {
+      background-color: #3498db;
+      border-radius: 80px;
+      color: #fff;
+      font-size: 17px;
+      margin-top: -15px;
+      padding: 15px;
+      height: 80px;
+  }
+
+  .card.popular .card-action button:hover {
+      background-color: #2386c8;
+      font-size: 23px;
+  }
+
+  .card.donator .card-title h3 {
+      color: black;
+      font-size: 24px;
+  }
+  
+  .card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-ribbon {
+      position: absolute;
+      overflow: hidden;
+      top: -10px;
+      left: -10px;
+      width: 114px;
+      height: 112px;
+  }
+  
+  .card-ribbon span {
+      position: absolute;
+      display: block;
+      width: 160px;
+      padding: 10px 0;
+      background-color: #3498db;
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+      color: #fff;
+      font-size: 13px;
+      text-transform: uppercase;
+      text-align: center;
+      left: -35px;
+      top: 25px;
+      transform: rotate(-45deg);
+  }
+  
+  .card-ribbon::before,
+  .card-ribbon::after {
+      position: absolute;
+      z-index: -1;
+      content: '';
+      display: block;
+      border: 5px solid #2980b9;
+      border-top-color: transparent;
+      border-left-color: transparent;
+  }
+  
+  .card-ribbon::before {
+      top: 0;
+      right: 0;
+  }
+  
+  .card-ribbon::after {
+      bottom: 0;
+      left: 0;
+  }
+  
+  .card-title h3 {
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 15px;
+      text-transform: uppercase;
+  }
+  
+  .card-title h4 {
+      color: rgba(0, 0, 0, 0.6);
+      text-align: left;
+  }
+  
+  .card-price {
+      margin: 60px 0;
+  }
+  
+  .card-price h1 {
+      font-size: 46px;
+  }
+  
+  .card-price h1 sup {
+      font-size: 15px;
+      display: inline-block;
+      margin-left: -20px;
+      width: 10px;
+  }
+  
+  .card-price h1 small {
+      color: rgba(0, 0, 0, 0.3);
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+  }
+  
+  .card-description ul {
+      display: block;
+      list-style: none;
+      margin: 60px 0;
+      padding: 0;
+      text-align: left;
+  }
+  
+  .card-description li {
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 15px;
+      margin: 0 0 15px;
+  }
+  
+  .card-description li::before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f00c";
+      padding: 0 5px 0 0;
+      color: rgba(0, 0, 0, 0.15);
+  }
+
+  .card-description li.disabled::before {
+      font-family: "Font Awesome 5 Free";
+      content: "\f05e";
+      padding: 0 5px 0 0;
+      color: rgba(0, 0, 0, 0.15);
+  }
+
+  .card-action a {
+      color: #3498db;
+  }
+  
+  .card-action button {
+      background: transparent;
+      border: 2px solid #3498db;
+      border-radius: 30px;
+      color: #3498db;
+      cursor: pointer;
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 20px;
+      width: 100%;
+      height: 60px;
+      text-transform: uppercase;
+      transition: all 0.3s ease-in-out;
+  }
+  
+  .card-action button:hover {
+      background-color: #3498db;
+      box-shadow: 0 2px 4px #196090;
+      color: #fff;
+      font-size: 17px;
+  }
+
 </style>
 
 
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47059482-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-47059482-2');
-</script>
+<link href="https://pgloader.io/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet"> 
 
 <body>
 
   <a href="https://github.com/dimitri/pgloader"><img style="position: absolute; top: 0; left: 0; border: 0; width=151px; height=151px;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
-<script src="https://gumroad.com/js/gumroad.js"></script>
-  
 
 <div class="header header-home column">
 
@@ -1103,13 +1318,17 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         
                     
                         
-                            <li><a href="https://pgloader.io/moral-licence/">Contribute</a></li>
-                        
                     
+                        
+                            <li><a href="https://pgloader.io/licensing/">Licensing</a></li>
                         
                     
                         
                             <li><a href="https://pgloader.io/roadmap/">RoadMap</a></li>
+                        
+                    
+                        
+                            <li><a href="https://pgloader.io/services/">Services</a></li>
                         
                     
                         
@@ -1127,34 +1346,56 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
         <div class="content">
             <div class="posts">
                 <div class="page-heading">Blog</div>
+
+                
+
+                
                 <ul>
                     
+                      
                         <li class="groupby">Jan, 2018</li>
                         
+                          
                             <li class="post-item">
     <span class="meta">Jan 10, 2018</span>
+    
     <a href="https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/"><span>Migrating to PostgreSQL, the White Paper</span></a>
+    
 </li>
 
+                          
                         
+                      
                     
+                      
                         <li class="groupby">Dec, 2017</li>
                         
+                          
                             <li class="post-item">
     <span class="meta">Dec 21, 2017</span>
+    
     <a href="https://pgloader.io/blog/continuous-migration/"><span>Continuous Migration</span></a>
+    
 </li>
 
+                          
                         
+                      
                     
+                      
                         <li class="groupby">Oct, 2017</li>
                         
+                          
                             <li class="post-item">
     <span class="meta">Oct 30, 2017</span>
+    
     <a href="https://pgloader.io/blog/pgloader-your-migration-companion/"><span>pgloader, Your Migration Companion</span></a>
+    
 </li>
 
+                          
                         
+                      
                     
                 </ul>
             </div>
@@ -1163,6 +1404,8 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 </div>
 <div class="footer column">
     <div class="container">
+
+        
 
         
 
@@ -1180,21 +1423,35 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
         
 
         
-            <a href="https://github.com/dimitri/pgloader" target="_blank">
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://github.com/dimitri/pgloader" rel=me target="_blank">
                 <img class="icon" src="https://pgloader.io/img/github.svg" alt="github" />
             </a>
         
 
         
-            <a href="https://twitter.com/tapoueh" target="_blank">
+            <a href="https://twitter.com/tapoueh" rel=me target="_blank">
                 <img class="icon" src="https://pgloader.io/img/twitter.svg" alt="twitter" />
             </a>
         
 
         
-            <a href="https://www.linkedin.com/in/dimitrifontaine" target="_blank">
+            <a href="https://www.linkedin.com/in/dimitrifontaine" rel=me target="_blank">
                 <img class="icon" src="https://pgloader.io/img/linkedin.svg" alt="linkedin" />
             </a>
+        
+
+        
+
         
 
         
@@ -1213,6 +1470,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     </div>
 </div>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script>
   WebFont.load({
@@ -1221,6 +1479,7 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
     }
   });
 </script>
+
 
 
   <script src="https://pgloader.io/js/highlight.min.js" defer></script>
@@ -1232,10 +1491,9 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-
-
-
   <script src="https://pgloader.io/js/social-share-kit.min.js" defer></script>
+
+
 
 
 

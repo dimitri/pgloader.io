@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>pgloader</title>
@@ -6,12 +6,7 @@
     <description>Recent content on pgloader</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Copyright © 2017-2018 Dimitri Fontaine</copyright>
-    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://pgloader.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://pgloader.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migrating to PostgreSQL, the White Paper</title>
       <link>https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/</link>
@@ -55,17 +50,6 @@ pgloader, your migration companion Migrating data from another RDBMS to PostgreS
     </item>
     
     <item>
-      <title>Contribute</title>
-      <link>https://pgloader.io/moral-licence/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://pgloader.io/moral-licence/</guid>
-      <description>The pgloader project is fully Open Source and released under The PostgreSQL License so that anyone can easily contribute to the project. The whole project management (issue tracking, feature proposals, etc) happens on the pgloader github page, in public.
-Software development may be open, and the result shared with an Open Source Software licence, but the actual hours of programming are not gratis.
-Just like everybody else, I need money for mortgage, kids and food, money I make by doing things with computers, for people who are willing to pay for that.</description>
-    </item>
-    
-    <item>
       <title>Home</title>
       <link>https://pgloader.io/home/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -77,6 +61,15 @@ pgLoader supports several RDBMS solutions as a migration source, and fetches inf
     </item>
     
     <item>
+      <title>Licensing</title>
+      <link>https://pgloader.io/licensing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/licensing/</guid>
+      <description>pgloader is Open Source. Purchase a Moral License to support the development of pgloader and get priority tracking for the issues that matter to you, in the context of your project.</description>
+    </item>
+    
+    <item>
       <title>RoadMap</title>
       <link>https://pgloader.io/roadmap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -84,6 +77,16 @@ pgLoader supports several RDBMS solutions as a migration source, and fetches inf
       <guid>https://pgloader.io/roadmap/</guid>
       <description>Some of the items in the pgloader Road Map will only happen given some financial contributions to the project. You are most welcome to participate into the progress of pgloader!
 The following projects are part of the pgloader Road Map, and after you&amp;rsquo;ve bought a pgloader Moral Licence you are entitled to vote for them so see them delivered in a time frame that makes sense for your migration projects.</description>
+    </item>
+    
+    <item>
+      <title>Services</title>
+      <link>https://pgloader.io/services/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://pgloader.io/services/</guid>
+      <description>As detailed in the Migrating to PostgreSQL White Paper a database migration to PostgreSQL is set-up in the following 4 steps:
+ Data migration Code migration (SQL, Stored Procedure, Application Architecture, etc) Service migration (maintenance window) Opportunity cost   We can help you at any step above, thanks to our network of Postgres professionals. We have collectively handled hundreds of migrations to Postgres, taking into account many different situations, constraints, and platforms.</description>
     </item>
     
     <item>

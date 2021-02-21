@@ -213,9 +213,9 @@ engines are either going to be mainly syntactic sugar, or sometimes there
 will be completely missing features.
 
 <figure style="float: right; clear: left; display: block; width: 200px; margin-left: 0em;">
-    <a href="http://masteringpostgresql.com">
+    <a href="https://theartofpostgresql.com">
         <img style="width:200px; height: 229px;"
-               src="/img/MasteringPostgreSQLinAppDev-Cover-th.png">
+               src="/img/TAOPCoverTablet.png">
     </a>
 </figure>
 

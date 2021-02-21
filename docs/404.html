@@ -165,7 +165,9 @@ div.header .content {
   align-items: center;
 }
 div.header .container .logo {
+  
   max-width: 100px;
+  
   margin-left: -2em;
 }
 div.header .name {
@@ -173,12 +175,13 @@ div.header .name {
   font-size: 28px;
   font-family: 'Nexa Bold', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
+  
   text-transform: uppercase;
+  
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
   color: #333333;
-  color: #555555;
 }
 div.header nav {
   margin-bottom: 16px;
@@ -286,7 +289,8 @@ div.main .content .title-container {
   justify-content: space-between;
 }
 div.main .content .posts {
-  margin-bottom: 4em;
+  
+  
 }
 div.main .content .page-heading {
   font-size: 20px;
@@ -353,6 +357,7 @@ div.main .content .front-matter .tags ul li:hover {
 div.main .content .front-matter .tags ul li a {
   color: #666666;
 }
+
 div.main .container.f04 {
   -webkit-justify-content: center;
   -moz-justify-content: center;
@@ -697,8 +702,28 @@ div.main .content .share {
 div.main .content .share a {
   margin: 0 6px;
 }
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}
 
 /* Fonts */
+
 
 .wf-raleway-n4-active body, 
 .wf-raleway-n4-active div.header nav ul a,
@@ -710,17 +735,18 @@ div.main .content .share a {
 .wf-raleway-n7-active div.main .content .markdown h4,
 .wf-raleway-n7-active div.main .content .markdown h5,
 .wf-raleway-n7-active div.main .content .markdown h6 {
-  font-family: 'Raleway';
+      font-family: 'Raleway';
 }
 
 .wf-merriweather-n3-active div.main .content .markdown {
-  font-family: 'Merriweather';
+      font-family: 'Merriweather';
 }
 
 .wf-ubuntu-mono-n4-active div.main .content .markdown code,
 .wf-ubuntu-mono-n4-active div.main .content .markdown pre {
-  font-family: 'Ubuntu Mono';
+      font-family: 'Ubuntu Mono';
 }
+
 
 </style>
 <style media="(min-width: 600px)">
@@ -737,13 +763,15 @@ section {
 padding: 0 16px;
 margin-left: 100px;
 margin-right: 100px;
+
 max-width: 750px;
+
 }
 div.column {
 padding: 0 16px;
-margin-left: 100px;
-margin-right: 100px;
+
 max-width: 750px;
+
 }
 div.header {
 background-color: transparent;
@@ -758,8 +786,8 @@ div.header .container .logo {
 margin: 0;
 }
 div.header-home .container .logo {
-max-width: 180px;
-margin-left: 20px;
+max-width: 216px;
+margin-left: 24px;
 }
 div.header-home .name-home {
 padding-top: 30px;
@@ -844,11 +872,16 @@ padding-top: 60px;
 padding-bottom: 60px;
 }
 div.footer {
-padding-top: 30px;
+padding-top: 60px;
 padding-bottom: 60px;
 }
 div.main {
 padding-top: 0;
+}
+div.main .content {
+  
+  font-size: 16px;
+  
 }
 div.main .container .content .post-item {
 display: flex;
@@ -857,10 +890,6 @@ padding-left: 1.5em;
 }
 div.main .container .content .post-item .meta {
 display: block;
-}
-div.main.post {
-padding-top: 60px;
-padding-bottom: 60px;
 }
 div.main .content .markdown blockquote {
 padding-right: 5rem;
@@ -908,7 +937,8 @@ margin-left: -4%;
 
 
   <style type="text/css" media="screen">
-    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;position:absolute;-webkit-transform:translateZ(0);transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px);-webkit-filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);-webkit-filter:blur(20px);-webkit-animation:sharpen .5s both;animation:sharpen .5s both}@-webkit-keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}@keyframes sharpen{from{filter:blur(20px);-webkit-filter:blur(20px)}to{filter:blur(0);-webkit-filter:blur(0)}}
+    .progressive{overflow:hidden;position:relative;background:#efefef}.progressive__img{width:100%;height:100%;transform:translateZ(0)}.progressive--not-loaded{filter:blur(30px)}.progressive--is-loaded{filter:blur(20px);animation:a .5s both}@keyframes a{0%{filter:blur(20px)}to{filter:blur(0)}}
+
   </style>
 
 
@@ -998,8 +1028,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-
-
 <link rel="shortcut icon"
 
     href="https://pgloader.io/img/logo.png"
@@ -1007,8 +1035,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 >
 
 
-
-  <link href="https://pgloader.io/index.xml" rel="alternate" type="application/rss+xml" title="pgloader" />
 
 
 <style>
@@ -1029,7 +1055,9 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 </style>
 </head>
 <body>
-    <img src=img/logo.png class="logo" alt="logo" />
+    
+    <img class="logo" src="https://pgloader.io/img/logo.png" alt="logo">
+    
     <div class="container f04">
         <div class="content">
             <div class="header column">

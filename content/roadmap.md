@@ -29,15 +29,6 @@ them delivered in a time frame that makes sense for your migration projects.
     - Binaries for all platforms, including Windows
     - Continuous Integration for database sources
 
-## Support pgLoader development, be a Patron!
-
-<center>
-    <script src="https://gumroad.com/js/gumroad-embed.js"></script>
-    <div class="gumroad-product-embed" data-gumroad-product-id="CjXn">
-        <a href="https://gumroad.com/l/CjXn">Loading...</a>
-    </div>
-</center>
-
 ## Adding Support for a new Database 
 
 pgloader has been developed with adding new source types in mind, so that
@@ -112,14 +103,7 @@ github](https://github.com/dimitri/pgloader) and get started, then submit a
 
 If you don't want to do that — maybe because you don't have enough time to
 both hack pgloader and migrate your database — then contribute financially
-to the project by subscribing the pgloader Patrons Membership as shown
-above.
-
-<center style="margin-bottom: 2em">
- <a class="btn" href="https://gum.co/CjXn" target="_blank">
-    Become a pgloader Patron!
- </a> 
-</center>
+to the project by [purchasing a pgloader Moral License](/licensing).
 
 Then we will raise your missing feature's priority and assign someone to
 implement it for you! Of course, we will need to be able to talk to you

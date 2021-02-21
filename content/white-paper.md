@@ -40,20 +40,20 @@ ensures that your migration process is well understood and handled by your
 team, drastically limiting the number of surprises you may otherwise
 encounter on migration D-day.
 
+
+<figure style="float: right; clear: left; display: block; width: 200px; margin-left: 1em;">
+    <a href="https://theartofpostgresql.com">
+        <img style="border: 1px solid lightblue" src="/img/TAOPCoverTablet.png">
+    </a>
+</figure>
+
 The third step isn't always as easy to implement as it should be, and that's
 why the [pgloader](https://pgloader.io) open source project exists: it
 implements fully automated database migrations!
 
-<figure style="float: right; clear: left; display: block; width: 200px; margin-left: 0em;">
-    <a href="http://masteringpostgresql.com">
-        <img style="width:200px; height: 229px;"
-               src="/img/MasteringPostgreSQLinAppDev-Cover-th.png">
-    </a>
-</figure>
-
 For your developers to be ready when it comes to making the most out of
-PostgreSQL, consider reading [Mastering PostgreSQL in Application
-Development](https://masteringpostgresql.com) which comes with an Enterprise
-Edition that allows a team of up to 50 developers to share this great
+PostgreSQL, consider reading [The Art of
+PostgreSQL](https://theartofpostgresql.com) which comes with an Enterprise
+Edition that allows a team of up to 15 developers to share this great
 resource.
 
