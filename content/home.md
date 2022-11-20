@@ -76,7 +76,7 @@ team and create a product together. Multiple roles take part of the magic,
 including developers and also users, bug reporters, testers, packagers, etc.
 
 You can contribute to pgloader development by either [contributing your time
-on the github project](https://github.com/dimitr/pgloader) or [purchasing a
+on the github project](https://github.com/dimitri/pgloader) or [purchasing a
 moral license](/licensing).
 
 
