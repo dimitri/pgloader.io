@@ -12,8 +12,7 @@ share my learnings.
 The paper is titled *Migrating to PostgreSQL, Tools and Methodology* and
 proposed the **Continuous Migration** approach. Get the book now:
 
-<script async id="_ck_322615" src="https://forms.convertkit.com/322615?v=6">
-</script>
+{{< raw >}}<script src="https://forms.convertkit.com/322615?v=6"></script><div data-formkit-id="_ck_322615"></div>{{< /raw >}}
 
 Continuous Migration makes it easy to make incremental progress over a
 period of time, and also to pause and resume the migration work later on,

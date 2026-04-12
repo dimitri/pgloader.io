@@ -18,8 +18,8 @@ to publish a White Paper about this project methodology!
 
 # Migrating to PostgreSQL, Tools and Methodology
 
-<script async id="_ck_322615" src="https://forms.convertkit.com/322615?v=6">
-</script>
+{{< raw >}}<div data-formkit-id="_ck_322615"></div>
+<script src="https://forms.convertkit.com/322615?v=6"></script>{{< /raw >}}
 
 The migration method proposed here is called ***Continuous Migration***.
 Continuous Migration makes it easy to make incremental progress over a
