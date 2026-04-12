@@ -1066,7 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-
 </head>
 
 
@@ -1284,14 +1283,69 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
       font-size: 17px;
   }
 
+  .pricing-table {
+      width: 100%;
+      margin: 30px 0;
+      border-collapse: collapse;
+  }
+  
+  .pricing-row {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+  }
+  
+  .pricing-row.header {
+      font-weight: bold;
+      background: #f9f9f9;
+      border-bottom: 2px solid #333;
+      padding: 15px 10px;
+  }
+  
+  .pricing-row .col {
+      flex: 1;
+      padding: 0 10px;
+  }
+  
+  .pricing-row .col:first-child {
+      flex: 0.8;
+  }
+  
+  .pricing-row .col:nth-child(2) {
+      flex: 1;
+  }
+  
+  .pricing-row .col:nth-child(3) {
+      flex: 1.5;
+  }
+  
+  .pricing-row .col:nth-child(4) {
+      flex: 0.7;
+      text-align: right;
+  }
+  
+  .pricing-row .col strong {
+      display: block;
+      font-size: 16px;
+  }
+  
+  .pricing-row .col .subtitle {
+      font-size: 12px;
+      color: #666;
+  }
+  
+  .pricing-row .col.price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+  }
 </style>
 
 
 <link href="https://pgloader.io/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet"> 
+<link href="https://pgloader.io/css/custom.css" rel="stylesheet">
 
 <body>
-
-  <a href="https://github.com/dimitri/pgloader"><img style="position: absolute; top: 0; left: 0; border: 0; width=151px; height=151px;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
 
 <div class="header column">
@@ -1318,15 +1372,15 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         
                     
                         
-                            <li><a href="https://pgloader.io/licensing/">Licensing</a></li>
-                        
-                    
-                        
                             <li><a href="https://pgloader.io/roadmap/">RoadMap</a></li>
                         
                     
                         
                             <li><a href="https://pgloader.io/services/">Services</a></li>
+                        
+                    
+                        
+                            <li><a href="https://pgloader.io/support/">Support &amp; Maintenance</a></li>
                         
                     
                         
@@ -1355,122 +1409,101 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    
-
-<p>Some of the items in the pgloader Road Map will only happen given some
+    <p>Some of the items in the pgloader Road Map will only happen given some
 financial contributions to the project. You are most welcome to participate
 into the progress of pgloader!</p>
-
 <p>The following projects are part of the pgloader Road Map, and after you&rsquo;ve
 bought a pgloader Moral Licence you are entitled to vote for them so see
 them delivered in a time frame that makes sense for your migration projects.</p>
-
 <ul>
-<li><p>New database sources</p>
-
+<li>
+<p>New database sources</p>
 <ul>
 <li>Oracle™ support</li>
 <li>Sybase™ support</li>
-<li>IBM DB2 support, via an ODBC driver
-<br /></li>
-</ul></li>
-
-<li><p>New SQL Objects support</p>
-
+<li>IBM DB2 support, via an ODBC driver</li>
+</ul>
+</li>
+<li>
+<p>New SQL Objects support</p>
 <ul>
 <li>View Definitions</li>
 <li>Stored Procedures</li>
 <li>Native PostgreSQL 10 Partitioned Tables, see <a href="https://github.com/dimitri/pgloader/issues/732">Issue #732</a></li>
 <li>Materialize Views support for MS SQL, see <a href="https://github.com/dimitri/pgloader/issues/316">Issue #316</a></li>
-</ul></li>
-
-<li><p>Quality and Delivery</p>
-
+</ul>
+</li>
+<li>
+<p>Quality and Delivery</p>
 <ul>
 <li>More frequent releases</li>
 <li>Binaries for all platforms, including Windows</li>
 <li>Continuous Integration for database sources</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h2 id="adding-support-for-a-new-database">Adding Support for a new Database</h2>
-
 <p>pgloader has been developed with adding new source types in mind, so that
 it&rsquo;s easy enough to add new drivers. Adding a new database source requires
 the following steps:</p>
-
 <ol>
-<li><p>Integration of a Common Lisp driver for the database source</p>
-
+<li>
+<p>Integration of a Common Lisp driver for the database source</p>
 <p>In the case of Sybase, we&rsquo;re going to use the
- <a href="http://www.freetds.org">FreeTDS</a> driver, that already has been
- integrated into pgloader in order to add support for MS SQL.</p>
-
+<a href="http://www.freetds.org">FreeTDS</a> driver, that already has been
+integrated into pgloader in order to add support for MS SQL.</p>
 <p>In the case of Oracle™, we are considering
- <a href="https://github.com/archimag/cl-oracle">cl-oracle</a>. In many other
- cases, the ODBC driver support might be all we need.</p></li>
-
-<li><p>Catalog queries for the new database source</p>
-
+<a href="https://github.com/archimag/cl-oracle">cl-oracle</a>. In many other
+cases, the ODBC driver support might be all we need.</p>
+</li>
+<li>
+<p>Catalog queries for the new database source</p>
 <p>The catalog queries in pgloader are integrated in SQL files, so that
- it&rsquo;s easy for non-Common-Lisp hackers to edit them. See for instance
- the SQL Server queries at
- <a href="https://github.com/dimitri/pgloader/tree/master/src/sources/mssql/sql">src/sources/mssql/sql</a>.</p></li>
-
-<li><p>Data Types default casting rules</p>
-
+it&rsquo;s easy for non-Common-Lisp hackers to edit them. See for instance
+the SQL Server queries at
+<a href="https://github.com/dimitri/pgloader/tree/master/src/sources/mssql/sql">src/sources/mssql/sql</a>.</p>
+</li>
+<li>
+<p>Data Types default casting rules</p>
 <p>We then need to export the data in a way that PostgreSQL is happy
- about, and it sometimes requires more work that it should.</p></li>
+about, and it sometimes requires more work that it should.</p>
+</li>
 </ol>
-
 <p>Once those 3 steps are implemented, we have a new pgloader data source.
 That&rsquo;s pretty simple actually.</p>
-
 <h2 id="adding-support-for-new-sql-objects">Adding support for new SQL Objects</h2>
-
 <p>Currently pgloader only supports tables, indexes, some constraints (not
 null, unique, primary keys, foreign keys) and sequences. With some more
 advanced RDBMS, it might not be enough.</p>
-
 <p>It is possible to add new SQL objects to pgloader. The main difficulty of
 the task is going to decide how to best map those new objects to PostgreSQL
 feature set.</p>
-
 <p>For instance, Oracle Synonyms allow tables from one schema to be used in
 another schema. That&rsquo;s because in Oracle, a schema belongs to a user. When
 using PostgreSQL, we don&rsquo;t have that arbitrary limitation, and we don&rsquo;t need
 synonyms as a result.</p>
-
 <h2 id="compilers-transpilers">Compilers, Transpilers</h2>
-
 <p>pgloader currently doesn&rsquo;t have a look at the SQL definition of objects, it
 uses the catalog representation of them. So there&rsquo;s currently no SQL parser
 in pgloader.</p>
-
 <p>In order to support View Definitions and Stored Procedures, it will be
 necessary to write SQL compilers that know how to transform SQL text from a
 dialect to another. That&rsquo;s something I began having a look at in the
 <a href="https://github.com/dimitri/plconvert">plconvert</a> project.</p>
-
 <p>So if you need to add support for View Definition in pgloader, which means
 rewriting the view SQL definition in another SQL dialect, then let&rsquo;s talk
 about it!</p>
-
 <h2 id="influence-the-road-map">Influence the Road Map</h2>
-
 <p>You want to add new items to the Road Map? You need existing items being
 taken care of now? Then contribute to the road map!</p>
-
 <p>There are two ways to contribute to pgloader Road Map. As it&rsquo;s a fully Open
 Source project, you can of course implement the feature yourself and
 contribute it to the project. To do that, <a href="https://github.com/dimitri/pgloader">fork the project on
 github</a> and get started, then submit a
 <em>Pull Request</em>. As usual.</p>
-
 <p>If you don&rsquo;t want to do that — maybe because you don&rsquo;t have enough time to
 both hack pgloader and migrate your database — then contribute financially
 to the project by <a href="https://pgloader.io/licensing">purchasing a pgloader Moral License</a>.</p>
-
 <p>Then we will raise your missing feature&rsquo;s priority and assign someone to
 implement it for you! Of course, we will need to be able to talk to you
 about it and run tests that make sense to you. The best possible way for you
@@ -1544,10 +1577,6 @@ testing environment and test cases.</p>
         
 
         
-            <a href="https://pgloader.io/index.xml">
-                <img class="icon" src="https://pgloader.io/img/rss.svg" alt="rss" />
-            </a>
-        
 
         </div>
     </div>
@@ -1579,8 +1608,6 @@ testing environment and test cases.</p>
 
 
 
-
-
 <script>
   window.onload = function() {
     
@@ -1602,7 +1629,5 @@ testing environment and test cases.</p>
 
 
 
-
 </body>
 </html>
-

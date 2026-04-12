@@ -1066,7 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-
 </head>
 
 
@@ -1284,14 +1283,69 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
       font-size: 17px;
   }
 
+  .pricing-table {
+      width: 100%;
+      margin: 30px 0;
+      border-collapse: collapse;
+  }
+  
+  .pricing-row {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+  }
+  
+  .pricing-row.header {
+      font-weight: bold;
+      background: #f9f9f9;
+      border-bottom: 2px solid #333;
+      padding: 15px 10px;
+  }
+  
+  .pricing-row .col {
+      flex: 1;
+      padding: 0 10px;
+  }
+  
+  .pricing-row .col:first-child {
+      flex: 0.8;
+  }
+  
+  .pricing-row .col:nth-child(2) {
+      flex: 1;
+  }
+  
+  .pricing-row .col:nth-child(3) {
+      flex: 1.5;
+  }
+  
+  .pricing-row .col:nth-child(4) {
+      flex: 0.7;
+      text-align: right;
+  }
+  
+  .pricing-row .col strong {
+      display: block;
+      font-size: 16px;
+  }
+  
+  .pricing-row .col .subtitle {
+      font-size: 12px;
+      color: #666;
+  }
+  
+  .pricing-row .col.price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+  }
 </style>
 
 
 <link href="https://pgloader.io/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet"> 
+<link href="https://pgloader.io/css/custom.css" rel="stylesheet">
 
 <body>
-
-  <a href="https://github.com/dimitri/pgloader"><img style="position: absolute; top: 0; left: 0; border: 0; width=151px; height=151px;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
 
 <div class="header column">
@@ -1318,15 +1372,15 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         
                     
                         
-                            <li><a href="https://pgloader.io/licensing/">Licensing</a></li>
-                        
-                    
-                        
                             <li><a href="https://pgloader.io/roadmap/">RoadMap</a></li>
                         
                     
                         
                             <li><a href="https://pgloader.io/services/">Services</a></li>
+                        
+                    
+                        
+                            <li><a href="https://pgloader.io/support/">Support &amp; Maintenance</a></li>
                         
                     
                         
@@ -1361,92 +1415,47 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 PostgreSQL. Read the <a href="https://pgloader.io/white-paper">White Paper</a> to learn how to limit
 risks and control your budget, and start your PostgreSQL migration today!</p>
 </blockquote>
-
-<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
-  Introduction
-</h1>
-
-<figure style="float: left; clear: right; display: block; width: 200px; margin-right: 1em;">
-    <img width="200px" src="https://pgloader.io/img/logo.png">
-</figure>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>pgloader has two modes of operation. It can either load data from files,
 such as CSV or Fixed-File Format; or migrate a whole database to PostgreSQL.</p>
-
 <p>pgloader supports several RDBMS solutions as a migration source, and fetches
 information from the catalog tables over a connection to then create an
 equivalent schema in PostgreSQL. This means that you can <a href="https://pgloader.io/about/">migrate to
 PostgreSQL in a single command-line</a>!</p>
-
 <p>Supported operations include:</p>
-
 <ul>
 <li>Migrate from MySQL to PostgreSQL</li>
 <li>Migrate from SQLite to PostgreSQL</li>
 <li>Migrate from MS SQL Server® to PostgreSQL</li>
 </ul>
-
 <p>You can also <em>migrate from database files</em> in the DBF and IXF formats, where
 pgloader can inspect the target table format for you automatically in the
 file headers.</p>
-
-<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
-  Migrating to PostgreSQL: the White Paper
-</h1>
-
-<figure style="float: left; clear: right; display: block; width: 200px; margin-right: 1em;">
-    <a href="https://pgloader.io/white-paper/">
-        <img style="width:200px; height: 229px; border: 1px solid lightblue; box-shadow: 15px 0 20px -20px lightblue, -15px 0 20px -20px lightblue;"
-               src="https://pgloader.io/img/MigratingToPostgreSQL-Cover.png">
-    </a>
-</figure>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>The <a href="https://pgloader.io/white-paper/">White Paper</a> titled “Migrating to PostgreSQL, Tools and
 Methodology” explains the idea of <a href="https://pgloader.io/blog/continuous-migration/">Continuous
 Migration</a>. The paper also covers migration
 projects budget decisions and risks mitigation. It&rsquo;s free and contains all
 you need to get started, including a PostgreSQL Architecture primer!</p>
-
-<h1 style="border-bottom: 1px solid black; margin-top: 3em; text-align: right;">
-  pgloader documentation
-</h1>
-
-<figure style="float: right; clean: left; display: block; width: 200px;">
-  <a href="http://pgloader.readthedocs.io/en/latest/">
-    <img width="200px" src="https://pgloader.io/img/doc-20-512.png">
-  </a>
-</figure>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>Looking for pgloader&rsquo;s <em>documentation</em>? It is now hosted at
 <a href="http://pgloader.readthedocs.io/en/latest/">http://pgloader.readthedocs.io/en/latest/</a>.</p>
-
 <p>It contains a tutorial for the many different source types supported, code
 samples, simple and complex load files and command line examples, and a full
 reference of every option available.</p>
-
-<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
-  Sustainable Open Source Development
-</h1>
-
+<!-- raw HTML omitted -->
 <p>Open Source Software development is a magic that happens when people form a
 team and create a product together. Multiple roles take part of the magic,
 including developers and also users, bug reporters, testers, packagers, etc.</p>
-
 <p>You can contribute to pgloader development by either <a href="https://github.com/dimitr/pgloader">contributing your time
 on the github project</a> or <a href="https://pgloader.io/licensing">purchasing a
 moral license</a>.</p>
-
-<h1 style="border-bottom: 1px solid black; margin-top: 2em; text-align: right;">
-  Professional Services
-</h1>
-
+<!-- raw HTML omitted -->
 <p>If you require assistance for migrating to PostgreSQL, contact us!</p>
-
-<p><center>
-    <script async data-uid="b150f0424c" 
-        src="https://yesql.ck.page/b150f0424c/index.js">
-    </script>
-</center></p>
+<!-- raw HTML omitted -->
 
 
             </div>
@@ -1515,10 +1524,6 @@ moral license</a>.</p>
         
 
         
-            <a href="https://pgloader.io/index.xml">
-                <img class="icon" src="https://pgloader.io/img/rss.svg" alt="rss" />
-            </a>
-        
 
         </div>
     </div>
@@ -1550,8 +1555,6 @@ moral license</a>.</p>
 
 
 
-
-
 <script>
   window.onload = function() {
     
@@ -1573,7 +1576,5 @@ moral license</a>.</p>
 
 
 
-
 </body>
 </html>
-

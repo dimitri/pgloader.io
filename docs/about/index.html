@@ -1066,7 +1066,6 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
 
 
 
-
 </head>
 
 
@@ -1284,14 +1283,69 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
       font-size: 17px;
   }
 
+  .pricing-table {
+      width: 100%;
+      margin: 30px 0;
+      border-collapse: collapse;
+  }
+  
+  .pricing-row {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+  }
+  
+  .pricing-row.header {
+      font-weight: bold;
+      background: #f9f9f9;
+      border-bottom: 2px solid #333;
+      padding: 15px 10px;
+  }
+  
+  .pricing-row .col {
+      flex: 1;
+      padding: 0 10px;
+  }
+  
+  .pricing-row .col:first-child {
+      flex: 0.8;
+  }
+  
+  .pricing-row .col:nth-child(2) {
+      flex: 1;
+  }
+  
+  .pricing-row .col:nth-child(3) {
+      flex: 1.5;
+  }
+  
+  .pricing-row .col:nth-child(4) {
+      flex: 0.7;
+      text-align: right;
+  }
+  
+  .pricing-row .col strong {
+      display: block;
+      font-size: 16px;
+  }
+  
+  .pricing-row .col .subtitle {
+      font-size: 12px;
+      color: #666;
+  }
+  
+  .pricing-row .col.price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+  }
 </style>
 
 
 <link href="https://pgloader.io/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet"> 
+<link href="https://pgloader.io/css/custom.css" rel="stylesheet">
 
 <body>
-
-  <a href="https://github.com/dimitri/pgloader"><img style="position: absolute; top: 0; left: 0; border: 0; width=151px; height=151px;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
 
 <div class="header column">
@@ -1318,15 +1372,15 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
                         
                     
                         
-                            <li><a href="https://pgloader.io/licensing/">Licensing</a></li>
-                        
-                    
-                        
                             <li><a href="https://pgloader.io/roadmap/">RoadMap</a></li>
                         
                     
                         
                             <li><a href="https://pgloader.io/services/">Services</a></li>
+                        
+                    
+                        
+                            <li><a href="https://pgloader.io/support/">Support &amp; Maintenance</a></li>
                         
                     
                         
@@ -1355,21 +1409,15 @@ div.main .content .markdown pre, div.main .content .markdown pre code {
             <div class="markdown">
                 
     
-    
-
-<p><a href="https://github.com/dimitri/pgloader">pgloader</a> loads data into PostgreSQL.
+    <p><a href="https://github.com/dimitri/pgloader">pgloader</a> loads data into PostgreSQL.
 It knows how to load data from several kinds of <em>source</em>:</p>
-
 <ol>
 <li>Files</li>
 <li>Live Databases</li>
 </ol>
-
 <p>Let&rsquo;s dive into those two different behaviours of pgloader, starting with
 its support for migrating a whole database from a connection string.</p>
-
 <h1 id="loading-data-from-files">Loading data from Files</h1>
-
 <p>You might have to process huge CSV files from time to time. For example if
 you&rsquo;re in the <em>telco</em> business, those might be <em>Call Detail Records</em>. When
 using PostgreSQL the best way to load CSV files is the COPY command and
@@ -1377,96 +1425,82 @@ protocol, as read in the article entitled <a href="https://www.citusdata.com/blo
 with
 copy</a>
 from Craig Kerstiens.</p>
-
 <p>pgloader implements a <em>retry policy</em> around the data it loads, so that if
 your COPY transaction fails to load all the data, the rejected data is
 separated away from the rest of the file, and the data that is accepted by
 PostgreSQL makes it to the database server.</p>
-
 <p>As simple way to describe pgloader is to say that it implement a
 retry-wrapper on-top of the PostgreSQL COPY command.</p>
-
 <h1 id="database-migration">Database Migration</h1>
-
 <p>Migrating the data should be easy. After all, your source database is
 already a relational database server and implements the same SQL basics as
 any other one: relations, tables, views, and the expected column data types,
 or attribute and attribute domains.</p>
-
 <p>It is actually quite impressive to realize how many differences exist
 between different technologies when it comes to implementing data types,
 default values, and other behaviors.</p>
-
 <p>When using pgloader, all the knowledge when it comes to those differences is
 integrated into an open source product.</p>
-
 <h2 id="general-migration-behavior">General Migration Behavior</h2>
-
 <p><a href="https://pgloader.io">pgloader</a> follows those steps when migrating a whole
 database to PostgreSQL:</p>
-
 <ol>
-<li><p>Fetch meta data and catalogs</p>
-
+<li>
+<p>Fetch meta data and catalogs</p>
 <p>pgloader fetches the source database meta data by querying the live
- database catalogs. Retrieving structured data makes it easier to
- process the complex level of information. Catalog queries that are used
- can be seen in the pgloader source code at GitHub.</p>
-
+database catalogs. Retrieving structured data makes it easier to
+process the complex level of information. Catalog queries that are used
+can be seen in the pgloader source code at GitHub.</p>
 <p>In cases in which a database schema <em>merge</em> is required — that&rsquo;s called
- the ORM compatibility mode, where the schema is created by a tool other
- than pgloader — then pgloader also fetches the target PostgreSQL
- metadata and compares it to the source catalogs.</p>
-
+the ORM compatibility mode, where the schema is created by a tool other
+than pgloader — then pgloader also fetches the target PostgreSQL
+metadata and compares it to the source catalogs.</p>
 <p>The information retrieved by pgloader is handled internally in its own
- in-memory catalog format, and then used throughout the migration tasks.
- It is possible to implement some <em>catalog mapping</em> in these internal
- pgloader catalogs, as seen later in this chapter.</p></li>
-
-<li><p>Prepare the target PostgreSQL database</p>
-
+in-memory catalog format, and then used throughout the migration tasks.
+It is possible to implement some <em>catalog mapping</em> in these internal
+pgloader catalogs, as seen later in this chapter.</p>
+</li>
+<li>
+<p>Prepare the target PostgreSQL database</p>
 <p>Unless the database has already been created by another tool, pgloader
- creates the target PostgreSQL database schema by translating the source
- catalogs into PostgreSQL specific catalogs.</p>
-
+creates the target PostgreSQL database schema by translating the source
+catalogs into PostgreSQL specific catalogs.</p>
 <p>This steps involves <em>casting rules</em> and the advanced command language
- included in pgloader allows the user to define custom casting rules.</p>
-
+included in pgloader allows the user to define custom casting rules.</p>
 <p>The casting rules are applied to the schema definition (column types,
- or attribute domains) and default values.</p></li>
-
-<li><p>Copy table data using PostgreSQL copy protocol</p>
-
+or attribute domains) and default values.</p>
+</li>
+<li>
+<p>Copy table data using PostgreSQL copy protocol</p>
 <p>For each table fetched in the first step, pgloader starts two threads:</p>
-
 <ul>
-<li><p>The reader thread issues a <code>select</code> statement that retrieves all
- the data from the source database, sometimes already with some data
- processing.</p></li>
-
-<li><p>The writer thread receives the data read from the other thread
- thanks to a shared queue, and batches the data to be sent over to
- PostgreSQL.</p>
-
+<li>
+<p>The reader thread issues a <code>select</code> statement that retrieves all
+the data from the source database, sometimes already with some data
+processing.</p>
+</li>
+<li>
+<p>The writer thread receives the data read from the other thread
+thanks to a shared queue, and batches the data to be sent over to
+PostgreSQL.</p>
 <p>While arranging a batch of data, pgloader also applies
- transformation functions to the data. The transformations applied
- depend on the casting rules. Examples include transforming a
- <em>tinyint</em> value into a <em>Boolean</em> value, or replacing date time
- entries <code>0000-00-00 00:00:00</code> with NULL values.</p></li>
+transformation functions to the data. The transformations applied
+depend on the casting rules. Examples include transforming a
+<em>tinyint</em> value into a <em>Boolean</em> value, or replacing date time
+entries <code>0000-00-00 00:00:00</code> with NULL values.</p>
+</li>
 </ul>
-
 <p>It&rsquo;s possible to setup how many threads are allowed to be active at the
- same time on a pgloader run, and the data migration timing is
- influenced by that setup.</p></li>
-
-<li><p>Create the indexes in parallel</p>
-
+same time on a pgloader run, and the data migration timing is
+influenced by that setup.</p>
+</li>
+<li>
+<p>Create the indexes in parallel</p>
 <p>For each table, as soon as the entire data set has made it to
- PostgreSQL, all the indexes defined on the table are created in
- parallel. The reason why pgloader creates all the indexes in parallel
- is PostgreSQL&rsquo;s implementation of
- <a href="https://www.postgresql.org/docs/current/static/runtime-config-compatible.html#GUC-SYNCHRONIZE-SEQSCANS">synchronize_seqscans</a>:</p>
-
+PostgreSQL, all the indexes defined on the table are created in
+parallel. The reason why pgloader creates all the indexes in parallel
+is PostgreSQL&rsquo;s implementation of
+<a href="https://www.postgresql.org/docs/current/static/runtime-config-compatible.html#GUC-SYNCHRONIZE-SEQSCANS">synchronize_seqscans</a>:</p>
 <blockquote>
 <p>This allows sequential scans of large tables to synchronize with each
 other, so that concurrent scans read the same block at about the same
@@ -1479,43 +1513,37 @@ Setting this parameter to off ensures the pre-8.3 behavior in which a
 sequential scan always starts from the beginning of the table. The
 default is on.</p>
 </blockquote>
-
 <p>For a large table, having to scan it sequentially only once to create
- many indexes is a big win of course. Actualy, it&rsquo;s still a win with
- smaller tables.</p>
-
+many indexes is a big win of course. Actualy, it&rsquo;s still a win with
+smaller tables.</p>
 <p>A <em>primary key</em> index is created with the <code>ALTER TABLE</code> command though,
- and PostgreSQL issues an <em>exclusive lock</em>, which prevents those indexes
- from being created in parallel with the other ones. That&rsquo;s why pgloader
- creates primary key indexes in two steps. In this step, pgloader
- creates a unique index over not-null attributes.</p></li>
-
-<li><p>Complete the target PostgreSQL database</p>
-
+and PostgreSQL issues an <em>exclusive lock</em>, which prevents those indexes
+from being created in parallel with the other ones. That&rsquo;s why pgloader
+creates primary key indexes in two steps. In this step, pgloader
+creates a unique index over not-null attributes.</p>
+</li>
+<li>
+<p>Complete the target PostgreSQL database</p>
 <p>Once all the data is transfered and all indexes are created, pgloader
- completes the PostgreSQL database schema by installing the constraints
- and comments.</p>
-
+completes the PostgreSQL database schema by installing the constraints
+and comments.</p>
 <p>Constraints include turning the candidate unique not-null indexes into
- primary keys, then installing foreign keys as defined in the source
- database schema.</p></li>
+primary keys, then installing foreign keys as defined in the source
+database schema.</p>
+</li>
 </ol>
-
 <p>Once all those steps are done, your database has been converted to
 PostgresQL and it is ready to use!</p>
-
-<p>As explained in the previous part about <strong><em>Continuous Migration</em></strong>, the main
+<p>As explained in the previous part about <em><strong>Continuous Migration</strong></em>, the main
 idea behind pgloader is to implement fully automated database migrations so
 that you can run this as a nightly task for the whole duration of your
 migration project.</p>
-
 <h1 id="sample-output">Sample Output</h1>
-
 <p>It&rsquo;s possible to run a whole database migration with a single command line,
 using only pgloader defaults, like this:</p>
-<pre><code>$ pgloader mysql://root@localhost/f1db pgsql:///f1db</code></pre>
-<p>Here&rsquo;s a sample output of that command:</p>
-<pre><code>               table name     errors       rows      bytes      total time
+<pre tabindex="0"><code>$ pgloader mysql://root@localhost/f1db pgsql:///f1db
+</code></pre><p>Here&rsquo;s a sample output of that command:</p>
+<pre tabindex="0"><code>               table name     errors       rows      bytes      total time
 -------------------------  ---------  ---------  ---------  --------------
           fetch meta data          0         33                     0.231s
            Create Schemas          0          0                     0.009s
@@ -1547,40 +1575,33 @@ f1db.constructorstandings          0      11896   249.3 kB          0.184s
           Set Search Path          0          1                     0.002s
          Install Comments          0          0                     0.000s
 -------------------------  ---------  ---------  ---------  --------------
-        Total import time          ✓     521264    14.3 MB          6.577s</code></pre>
-<p>The output clearly shows three sections: prepare the target database schema,
+        Total import time          ✓     521264    14.3 MB          6.577s
+</code></pre><p>The output clearly shows three sections: prepare the target database schema,
 transfer the data and complete the PostgreSQL database schema. Performance
 and timning will vary depending on hardware used. This sample is using a
 laptop optimized for traveling light.</p>
-
 <p>As a result, don&rsquo;t read too much into the numbers shown here. Best practices
 for doing the database migration include having different source hardware
 and target machines in order to maximize the disk IO capacity, and also a
 high bandwitdth network in between the servers. Using the same disk both as
 a source for reading and a target for writing is quite bad in term of
 performance.</p>
-
 <h1 id="catalog-mapping">Catalog Mapping</h1>
-
 <p>It is possible to change some catalog entries on the fly when doing a
 database migration. Supported changes include:</p>
-
 <ul>
 <li>Limiting tables to take care of,</li>
 <li>Migrating from one schema name to another one,</li>
 <li>Renaming tables.</li>
 </ul>
-
 <p>It is also possible (only with MySQL as a source at the moment) to migrate
 data from a view definition rather than a table, allowing schema redesign on
 the fly.</p>
-
 <h1 id="data-type-casting-rules">Data Type Casting Rules</h1>
-
 <p>In order for the database migration to be fully automated, pgloader allows
 users to define their own casting rules. Here&rsquo;s a <code>sample.load</code> command file
 implementing this idea:</p>
-<pre><code>load database
+<pre tabindex="0"><code>load database
      from mysql://root@unix:/tmp/mysql.sock:3306/pgloader
      into postgresql://dim@localhost/pgloader
 
@@ -1592,28 +1613,22 @@ implementing this idea:</p>
       type decimal when (and (= 18 precision) (= 6 scale))
         to &#34;double precision&#34; drop typemod
 
- before load do $$ create schema if not exists mysql; $$;</code></pre>
-<p>Custom casting rules may target either specific columns in your source
+ before load do $$ create schema if not exists mysql; $$;
+</code></pre><p>Custom casting rules may target either specific columns in your source
 database schema, or a whole type definition.</p>
-
 <h1 id="pgloader-features">pgloader Features</h1>
-
 <p>Many users already use pgloader happily in their production environment and
 are quite satisfied with it. The software comes with a long list of features
 and is well documented at <a href="http://pgloader.readthedocs.io/en/latest/">http://pgloader.readthedocs.io/en/latest/</a>.</p>
-
 <h1 id="supported-rdbms">Supported RDBMS</h1>
-
 <p>pgloader already has support for migrating the following RDBMS in a fully
 automated way:</p>
-
 <ul>
 <li>DBF</li>
 <li>SQLite</li>
 <li>MySQL</li>
 <li>MS SQL Server</li>
 </ul>
-
 <p>More sources for migrations are possible, such as Oracle™, Sybase™ or IBM
 Db2, see the <a href="https://pgloader.io/roadmap/">pgloader Road Map</a> document for details.</p>
 
@@ -1684,10 +1699,6 @@ Db2, see the <a href="https://pgloader.io/roadmap/">pgloader Road Map</a> docume
         
 
         
-            <a href="https://pgloader.io/index.xml">
-                <img class="icon" src="https://pgloader.io/img/rss.svg" alt="rss" />
-            </a>
-        
 
         </div>
     </div>
@@ -1719,8 +1730,6 @@ Db2, see the <a href="https://pgloader.io/roadmap/">pgloader Road Map</a> docume
 
 
 
-
-
 <script>
   window.onload = function() {
     
@@ -1742,7 +1751,5 @@ Db2, see the <a href="https://pgloader.io/roadmap/">pgloader Road Map</a> docume
 
 
 
-
 </body>
 </html>
-

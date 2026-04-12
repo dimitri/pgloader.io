@@ -4,39 +4,30 @@
     <title>Blog on pgloader</title>
     <link>https://pgloader.io/blog/</link>
     <description>Recent content in Blog on pgloader</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://pgloader.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://pgloader.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Migrating to PostgreSQL, the White Paper</title>
       <link>https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/</link>
       <pubDate>Wed, 10 Jan 2018 00:00:00 +0000</pubDate>
-      
       <guid>https://pgloader.io/blog/migrating-to-postgresql-the-white-paper/</guid>
-      <description>After having been involved in many migration projects in the last 10 years, I decided to publish the following White Paper in order to share my learnings.
-The paper is titled Migrating to PostgreSQL, Tools and Methodology and proposed the Continuous Migration approach. Get the book now:
- Continuous Migration makes it easy to make incremental progress over a period of time, and also to pause and resume the migration work later on, should you need to do that.</description>
+      <description>&lt;p&gt;After having been involved in many migration projects in the last 10 years,&#xA;I decided to publish the following &lt;a href=&#34;https://pgloader.io/white-paper&#34;&gt;White Paper&lt;/a&gt; in order to&#xA;share my learnings.&lt;/p&gt;&#xA;&lt;p&gt;The paper is titled &lt;em&gt;Migrating to PostgreSQL, Tools and Methodology&lt;/em&gt; and&#xA;proposed the &lt;strong&gt;Continuous Migration&lt;/strong&gt; approach. Get the book now:&lt;/p&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;Continuous Migration makes it easy to make incremental progress over a&#xA;period of time, and also to pause and resume the migration work later on,&#xA;should you need to do that. The method is pretty simple — just follow those&#xA;steps:&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Continuous Migration</title>
       <link>https://pgloader.io/blog/continuous-migration/</link>
       <pubDate>Thu, 21 Dec 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://pgloader.io/blog/continuous-migration/</guid>
-      <description>After having been involved in many migration projects over the last 10 years, I decided to publish the following White Paper in order to share my learnings.
-The paper is titled Migrating to PostgreSQL, Tools and Methodology and details the Continuous Migration approach. It describes how to migrate from another relational database server technology to PostgreSQL. The reasons to do so are many, and first among them is often the licensing model.</description>
+      <description>&lt;!-- raw HTML omitted --&gt;&#xA;&lt;p&gt;After having been involved in many migration projects over the last 10&#xA;years, I decided to publish the following &lt;a href=&#34;https://pgloader.io/white-paper&#34;&gt;White&#xA;Paper&lt;/a&gt; in order to share my learnings.&lt;/p&gt;&#xA;&lt;p&gt;The paper is titled &lt;a href=&#34;https://pgloader.io/white-paper&#34;&gt;Migrating to PostgreSQL, Tools and&#xA;Methodology&lt;/a&gt; and details the &lt;strong&gt;Continuous&#xA;Migration&lt;/strong&gt; approach. It describes how to migrate from another relational&#xA;database server technology to PostgreSQL. The reasons to do so are many, and&#xA;first among them is often the licensing model.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>pgloader, Your Migration Companion</title>
       <link>https://pgloader.io/blog/pgloader-your-migration-companion/</link>
       <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
-      
       <guid>https://pgloader.io/blog/pgloader-your-migration-companion/</guid>
-      <description>PostgreSQL Conference Europe 2017 PGConf.EU is a unique chance for European PostgreSQL users and developers to catch up, learn, build relationships, get to know each other and consolidate a real network of professionals that use and work with PostgreSQL.
-pgloader, your migration companion Migrating data from another RDBMS to PostgreSQL should be really easy. After all it’s all relations and tables and the same data types everywhere or abouts, with text, dates and numbers.</description>
+      <description>&lt;h1 id=&#34;postgresql-conference-europe-2017&#34;&gt;PostgreSQL Conference Europe 2017&lt;/h1&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://2017.pgconf.eu/&#34;&gt;PGConf.EU&lt;/a&gt; is a unique chance for European&#xA;PostgreSQL users and developers to catch up, learn, build relationships, get&#xA;to know each other and consolidate a real network of professionals that use&#xA;and work with PostgreSQL.&lt;/p&gt;&#xA;&lt;h1 id=&#34;pgloader-your-migration-companion&#34;&gt;pgloader, your migration companion&lt;/h1&gt;&#xA;&lt;p&gt;Migrating data from another RDBMS to PostgreSQL should be really easy. After&#xA;all it’s all relations and tables and the same data types everywhere or&#xA;abouts, with text, dates and numbers. Well it’s actually quite messy and&#xA;complex to migrate the data properly from one system to another. pgloader&#xA;solves this problem and turns it into a one-liner: in this talk you’ll learn&#xA;how to benefit from that, and the classic pitfalls to avoid.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

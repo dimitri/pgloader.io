@@ -3,6 +3,8 @@ languageCode = "en-us"
 MetaDataFormat = "yaml"
 title = "pgloader"
 
+ignoreLogs = ['warning-goldmark-raw-html']
+
 publishDir = "docs"
 
 theme = "cocoa-eh"
@@ -53,4 +55,11 @@ pluralizelisttitles = false
         statement = "#ff8e91"
 
 [markup]
-  defaultMarkdownHandler = "blackfriday"
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      attribute = true
+      rawPostHTML = true
+
+[log]
+  levels = ["error", "warn", "info"]
