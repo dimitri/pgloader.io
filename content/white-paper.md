@@ -1,13 +1,15 @@
 +++
 title = "White Paper"
+type = "white-paper"
 +++
 
+{{< raw >}}
 <figure style="float: left; clear: right; display: block; width: 200px; margin-right: 1em;">
     <a href="/white-paper/">
-        <img style="width:200px; height: 229px; border: 1px solid lightblue; box-shadow: 15px 0 20px -20px lightblue, -15px 0 20px -20px lightblue;"
-               src="/img/MigratingToPostgreSQL-Cover.png">
+        <img style="border: 1px solid lightblue" src="/img/MigratingToPostgreSQL-Cover.png">
     </a>
 </figure>
+{{< /raw >}}
 
 The pgloader tool is meant to allow one to implement the ***Continuous
 Migration*** project methodology when migrating to PostgreSQL. This
@@ -17,9 +19,6 @@ After having been involved in many migration projects in the past, I decided
 to publish a White Paper about this project methodology!
 
 # Migrating to PostgreSQL, Tools and Methodology
-
-{{< raw >}}<div data-formkit-id="_ck_322615"></div>
-<script src="https://forms.convertkit.com/322615?v=6"></script>{{< /raw >}}
 
 The migration method proposed here is called ***Continuous Migration***.
 Continuous Migration makes it easy to make incremental progress over a
@@ -40,12 +39,13 @@ ensures that your migration process is well understood and handled by your
 team, drastically limiting the number of surprises you may otherwise
 encounter on migration D-day.
 
-
+{{< raw >}}
 <figure style="float: right; clear: left; display: block; width: 200px; margin-left: 1em;">
     <a href="https://theartofpostgresql.com">
         <img style="border: 1px solid lightblue" src="/img/TAOPCoverTablet.png">
     </a>
 </figure>
+{{< /raw >}}
 
 The third step isn't always as easy to implement as it should be, and that's
 why the [pgloader](https://pgloader.io) open source project exists: it
