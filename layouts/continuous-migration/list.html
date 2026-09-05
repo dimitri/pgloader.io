@@ -51,8 +51,7 @@
 <section class="section">
   <div class="wrapper">
     <div class="content">
-      <i class="fa-solid fa-scale-balanced section-icon"></i>
-      <h2>Why migrate at all</h2>
+      <h2><i class="fa-solid fa-scale-balanced section-icon"></i>Why migrate at all</h2>
       <p class="subtitle">TCO is the reason people start the conversation, rarely the reason to finish it</p>
       <p>Licensing cost is usually what puts PostgreSQL on the table — no
       per-core or per-user fee, on the RDBMS itself or on its advanced
@@ -97,47 +96,43 @@
 <section class="section section-alt">
   <div class="wrapper">
     <div class="content">
-      <i class="fa-solid fa-calculator section-icon"></i>
-      <h2>The migration budget</h2>
+      <h2><i class="fa-solid fa-calculator section-icon"></i>The migration budget</h2>
       <p class="subtitle">Four line items — and the one people underestimate is usually the biggest</p>
-      <div class="list-divided">
-        <div class="list-divided-item">
+      {{/* Four line items, four cards: unlike the linear lists elsewhere on
+           the site these are peers to be compared against one another, not
+           steps in an order, so a 2x2 grid reads them the way a budget is
+           actually read — side by side. */}}
+      <div class="cost-grid">
+        <div class="cost-card">
           <i class="fa-solid fa-database"></i>
-          <div>
           <h3>Data</h3>
           <p>Moving relations and attribute domains sounds trivial between
           two RDBMS — until different systems disagree on what those domains
           mean under the same name. Automatable, and where pgloader spends
           most of its effort.</p>
-          </div>
         </div>
-        <div class="list-divided-item">
+        <div class="cost-card">
           <i class="fa-solid fa-code"></i>
-          <div>
           <h3>Code</h3>
           <p>Usually the most expensive line item. Every automated test
           needs to pass against PostgreSQL, and even with an ORM doing most
           of the translation, some SQL rewriting is normally unavoidable.</p>
-          </div>
         </div>
-        <div class="list-divided-item">
+        <div class="cost-card">
           <i class="fa-solid fa-arrows-rotate"></i>
-          <div>
           <h3>Service</h3>
           <p>The cutover itself — new architecture, new code deployed to it,
           a maintenance window or a read-only switch, the data moved, the
           pre-opening checks, then production back on for everyone.</p>
-          </div>
         </div>
-        <div class="list-divided-item">
+        <div class="cost-card">
           <i class="fa-solid fa-hourglass-half"></i>
-          <div>
           <h3>Opportunity cost</h3>
           <p>Hard to put a dollar figure on, easy to underweight: whatever
           the team assigned to this migration isn't shipping elsewhere for
           its duration.</p>
-          </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -146,8 +141,7 @@
 <section class="section">
   <div class="wrapper">
     <div class="content">
-      <i class="fa-solid fa-route section-icon"></i>
-      <h2>Port, or migrate?</h2>
+      <h2><i class="fa-solid fa-route section-icon"></i>Port, or migrate?</h2>
       <p class="subtitle">The distinction that decides how much of your architecture is actually up for reconsideration</p>
       <p>A <strong>port</strong> makes an existing system also run on
       PostgreSQL, alongside whatever it already ran on — the goal is a
