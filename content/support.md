@@ -1,7 +1,7 @@
 +++
 title = "Support & Maintenance"
 type = "support"
-aliases = ["/licensing/"]
+aliases = ["/licensing/", "/services/"]
 +++
 
 pgloader is open source, but running it in production is a migration project with real risk: delays, incompatibilities, and unexpected edge cases. This support offering gives you priority access, predictable maintenance, and direct influence to keep your migration and production systems under control.

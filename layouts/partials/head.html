@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	{{ $pageTitle := printf "%s | %s" .Title .Site.Title }}
+	{{ if .IsHome }}{{ $pageTitle = "pgloader — Migrate to PostgreSQL in a Single Command" }}{{ end }}
+	{{ $pageDesc := .Description | default .Site.Params.description }}
+	{{ $ogImage := "images/og-image.png" | absURL }}
+	<title>{{ $pageTitle }}</title>
+	<meta name="description" content="{{ $pageDesc }}">
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@tapoueh" />
+	<meta name="twitter:creator" content="@tapoueh" />
+	<meta name="twitter:image" content="{{ $ogImage }}" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{{ .Permalink }}" />
+	<meta property="og:site_name" content="{{ .Site.Title }}" />
+	<meta property="og:title" content="{{ $pageTitle }}" />
+	<meta property="og:description" content="{{ $pageDesc }}" />
+	<meta property="og:image" content="{{ $ogImage }}" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+	<link href="/favicon.ico" rel="icon" type="image/x-icon">
+
+	{{/* Redesign type system: Fraunces (display/headings, replaces the
+	     theme's Bookman), IBM Plex Sans (body, replaces Lato), IBM Plex
+	     Mono (code, data, the .load DSL, the migration report — pgloader
+	     is a CLI tool, so monospace is the actual interface here, not
+	     decoration). Lato kept loaded: oss.css and style.css still
+	     reference it directly in a few unoverridden rules. */}}
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+	<link rel="stylesheet" href="{{ "css/oss.css" | relURL }}">
+	{{/* Fingerprinted via Hugo Pipes (assets/css/custom.css, not static/) —
+	     the URL's own hash changes whenever the file's content does, so a
+	     browser's cached copy from an earlier edit this session is never
+	     served again by mistake. */}}
+	{{/* No integrity attribute — SRI guards third-party CDN resources
+	     against tampering, not a same-origin file this dev server just
+	     generated. A stale Hugo resource-cache hash here would make the
+	     browser silently block the whole stylesheet with no visible
+	     error. */}}
+	{{ with resources.Get "css/custom.css" }}
+	  {{ $css := . | fingerprint }}
+	  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+	{{ end }}
+</head>
+<body class="oss">

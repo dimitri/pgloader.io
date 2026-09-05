@@ -1,0 +1,187 @@
+{{ define "main" }}
+<section class="section section_hero_dark">
+  <div class="wrapper">
+    <div class="content">
+      <h1>Continuous Migration</h1>
+      <p class="subtitle">A concept, not a checklist</p>
+      <p>pgloader is meant to let you implement <strong>Continuous
+      Migration</strong> when moving to PostgreSQL — a project methodology
+      built to reduce the risk inherent to a complex migration, described
+      in full in the free <a href="{{ "/white-paper/" | relURL }}">White
+      Paper</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2>What it is</h2>
+      <p class="subtitle">CI/CD, applied to the migration itself</p>
+      <p>Continuous Migration is comparable to continuous integration and
+      continuous deployment — CI/CD, applied to the migration rather than
+      to application code. Set up a target PostgreSQL environment first,
+      then use it every day as developers work on porting the software to
+      it. As soon as that environment exists, fork a CI/CD setup onto the
+      PostgreSQL branch of the code repository. In parallel, the data keeps
+      getting migrated over and over — not once, but continuously — so the
+      target is never stale by more than a day.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2 class="h-lead">Why it works</h2>
+      <p class="subtitle">Risk spent gradually, not all at once on D-Day</p>
+      <p>The alternative is the big-bang migration: freeze, migrate
+      everything in one pass, cut over, hope. Continuous Migration exists
+      because that alternative concentrates all of a project's risk into a
+      single event, at the exact moment the least is known about what will
+      actually go wrong. Splitting the work into chunks surfaces problems
+      early — while they're still cheap to fix — and builds a track record
+      instead of a guess: by the time D-Day is scheduled, the migration has
+      already run successfully, many times, against real current
+      production data.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <i class="fa-solid fa-scale-balanced section-icon"></i>
+      <h2>Why migrate at all</h2>
+      <p class="subtitle">TCO is the reason people start the conversation, rarely the reason to finish it</p>
+      <p>Licensing cost is usually what puts PostgreSQL on the table — no
+      per-core or per-user fee, on the RDBMS itself or on its advanced
+      features. But treat that as the whole case and the project reads as
+      pure cost-cutting, which makes it the first thing cut when budgets
+      tighten. The costs that hold up under scrutiny:</p>
+      <div class="list-divided">
+        <div class="list-divided-item">
+          <i class="fa-solid fa-server"></i>
+          <div>
+          <h3>Architecture freedom</h3>
+          <p>No per-instance licensing means standing up as many replicas,
+          or a full container-based test environment, as the project needs
+          to actually understand the trade-offs — not just what the budget
+          for extra licenses allows.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-layer-group"></i>
+          <div>
+          <h3>Advanced features, no upsell tier</h3>
+          <p>Point-in-time recovery, logical replication, table
+          partitioning, JSONB and full-text search, and server-side
+          procedures in more than one language — in the base package, not
+          gated behind an enterprise SKU.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-code-branch"></i>
+          <div>
+          <h3>Standard SQL, extensible</h3>
+          <p>CTEs, window functions, grouping sets, and hypothetical-set
+          aggregates by default — plus room to add your own aggregate and
+          window functions when the standard doesn't cover a case.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <i class="fa-solid fa-calculator section-icon"></i>
+      <h2>The migration budget</h2>
+      <p class="subtitle">Four line items — and the one people underestimate is usually the biggest</p>
+      <div class="list-divided">
+        <div class="list-divided-item">
+          <i class="fa-solid fa-database"></i>
+          <div>
+          <h3>Data</h3>
+          <p>Moving relations and attribute domains sounds trivial between
+          two RDBMS — until different systems disagree on what those domains
+          mean under the same name. Automatable, and where pgloader spends
+          most of its effort.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-code"></i>
+          <div>
+          <h3>Code</h3>
+          <p>Usually the most expensive line item. Every automated test
+          needs to pass against PostgreSQL, and even with an ORM doing most
+          of the translation, some SQL rewriting is normally unavoidable.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-arrows-rotate"></i>
+          <div>
+          <h3>Service</h3>
+          <p>The cutover itself — new architecture, new code deployed to it,
+          a maintenance window or a read-only switch, the data moved, the
+          pre-opening checks, then production back on for everyone.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <div>
+          <h3>Opportunity cost</h3>
+          <p>Hard to put a dollar figure on, easy to underweight: whatever
+          the team assigned to this migration isn't shipping elsewhere for
+          its duration.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <i class="fa-solid fa-route section-icon"></i>
+      <h2>Port, or migrate?</h2>
+      <p class="subtitle">The distinction that decides how much of your architecture is actually up for reconsideration</p>
+      <p>A <strong>port</strong> makes an existing system also run on
+      PostgreSQL, alongside whatever it already ran on — the goal is a
+      minimal set of changes, because the software still has to work
+      everywhere else it already runs. A <strong>migration</strong> commits
+      to a single RDBMS going forward, which means the architecture is free
+      to change wherever that simplifies the result — but usually only as
+      far as it simplifies migrating and maintaining the new system, not as
+      a ground-up redesign. Get this distinction wrong at the start and
+      either the project scopes in far more rework than it needs, or it
+      scopes out changes that would have made the whole thing easier.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2>Where the how lives</h2>
+      <p class="subtitle">This page is the idea — not the step-by-step</p>
+      <p>pgloader is the tool that makes the third step of this method
+      possible: fully automated database migrations, run as a nightly job
+      for the whole duration of a migration project. For the full,
+      hands-on step-by-step — target architecture, casting rules, the
+      D-Day cutover checklist, and a course that walks through it with a
+      real dataset — see
+      <a href="https://mysqltopgsql.com/project/">the Methodology</a> and
+      the <a href="https://mysqltopgsql.com/course/">course</a> on
+      mysqltopgsql.com.</p>
+      <div class="buttons">
+        <a href="{{ "/white-paper/" | relURL }}" class="btn btn-primary">Read the White Paper</a>
+        <a href="https://mysqltopgsql.com/project/" class="btn btn-secondary">See the Methodology</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
