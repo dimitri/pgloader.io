@@ -1,0 +1,56 @@
+name: build & deploy
+
+# This repo had no workflow at all: Pages was set to "deploy from branch"
+# (master, /docs), so publishing meant committing the build output. That is
+# why docs/ was tracked, why a stale docs/ could silently ship a build older
+# than its own source, and why CNAME only existed as a build artifact.
+#
+#  - push to master   → publish
+#  - manual dispatch  → publish on demand
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  # The version this site is actually built and verified with locally
+  # (hugo version), not a number copied from another repo.
+  HUGO_VERSION: "0.165.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # full history for .Lastmod / .GitInfo
+      - name: Install Hugo (extended)
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+      # baseURL comes from config.toml so it cannot drift from static/CNAME.
+      - name: Build
+        run: hugo --minify --gc
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

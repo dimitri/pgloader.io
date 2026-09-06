@@ -1,1 +1,6 @@
 .hugo_build.lock
+
+# Build output. Published by the GitHub Actions workflow, which builds from
+# source on every push — so a tracked copy could only ever be redundant, or
+# (as it was) silently stale relative to the source that produced it.
+docs/
