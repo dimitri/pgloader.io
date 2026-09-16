@@ -1,43 +1,28 @@
-<!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
-
-{{ partial "head.html" . }}
-
-{{ partial "inline.html" . }}
-
-<link href="/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet"> 
-<link href="/css/custom.css" rel="stylesheet">
-
-<body>
-
-{{ if or (.Site.Params.small_banner_logo) (.IsPage) }}
-<div class="header column">
-{{ else }}
-<div class="header header-home column">
-{{ end }}
-    <div class="container">
-        <a href="{{ .Site.BaseURL }}"><img class="logo" src="{{ .Site.Params.logofile | absURL }}" alt="logo" /></a>
-        <div class="content">
-            <a href="{{ .Site.BaseURL }}"><div class="name"><h1>{{ .Site.Title }}</h1></div></a>
-            <nav>
-                <ul>
-                    {{ if ne (len (where .Site.RegularPages "Section" "blog")) 0 }}
-                        <li><a href="{{ .Site.BaseURL }}blog/">Blog</a></li>
-                    {{ end }}
-                    {{ range $.Site.Home.Sections }}
-                        {{ range first 1 (where .Pages "Section" "ne" "")}}
-                            {{ if ne .Section "blog"}}
-                            <li><a href="{{ .Section | urlize | absURL }}">{{ .Section }}</a></li>
-                            {{ end }}
-                        {{ end }}
-                    {{ end }}
-                    {{ range where .Site.RegularPages "Section" ""}}
-                        {{ if and (ne .Title "License") (ne .Title "Home")}}
-                            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-                        {{ end }}
-                    {{ end }}
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
+<header class="header">
+  <div class="wrapper">
+    <nav class="plain-nav">
+      <a class="site-logo" href="{{ "/" | relURL }}">
+        <svg class="site-logo-mark" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
+          <rect x="4" y="22" width="21" height="20" rx="5" stroke="currentColor" stroke-width="3.5"/>
+          <rect x="39" y="22" width="21" height="20" rx="5" stroke="#60b2d3" stroke-width="3.5"/>
+          <path d="M27 32 H37" stroke="#c9a227" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M31 24 L41 32 L31 40" stroke="#c9a227" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        pgloader
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </label>
+      <ul>
+        <li><a href="{{ "/sources/" | relURL }}">Sources</a></li>
+        <li><a href="{{ "/continuous-migration/" | relURL }}">Method</a></li>
+        <li><a href="{{ "/roadmap/" | relURL }}">Roadmap</a></li>
+        <li><a href="{{ "/support/" | relURL }}">Support</a></li>
+        <li><a href="https://github.com/dimitri/pgloader" target="_blank" rel="noopener" class="ext-link">GitHub</a></li>
+        <li class="nav-cta-mobile"><a href="https://github.com/dimitri/pgloader/releases/download/v4-dev/pgloader.jar">Get pgloader.jar</a></li>
+      </ul>
+      <a href="https://github.com/dimitri/pgloader/releases/download/v4-dev/pgloader.jar" class="sticky-cta">Get pgloader.jar</a>
+    </nav>
+  </div>
+</header>

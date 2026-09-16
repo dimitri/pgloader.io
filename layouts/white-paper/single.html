@@ -1,17 +1,39 @@
-{{ partial "header.html" . }}
+{{/* Retired page, kept as a redirect.
 
-<div class="main column">
-  <div class="container">
-    <div class="content">
-      <div class="page-heading">
-        {{ .Title }}
-      </div>
-      <div class="markdown">
-        {{ .Content }}
-      </div>
-      {{ partial "convertkit-white-paper.html" . }}
-    </div>
-  </div>
-</div>
+     The white paper is replaced by the free sample of the Migrating to
+     PostgreSQL course — modules 1-4, same ground covered better, still
+     free and still gated behind nothing but an email.
 
-{{ partial "footer.html" . }}
+     The URL stays alive rather than 404ing: it carries an alias from the
+     old /blog/migrating-to-postgresql-the-white-paper/ URL, it is linked
+     from elsewhere on the web, and it had accumulated whatever ranking a
+     page from that era has. GitHub Pages serves static files only, so a
+     301 is not available — meta refresh plus a canonical pointing at the
+     destination is the usual substitute, and the visible link below means
+     it still works for anyone whose browser blocks the refresh.
+
+     No {{ define "main" }} here on purpose: this renders standalone
+     instead of inheriting the site chrome, because there is no page left
+     to decorate. */}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moved — Migrating to PostgreSQL</title>
+<link rel="canonical" href="https://mysqltopgsql.com/course/">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=https://mysqltopgsql.com/course/">
+<style>
+  body { font: 16px/1.6 system-ui, sans-serif; background: #f8f6f4; color: #1c1224;
+         max-width: 34rem; margin: 18vh auto; padding: 0 1.5rem; }
+  a { color: #93690e; }
+</style>
+</head>
+<body>
+<h1 style="font-size:1.3rem">This white paper has moved</h1>
+<p>It has been replaced by the free sample of the
+<strong>Migrating to PostgreSQL</strong> course — the first four modules,
+covering the same method in more depth, still free.</p>
+<p><a href="https://mysqltopgsql.com/course/">Continue to the course &rarr;</a></p>
+</body>
+</html>

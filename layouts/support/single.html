@@ -1,16 +1,273 @@
-{{ partial "header.html" . }}
-
-<div class="main column">
-    <div class="container">
-        <div class="content">
-            <div class="page-heading">
-    {{ .Title }}
-</div>
-            <div class="markdown">
-{{ .Content }}
-            </div>
-        </div>
+{{ define "main" }}
+{{/* Rebuilt as a funnel entry page, structured around the objection
+     sequence a serious buyer actually runs (per landing-page CRO
+     research: name the outcome above the fold, handle "is this real"
+     immediately, then "why pay" before "how much", then proof, then the
+     self-serve escape hatch, then the edge-case contact) rather than a
+     features-first support brochure. Tier cards below take their
+     structure — name, price, one line on who it's for, one concrete
+     benefit, one CTA — from yesql.fr/en/members/, not a feature-
+     comparison table: that page found that a scannable card per tier
+     converts where a dense table doesn't. Copy is freshly written for
+     pgloader; the tier names and prices are the real, current ones from
+     that page, reused as fact rather than as someone else's prose. */}}
+<section class="section section_hero_dark">
+  <div class="wrapper">
+    <div class="content">
+      <h1>Don't Wait in the Public Queue</h1>
+      <p class="subtitle">Priority access when your migration or production system depends on pgloader</p>
+      <p>pgloader stays free and open source — that never changes. What
+      this funds is the difference between a best-effort GitHub issue and
+      an answer on a schedule you can plan around.</p>
+      <div class="buttons">
+        <a href="#pricing" class="btn btn-primary">See Pricing &amp; Tiers</a>
+      </div>
     </div>
-</div>
+  </div>
+</section>
 
-{{ partial "footer.html" . }}
+{{/* Social proof belongs immediately after the hero, not buried mid-page
+     — every claim below is conditional on the visitor believing pgloader
+     is real and used in production. One line, not the full testimonial
+     block (that comes later, positioned near the pricing CTA where
+     research shows it does more work). */}}
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <p class="proof-line">&ldquo;Pgloader greatly reduced the time required to accomplish this complex migration.&rdquo; <cite>— Alexander Groth, FusionBox, migrating a government agency off SQL Server</cite></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2 class="h-lead"><i class="fa-solid fa-shield-halved section-icon"></i>Why This Is Worth Funding</h2>
+      <p class="subtitle">A production migration carries real risk regardless of the tooling</p>
+      <p>Delays, incompatibilities, edge cases that only show up against
+      your actual data — without a path to priority handling, blockers
+      delay CI/CD and release cycles, compatibility issues accumulate, and
+      migration timelines slip. None of that is specific to pgloader; it's
+      what happens whenever a critical dependency runs unfunded.</p>
+      <div class="list-divided">
+        <div class="list-divided-item">
+          <i class="fa-solid fa-database"></i>
+          <div>
+          <h3>Data migration</h3>
+          <p>Moving terabytes with consistency, not just a successful dry run.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-code"></i>
+          <div>
+          <h3>Code migration</h3>
+          <p>Usually the most expensive line item — and the one a stalled tool blocks hardest.</p>
+          </div>
+        </div>
+        <div class="list-divided-item">
+          <i class="fa-solid fa-server"></i>
+          <div>
+          <h3>Service migration</h3>
+          <p>Maintaining uptime during switchover, on a schedule you chose.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2 class="h-lead"><i class="fa-solid fa-tags section-icon"></i>Pricing &amp; Tiers</h2>
+      <p class="subtitle">One shared model across every project on oss.theartofpostgresql.com — pgloader, pgcopydb, pg_auto_failover, and pgextwlist, maintained in one place so it never drifts out of sync per project.</p>
+
+      <div class="tier-cards">
+        <div class="tier-card">
+          <h3>Community</h3>
+          <p class="tier-price">€0</p>
+          <p class="tier-for">For evaluating, or non-critical use.</p>
+          <p class="tier-benefit">Best-effort, through GitHub, like everyone else.</p>
+        </div>
+        <div class="tier-card">
+          <h3>Supporter</h3>
+          <p class="tier-price">€100<span>/mo</span></p>
+          <p class="tier-for">Your issues stop getting lost in the queue.</p>
+          <p class="tier-benefit">Priority queue, answered within a few days.</p>
+          <a href="https://sales.theartofpostgresql.com/oss-sponsors/" class="btn btn-secondary" target="_blank" rel="noopener">Get this tier &rarr;</a>
+        </div>
+        <div class="tier-card tier-recommended">
+          <p class="tier-badge">Recommended</p>
+          <h3>Professional</h3>
+          <p class="tier-price">€800<span>/mo</span></p>
+          <p class="tier-for">When a production system depends on the tool.</p>
+          <p class="tier-benefit">Patches triaged under an SLA, land in the next release.</p>
+          <a href="https://sales.theartofpostgresql.com/oss-sponsors/" class="btn btn-primary" target="_blank" rel="noopener">Get this tier &rarr;</a>
+        </div>
+        <div class="tier-card">
+          <h3>Sponsor</h3>
+          <p class="tier-price">€2,000<span>/mo</span></p>
+          <p class="tier-for">When your roadmap depends on its roadmap.</p>
+          <p class="tier-benefit">Roadmap input, and development bandwidth reserved for you.</p>
+          <a href="https://sales.theartofpostgresql.com/oss-sponsors/" class="btn btn-secondary" target="_blank" rel="noopener">Get this tier &rarr;</a>
+        </div>
+        <div class="tier-card">
+          <h3>Per-Release Sponsor</h3>
+          <p class="tier-price">€10,000<span>/release</span></p>
+          <p class="tier-for">Time-critical dependencies, one release at a time.</p>
+          <p class="tier-benefit">Prioritized PRs and features, credited in the release notes. One sponsor per release.</p>
+          <a href="https://sales.theartofpostgresql.com/oss-sponsors/" class="btn btn-secondary" target="_blank" rel="noopener">Get this tier &rarr;</a>
+        </div>
+        <div class="tier-card">
+          <h3>Fast-Lane</h3>
+          <p class="tier-price">€3,000<span>/issue</span></p>
+          <p class="tier-for">One urgent blocker, handled outright.</p>
+          <p class="tier-benefit">Guaranteed resolution in the next release, no subscription required.</p>
+          <a href="https://sales.theartofpostgresql.com/oss-sponsors/" class="btn btn-secondary" target="_blank" rel="noopener">Get this tier &rarr;</a>
+        </div>
+      </div>
+      <p class="tier-note">Same tiers as every project on <a href="https://oss.theartofpostgresql.com/#pricing" target="_blank" rel="noopener">oss.theartofpostgresql.com</a> — one checkout, kept current in one place, whichever page you get here from.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-quote-left section-icon"></i>What Migrations With pgloader Actually Look Like</h2>
+      <p class="subtitle">Not case studies — direct quotes, attributed</p>
+      <div class="quotes-plain">
+        <blockquote>
+          <p>&ldquo;Thanks to pgloader we were able to migrate our
+          main database from MySQL to Postgres, which involved moving
+          hundreds of tables used by our complex Django project. Dimitri was
+          very helpful. He implemented a new feature for us quickly and
+          smoothly.&rdquo;</p>
+          <cite>Andrea Crotti, Iwoca</cite>
+        </blockquote>
+        <blockquote>
+          <p>&ldquo;Fusionbox used pgloader on a project for a
+          large government agency. We needed to migrate a large set of data
+          from an existing SQL Server cluster to a new PostgreSQL solution.
+          Pgloader greatly reduced the time required to accomplish this
+          complex migration.&rdquo;</p>
+          <cite>Alexander Groth, FusionBox</cite>
+        </blockquote>
+        <blockquote>
+          <p>&ldquo;Thank you for pgloader, it made our migration
+          from MySQL to PostgreSQL really easy (~1Tb). It was almost too
+          easy — I just ran the one-liner and waited for 48 hours. Nothing
+          to change in the app, thanks to Hibernate.&rdquo;</p>
+          <cite>CommaFeed, via Twitter</cite>
+        </blockquote>
+      </div>
+      <p>Redpill Linpro sponsored MS SQL Server support in pgloader outright
+      after asking what the most efficient way to migrate a customer off
+      Microsoft SQL Server would be — the answer became a feature, now free
+      for everyone. That's also how <a href="{{ "/sources/#mssql" | relURL }}">Azure
+      AD authentication and multi-column foreign keys</a> got funded — the
+      Sponsor and Release Sponsor tiers above are the same mechanism, open
+      to anyone.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      {{/* Kept as a section here rather than promoted to its own page:
+           landing-page SEO guidance is to put conversion elements above
+           the fold and supporting/secondary content below, with softer
+           CTAs that don't compete with the page's one dominant action
+           (the tiers). A dedicated pgloader.io course page would also
+           cannibalise mysqltopgsql.com/course/, which is the canonical
+           page for this course and already carries the full curriculum —
+           two pages competing for "MySQL to PostgreSQL course" helps
+           neither. So: real curriculum detail for search depth, soft
+           secondary CTAs, no competing hero. */}}
+      {{/* The course has shipped. It was described here as two separate
+           courses of 11 and 9 modules, one of them "in production" — it
+           is one course of 16 modules in three groups (6 common, 5 MySQL,
+           5 SQL Server), both engine lanes available now, and the CTAs
+           pointed at theartofpostgresql.com/course/ (a different product)
+           because mysqltopgsql.com had no TLS certificate at the time. It
+           does now, so these link to the real checkout. */}}
+      <h2><i class="fa-solid fa-graduation-cap section-icon"></i>MySQL and MS SQL Server to PostgreSQL Migration Courses</h2>
+      <p class="subtitle">The self-serve alternative to prioritized support</p>
+      <p>If you'd rather learn to run the migration end-to-end than pay for
+      priority handling, there's a course for it: 16 modules, of which six
+      are the method itself and five are specific to your source engine.
+      The two engine lanes are siblings rather than steps &mdash; you buy the
+      one you need, at the same price, or both. It teaches the same
+      Continuous Migration method this tool was built for, hands-on against
+      a real dataset, with pgloader doing the data step.</p>
+      <div class="value_props value_props-2col">
+        <div class="value_prop">
+          <i class="fa-solid fa-database"></i>
+          <h3>MySQL to PostgreSQL</h3>
+          <p class="subtitle">11 modules &middot; first 4 free &middot; $79</p>
+          <p>Why and whether to migrate, the migration budget, Continuous
+          Migration architecture, automated failover with pg_auto_failover,
+          nightly re-migration and the D-Day cutover, managed cloud
+          PostgreSQL &mdash; then migrating data with pgloader, casting rules
+          and schema mapping, the MySQL-quirks FAQ as graded exercises,
+          porting stored procedures, triggers and views, and a hands-on
+          build of your own migration.</p>
+          <a href="https://mysqltopgsql.com/course/" class="btn btn-secondary" target="_blank" rel="noopener">See the full curriculum</a>
+        </div>
+        <div class="value_prop">
+          <i class="fa-solid fa-server"></i>
+          <h3>MS SQL Server to PostgreSQL</h3>
+          <p class="subtitle">11 modules &middot; same six common ones &middot; $79</p>
+          <p>The same method, T-SQL-specific: pgloader from MS SQL Server,
+          casting rules and schema mapping for MS SQL types, T-SQL to
+          PL/pgSQL (triggers, TRY/CATCH, MERGE, cursors, OUTPUT), Babel
+          Fish evaluated against a full migration, and a hands-on build
+          that runs both paths on one schema so you can justify the call.</p>
+          <a href="https://sales.theartofpostgresql.com/migrating-to-postgresql-courses/" class="btn btn-secondary" target="_blank" rel="noopener">See pricing</a>
+        </div>
+      </div>
+      <p>Both lanes together, plus Oracle when it ships, is $129. There's a
+      $49 price for lower-income regions and a $229 supporter price, all on
+      <a href="https://sales.theartofpostgresql.com/migrating-to-postgresql-courses/" target="_blank" rel="noopener">the same checkout</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-headset section-icon"></i>Need Custom Migration Help?</h2>
+      <p class="subtitle">Professional services, beyond pgloader support tiers</p>
+      <p>As set out in the <a href="https://mysqltopgsql.com/course/" target="_blank" rel="noopener">Migrating
+      to PostgreSQL course</a>, a database migration to PostgreSQL sets
+      up in four steps: data migration, code migration (SQL, stored
+      procedures, application architecture), service migration (the
+      maintenance window), and opportunity cost. We can help at any step
+      above, thanks to our network of Postgres professionals — hundreds of
+      migrations handled, across many situations, constraints, and
+      platforms. Whether you're migrating from MySQL or Oracle, MS SQL
+      Server or RDS/Aurora, we can make it easier and ensure a successful
+      result.</p>
+      <center>
+        <script async data-uid="b150f0424c"
+            src="https://yesql.ck.page/b150f0424c/index.js">
+        </script>
+      </center>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content" style="text-align:center">
+      <h2>Ready to Stop Waiting on the Public Queue?</h2>
+      <div class="buttons" style="justify-content:center">
+        <a href="#pricing" class="btn btn-primary">See Pricing &amp; Tiers</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

@@ -1,0 +1,134 @@
+{{ define "main" }}
+<section class="section section_hero_dark">
+  <div class="wrapper">
+    <div class="content">
+      <h1>Roadmap</h1>
+      <p class="subtitle">The detailed, dated roadmap lives on oss.theartofpostgresql.com</p>
+      <p>pgloader is one of four projects — alongside pgcopydb,
+      pg_auto_failover, and pgextwlist — with a shared, actively-maintained
+      roadmap: recent releases, star counts, and what's next, updated as
+      work actually ships.</p>
+      <div class="buttons">
+        <a href="https://oss.theartofpostgresql.com/roadmap/#pgloader" class="btn btn-primary" target="_blank">See pgloader's Roadmap</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-plug section-icon"></i>Adding a New Database Source</h2>
+      <p class="subtitle">Three steps, same for every source</p>
+      <ol class="steps-linear">
+        <li>
+          <span class="step-n">01</span>
+          <h3>Driver integration</h3>
+          <p>v4 (Clojure/JVM) talks to any source through its standard JDBC
+          driver already — the most common case needs no new pgloader-side
+          code at all. v3 (Common Lisp) needs a driver integrated per
+          source; that's how MS SQL support was added, via
+          <a href="http://www.freetds.org" target="_blank">FreeTDS</a>.</p>
+        </li>
+        <li>
+          <span class="step-n">02</span>
+          <h3>Catalog queries</h3>
+          <p>Catalog queries live in plain SQL files, so non-Lisp/non-Clojure
+          hackers can edit them too — see the
+          <a href="https://github.com/dimitri/pgloader/tree/main/src/sources/mssql/sql" target="_blank">MS SQL Server queries</a>
+          for an example.</p>
+        </li>
+        <li>
+          <span class="step-n">03</span>
+          <h3>Default casting rules</h3>
+          <p>Export the data in a way PostgreSQL is happy about — sometimes
+          more work than it should be, but it's the last step before a new
+          source is done.</p>
+        </li>
+      </ol>
+      <p>Once those three steps are implemented, we have a new pgloader
+      data source. That's pretty simple, actually.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-cubes section-icon"></i>New SQL Objects</h2>
+      <p class="subtitle">Tables and indexes today — not everything an RDBMS can define</p>
+      <p>pgloader currently supports tables, indexes, and some constraints
+      (not null, unique, primary keys, foreign keys) and sequences. With
+      some more advanced RDBMS, that's not always enough — the main
+      difficulty in adding a new SQL object is deciding how to best map it
+      onto PostgreSQL's own feature set.</p>
+      <p>Oracle Synonyms are one example: they let tables from one schema be
+      used in another, because in Oracle a schema belongs to a user.
+      PostgreSQL doesn't have that limitation, so it doesn't need synonyms
+      to work around it either.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-code-compare section-icon"></i>Compilers, Transpilers</h2>
+      <p class="subtitle">No SQL parser in pgloader — yet</p>
+      <p>pgloader doesn't look at the SQL definition of objects today; it
+      works from the catalog representation instead. Supporting View
+      Definitions and Stored Procedures means writing SQL compilers that
+      translate SQL text from one dialect to another — early exploration of
+      that lives in the
+      <a href="https://github.com/dimitri/plconvert" target="_blank">plconvert</a>
+      project.</p>
+      <p>If you need View Definition support, which means rewriting view
+      SQL in another dialect, let's talk about it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2 class="h-lead"><i class="fa-solid fa-database section-icon"></i>Fund a Feature: Oracle Support for v4</h2>
+      <p class="subtitle">Open a campaign, hit the threshold, work starts — publicly, under the same license as the rest of pgloader</p>
+      <p>pgloader has never supported Oracle as a migration source — the gap
+      has been on the record for a decade. This funds building it from
+      scratch, inside v4 (the in-progress Clojure rewrite), over JDBC — the
+      same approach v4 already uses for MySQL, MS SQL Server, and SQLite.
+      Below the funding threshold, development doesn't start and pledges
+      aren't charged; above it, code ships continuously, out in the open.</p>
+      <div class="buttons">
+        <a href="https://yesql.fr/en/campaigns/oracle-pgloader-v4/" class="btn btn-primary" target="_blank">See Current Progress &amp; Back This</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-code-pull-request section-icon"></i>Contributing</h2>
+      <p class="subtitle">Two ways onto the roadmap</p>
+      <div class="value_props value_props-2col">
+        <div class="value_prop">
+          <i class="fa-solid fa-hammer"></i>
+          <h3>Build it</h3>
+          <p>Fully open source — fork the project, get started, then submit
+          a Pull Request, as usual.</p>
+          <a href="https://github.com/dimitri/pgloader" class="btn btn-secondary" target="_blank">Fork on GitHub</a>
+        </div>
+        <div class="value_prop">
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+          <h3>Fund it</h3>
+          <p>Sponsor tiers come with direct roadmap input and reserved
+          development capacity — MS SQL Server support itself was added
+          exactly this way, sponsored by a company that needed it.</p>
+          <a href="{{ "/support/" | relURL }}" class="btn btn-secondary">Support the project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

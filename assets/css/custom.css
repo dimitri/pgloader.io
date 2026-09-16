@@ -1,0 +1,1064 @@
+/* ===========================================================================
+   Redesign, 2026: warm-neutral / bento / migration-report visual system.
+   Palette keeps the real brand hues (plum, sky, gold) but replaces the
+   theme's pure #fff/#f9f9f9 with a paper tone carrying a slight violet
+   bias toward the plum — a chosen neutral, not an inherited one. Type
+   swaps Bookman/Lato for Fraunces (display) + IBM Plex Sans (body) +
+   IBM Plex Mono (data/code) — Plex here is functional, not decorative:
+   pgloader's real interface is a terminal.
+   =========================================================================== */
+:root {
+  /* --paper/--paper-2 redefined further down (Phase 1 of the rework) —
+     left undefined here so there's exactly one place that sets them. */
+  --ink: #1c1224;
+  --ink-soft: #4a3b53;
+  --rule: #ddd3da;
+  --plum: #372649;
+  --plum-deep: #241830;
+  --sky: #2f7fa3;
+  --sky-soft: #60b2d3;
+  --gold: #93690e;
+  --gold-soft: #c9a227;
+  --gold-bright: #e8c568;
+}
+
+body.oss {
+  font-family: 'IBM Plex Sans', 'Lato', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+body.oss h1, body.oss h2, body.oss h3,
+body.oss .btn, body.oss .subtitle {
+  font-family: 'Fraunces', Georgia, serif;
+}
+body.oss code, body.oss kbd, body.oss samp, body.oss pre,
+body.oss tt {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/*
+  pgloader.io — the only rule this file needs today. The real theme
+  (oss.css) alternates section backgrounds via specific named classes
+  (.section_solution, .section_support, etc.), each hand-picked per page.
+  .section-alt is this site's own generic escape hatch for sections that
+  don't fit one of those named roles — used on pages built for this
+  vendoring (sources, continuous-migration, support) so consecutive
+  sections still alternate correctly without needing to invent or
+  misapply one of the theme's specific semantic class names.
+*/
+/* REVERSED from an earlier pass of this file: that version boxed every
+   section's content in a white card with a border and shadow, floating
+   on a gray page — which is exactly what read as "a stack of cards"
+   sitting one after another down every page. The actual redesign mockup
+   (claude.ai/code/artifact/d7a130f7-2cd0-41a4-8339-3f2c7378a08c) never
+   did that: its sections are full-bleed, edge to edge, differentiated
+   only by alternating between two close paper tones — no card, no
+   border-radius, no shadow at the section level at all. Genuine
+   comparison cards (bento cells, the portfolio tools, pricing rows,
+   .value_prop generally) already set their own background independently
+   of .content, per oss.css — removing .content's box doesn't touch them,
+   it only removes the redundant OUTER card that was wrapping the
+   already-quiet patterns (steps-linear, list-divided, definition-list,
+   quotes-plain) in a card they didn't ask for. */
+body.oss .section:not(.section_hero_dark) { background: var(--paper); }
+/* Same specificity trap, again: .section-alt sections also match
+   ":not(.section_hero_dark)" above, whose selector is more specific
+   (three classes vs. one) — so every "alt" section was silently
+   rendering as plain --paper regardless of the class, which is exactly
+   why the alternation was invisible. */
+body.oss .section:not(.section_hero_dark).section-alt,
+body.oss .section_solution {
+  background: var(--paper-2);
+}
+
+/* The migration motif, as two quiet bookends tucked into the hero's top
+   corners — not mid-height beside the text. Mid-height needs a real side
+   gutter outside the 1000px-capped .content column, which only exists
+   past ~1400px; gating on that width left it invisible on any realistic
+   laptop/desktop window. The top corners are dead space above the h1 at
+   any width down to mobile (the section's own 80px top padding, before
+   the centered heading even starts), so anchoring there and sizing with
+   clamp() — shrinking together with the viewport instead of switching on
+   or off at one fixed breakpoint — means it holds up everywhere without
+   ever reaching under the centered text column. */
+body.oss .section_hero_dark {
+  background-image:
+    url("/images/bg-hero-left.svg"),
+    url("/images/bg-hero-right.svg");
+  background-repeat: no-repeat, no-repeat;
+  background-position: top 16px left 16px, top 16px right 16px;
+  background-size: clamp(90px, 14vw, 220px) auto, clamp(90px, 14vw, 220px) auto;
+}
+@media (max-width: 640px) {
+  body.oss .section_hero_dark { background-image: none; }
+}
+
+/* Code inherits text-align:center from .section .content otherwise —
+   centered monospace/command-line output is unreadable. */
+tt, code, kbd, samp, pre { text-align: left; }
+pre { overflow-x: auto; }
+
+/* .btn-secondary's default #67527a text/border assumes a light background
+   — inside the dark hero it's near-invisible (dark purple on dark purple).
+   White outline instead, only where the hero is actually dark. */
+.section_hero_dark .btn-secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.section_hero_dark .btn-secondary:hover {
+  background: #fff;
+  color: #372649;
+  border-color: #fff;
+}
+
+/* Plain, technical nav — overrides the real theme's centered pipe-divided
+   icon+nav-text list (oss.css's .header nav ul li / .divider), which read
+   as decorative for a tool/reference site. Logo left, links inline, CTA
+   right, one row, no dividers. */
+body.oss .header nav.plain-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+body.oss .header nav.plain-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 1;
+  flex-wrap: nowrap;
+  margin: 0;
+}
+body.oss .header nav.plain-nav ul li {
+  padding: 0;
+  font: 400 14px 'IBM Plex Sans', sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
+  white-space: nowrap;
+}
+body.oss .header nav.plain-nav ul li a i,
+body.oss .header nav.plain-nav ul li a .nav-text {
+  display: inline;
+  font-size: inherit;
+}
+body.oss .header nav.plain-nav .site-logo {
+  font: 700 15px 'IBM Plex Mono', monospace;
+  color: #fff;
+  flex-shrink: 0;
+  margin-left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+body.oss .header nav.plain-nav .site-logo:hover { color: #fff; opacity: 0.8; }
+body.oss .header nav.plain-nav .site-logo-mark { width: 22px; height: 22px; flex-shrink: 0; }
+body.oss .header .sticky-cta {
+  position: static;
+  transform: none;
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 4px;
+  background: #60b2d3;
+  border: 1px solid #60b2d3;
+  color: #fff;
+  font: 700 13px 'IBM Plex Sans', sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+body.oss .header .sticky-cta:hover { background: transparent; }
+
+/* Mobile nav — checkbox-driven hamburger, no JS available on this static
+   site. The checkbox + label pair below the logo is a click target only;
+   ul is hidden off-canvas until :checked. Desktop (>900px) never shows the
+   toggle or the in-menu CTA duplicate, so this is fully inert above the
+   breakpoint. */
+.nav-toggle-checkbox { display: none; }
+body.oss .header nav.plain-nav .nav-toggle-label {
+  display: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px 8px;
+  order: 1;
+}
+body.oss .header nav.plain-nav .nav-cta-mobile { display: none; }
+
+@media (max-width: 900px) {
+  body.oss .header nav.plain-nav {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  body.oss .header nav.plain-nav .nav-toggle-label { display: block; }
+  body.oss .header nav.plain-nav .sticky-cta { display: none; }
+  body.oss .header nav.plain-nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #372649;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  }
+  body.oss .header nav.plain-nav ul li {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  body.oss .header nav.plain-nav ul li a {
+    display: block;
+    padding: 14px 24px;
+  }
+  body.oss .header nav.plain-nav .nav-cta-mobile a {
+    color: #60b2d3;
+    font-weight: 700;
+  }
+  .nav-toggle-checkbox:checked ~ ul {
+    display: flex;
+  }
+}
+
+/* .about_block ships with padding: 0 35px 40px 0 (right only) — flush
+   against the footer's left edge while .faq_block gets a left gap.
+   Give it the matching breathing room on its own left side. */
+.about_block { margin-left: 8px; }
+
+/* Condensed 3-column pricing teaser (Plan / Best for / Price) — the real
+   theme's .pricing_row grid assumes 4 columns including "What you get",
+   which this teaser deliberately drops. */
+body.oss .pricing_table-teaser .pricing_row {
+  grid-template-columns: 1.3fr 1.7fr 1fr;
+}
+body.oss .pricing_table-teaser .pricing_row .col:last-child { text-align: right; }
+
+/* Section header icon, redesigned: a bare colored glyph floating above a
+   heading has no visual weight and reads as an afterthought — a soft
+   tinted circle behind it gives it the same "considered" treatment a
+   badge or chip gets elsewhere in the system, and ties its color back to
+   the sky/gold accents rather than sitting on its own. */
+.section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(47, 127, 163, .1);
+  color: var(--sky);
+  font-size: 19px;
+  margin: 0 0 16px;
+  flex: 0 0 auto;
+}
+.section_hero_dark .section-icon {
+  background: rgba(255, 255, 255, .12);
+  color: var(--gold-bright);
+}
+
+/* .section_hero_dark p is forced white (oss.css) but that doesn't cascade
+   to a nested <a> — it keeps the theme's base dark link color (#2e2241),
+   which is essentially invisible against this section's #372649 background.
+   Underline so it still reads as a link against the white body text. */
+.section_hero_dark a {
+  color: #fff;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+.section_hero_dark a:hover {
+  color: #60b2d3;
+  text-decoration-color: #60b2d3;
+}
+
+/* Testimonial quotes reuse .value_prop's card layout (support/single.html) —
+   just needs the quote itself set off from the attribution line under it. */
+.value_prop blockquote {
+  font: 400 17px/1.55 'IBM Plex Sans', sans-serif;
+  font-style: italic;
+  color: #67527a;
+  margin-bottom: 12px;
+}
+.value_prop .testimonial-cite {
+  font: 700 14px 'IBM Plex Sans', sans-serif;
+  color: #372649;
+  margin-bottom: 0;
+}
+
+/* Email signup form (white-paper/single.html) — sits in the dark hero
+   next to .buttons, so it borrows .btn-primary for the submit button but
+   needs its own input styling: dark-hero-safe, matching the button's
+   height so the two form a single visual row. */
+.signup-form {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 480px;
+  margin: 30px auto 0;
+}
+.signup-form input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  padding: 0 16px;
+  font: 400 16px 'IBM Plex Sans', sans-serif;
+  color: #2e2241;
+  background: #fff;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
+.signup-form .btn {
+  height: 48px;
+  padding: 0 24px;
+  white-space: nowrap;
+}
+.signup-note {
+  font: 300 14px/1.5 'IBM Plex Sans', sans-serif;
+  color: rgba(255, 255, 255, 0.6) !important;
+  margin-top: 12px !important;
+}
+@media (max-width: 560px) {
+  .signup-form { flex-direction: column; }
+}
+
+/* .value_props is a fixed 3-column grid — with only 2 cards (Roadmap's
+   "Contributing" section) that leaves an empty third column and the pair
+   sits left-shifted instead of centered. Cap it to 2 columns and center
+   the whole block within .content instead. */
+body.oss .value_props.value_props-2col {
+  grid-template-columns: repeat(2, minmax(240px, 320px));
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ===========================================================================
+   Homepage redesign components — migration-flow graphic, the 5-stage
+   pipeline strip, the bento sources grid, and the report-as-certificate.
+   =========================================================================== */
+
+/* The migration-flow graphic: db-stack.svg (ours, generic icon — no one
+   owns a database-cylinder glyph) --gold arrow--> the official PostgreSQL
+   Slonik mark, unmodified per postgresql.org's trademark policy (fair use:
+   indicates "migrates to PostgreSQL", no affiliation claimed — see the
+   footer attribution line the policy asks for). */
+.migration-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 36px;
+}
+.migration-flow .db-icon { width: 46px; height: 50px; color: rgba(255, 255, 255, 0.75); }
+.migration-flow .pg-logo { width: 52px; height: auto; }
+.migration-flow .flow-arrow { width: 64px; height: 20px; color: var(--gold-bright); flex-shrink: 0; }
+.migration-flow .flow-arrow svg { width: 100%; height: 100%; }
+@media (max-width: 560px) { .migration-flow { display: none; } }
+
+/* From the redesign mockup, ported faithfully this time: a two-column
+   hero (copy left, a real terminal right) instead of a single centered
+   column — the terminal was the mockup's signature moment and got
+   dropped in the first implementation pass in favor of a smaller icon
+   graphic. .section_hero_dark .content is centered/max-1000px by the
+   base theme; this overrides both just inside the hero. */
+body.oss .section_hero_dark .hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+  text-align: left;
+  max-width: 1100px;
+}
+/* body.oss prefix throughout this block: oss.css's own
+   "body.oss .section_hero_dark h1, .subtitle, p { color: #fff }" rule
+   matches these same elements at (0,2,2) specificity — a bare ".hero-
+   kicker"/".hero-proof" class selector loses that fight silently and
+   renders white-on-white-adjacent instead of the intended gold/muted
+   tones, the same bug already hit on the fund-band heading below. */
+body.oss .section_hero_dark .hero-kicker {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin: 0 0 16px;
+}
+/* The mockup's h1 was clamp(44px,6vw,68px) at weight 600 — this hero
+   kept the site-wide h1 default (39px/400) since every other page uses
+   its H1 as a plain page-title ("Roadmap", "Support & Maintenance").
+   The homepage is the one page where the H1 is also the hero's thesis
+   statement, so it earns the bigger, bolder treatment the mockup gave it
+   without changing that convention anywhere else. */
+body.oss .section_hero_dark .hero-grid h1 {
+  font-size: clamp(40px, 5vw, 58px);
+  font-weight: 600;
+  line-height: 1.05;
+}
+body.oss .section_hero_dark .hero-grid .hero-copy,
+body.oss .section_hero_dark .hero-grid h1,
+body.oss .section_hero_dark .hero-grid .subtitle,
+body.oss .section_hero_dark .hero-grid p {
+  text-align: left;
+}
+body.oss .section_hero_dark .hero-grid .buttons { justify-content: flex-start; }
+
+body.oss .section_hero_dark .hero-proof {
+  margin-top: 30px;
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  color: #c9bdd0;
+}
+.hero-proof b {
+  color: #fff;
+  font-size: 17px;
+  font-family: 'Fraunces', serif;
+  display: block;
+  font-weight: 600;
+}
+
+.term {
+  background: var(--plum-deep);
+  border: 1px solid rgba(244, 238, 247, .14);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, .35);
+}
+.term .bar {
+  display: flex;
+  gap: 7px;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(244, 238, 247, .1);
+}
+.term .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(244, 238, 247, .25); }
+.term pre {
+  margin: 0;
+  padding: 20px;
+  font-size: 12.4px;
+  line-height: 1.7;
+  color: #e9dfee;
+  background: transparent;
+  border: none;
+}
+.term .prompt { color: var(--gold-bright); }
+.term .comment { color: #a191ac; }
+
+@media (max-width: 900px) {
+  body.oss .section_hero_dark .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  body.oss .section_hero_dark .hero-grid .hero-copy,
+  body.oss .section_hero_dark .hero-grid h1,
+  body.oss .section_hero_dark .hero-grid .subtitle,
+  body.oss .section_hero_dark .hero-grid p {
+    text-align: center;
+  }
+  body.oss .section_hero_dark .hero-grid .buttons,
+  .hero-proof { justify-content: center; }
+  .term { text-align: left; }
+}
+
+/* The funding band — from the mockup, not built the first time through:
+   a real, bold plum card (not the quiet-list treatment above) because
+   this genuinely is the one thing on the page asking for money, and
+   should look like it, not blend in with the "why migrate" prose around
+   it. No specific euro figures baked in here — a live campaign total
+   goes stale the moment it's typed into a static page (same mistake the
+   old "5.7 seconds" F1DB claim made) — so the bar marks the funding
+   threshold conceptually and the copy points at the campaign page for
+   the actual number. */
+.fund-band {
+  background: var(--plum);
+  color: #f4eef7;
+  border-radius: 20px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1.3fr auto;
+  gap: 36px;
+  align-items: center;
+}
+body.oss .fund-band .eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin: 0 0 8px;
+}
+body.oss .fund-band h2 { color: #fff; font-size: 28px; margin: 0; text-align: left; }
+body.oss .fund-band p { color: #d9cee0; margin: 12px 0 0; font-size: 15.5px; line-height: 1.6; text-align: left; }
+.fund-band-meter { width: 260px; flex-shrink: 0; }
+.fund-band-meter .bar {
+  height: 8px;
+  background: rgba(244, 238, 247, .15);
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+.fund-band-meter .bar::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 30%;
+  background: var(--gold-bright);
+  border-radius: 5px;
+}
+.fund-band-meter .threshold {
+  position: absolute;
+  top: -3px;
+  left: 60%;
+  width: 2px;
+  height: 14px;
+  background: #fff;
+  opacity: .6;
+}
+.fund-band-meter .bar { position: relative; }
+.fund-band-meter .figs {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: #c9bdd0;
+  margin-top: 8px;
+}
+@media (max-width: 760px) {
+  .fund-band { grid-template-columns: 1fr; text-align: center; }
+  .fund-band h2, .fund-band p { text-align: center; }
+  .fund-band-meter { width: 100%; margin: 0 auto; }
+}
+
+/* ===========================================================================
+   Quiet patterns — not everything is a card. A card claims "I am one
+   option among several you should weigh"; a step in a process, a line
+   item in a budget, a credential on a bio isn't that, and boxing it
+   anyway (background + border + shadow, repeated once per item) is what
+   produces "card fatigue" — every block shouting for the same attention
+   regardless of what it actually is. These three replace that default
+   for the three kinds of content that aren't comparisons: a sequence, a
+   categorized breakdown, and a set of plain facts. Genuine parallel
+   options to browse or compare (the bento sources grid, the portfolio
+   tools, the two support-course choices, the pricing table) keep their
+   cards — those actually are the "weigh these against each other" case.
+   =========================================================================== */
+
+/* A sequence — pgloader's literal execution order, not a decorative
+   numbered list. No card: steps read left-to-right (top-to-bottom on
+   mobile) separated by a hairline, not boxed individually. */
+.steps-linear {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.steps-linear li {
+  flex: 1;
+  padding: 24px 20px 4px;
+  border-left: 1px solid var(--rule);
+  text-align: left;
+}
+.steps-linear li:first-child { border-left: none; padding-left: 4px; }
+.steps-linear .step-n {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.steps-linear h3 { font-size: 16px; margin: 0 0 8px; font-weight: 600; }
+body.oss .section .steps-linear p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
+@media (max-width: 860px) {
+  .steps-linear { flex-direction: column; border-top: none; }
+  .steps-linear li { border-left: none; border-top: 1px solid var(--rule); padding: 20px 4px 4px; }
+  .steps-linear li:first-child { border-top: none; padding-top: 4px; }
+}
+
+/* A categorized breakdown — reasons, budget line items, cost drivers.
+   Not a sequence (order doesn't matter) and not a choice (they all
+   apply at once), so no numbering and no cards — a plain divided list,
+   icon beside each row. */
+.list-divided { border-top: 1px solid var(--rule); }
+.list-divided-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+/* .value_prop's own icon (Roadmap's Build it/Fund it, the portfolio
+   cards, the course choices) gets the same soft-badge treatment, in the
+   plum family rather than sky since these sit inside a card, not a
+   section header. */
+body.oss .value_prop i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(55, 38, 73, .08);
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+.list-divided-item i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--sky);
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(47, 127, 163, .1);
+  margin-top: 2px;
+}
+.list-divided-item h3 { font-size: 16px; margin: 0 0 5px; font-weight: 600; }
+body.oss .section .list-divided-item p { font-size: 14px; color: var(--ink-soft); line-height: 1.55; margin: 0; }
+
+/* Plain facts — a bio's credentials. Term/definition, not a grid of
+   cards competing for the same attention as the tools above it. */
+.definition-list { border-top: 1px solid var(--rule); }
+.dl-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 24px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+}
+.dl-row dt { font-family: 'Fraunces', serif; font-weight: 600; color: var(--ink); margin: 0; }
+.dl-row dd { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+@media (max-width: 640px) {
+  .dl-row { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* Proof, not the page's main point — de-emphasized on purpose. Plain
+   pull-quotes divided by a hairline, no card competing with the actual
+   content for attention. */
+.quotes-plain { display: grid; grid-template-columns: repeat(3, 1fr); }
+.quotes-plain blockquote {
+  margin: 0;
+  padding: 4px 26px;
+  border-left: 1px solid var(--rule);
+  text-align: left;
+}
+.quotes-plain blockquote:first-child { border-left: none; padding-left: 4px; }
+/* body.oss prefix: oss.css's "body.oss .section p" sets a Lato/non-italic
+   font shorthand at higher specificity than a bare ".quotes-plain p" —
+   without matching it, the pull-quotes silently lose the italic serif
+   treatment that's the whole point of this component. */
+body.oss .section .quotes-plain p {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.quotes-plain cite { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: var(--ink-soft); font-style: normal; }
+@media (max-width: 860px) {
+  .quotes-plain { grid-template-columns: 1fr; }
+  .quotes-plain blockquote { border-left: none; border-top: 1px solid var(--rule); padding: 20px 4px 4px; }
+  .quotes-plain blockquote:first-child { border-top: none; padding-top: 4px; }
+}
+
+/* Bento sources teaser — cell size follows real weight (MySQL is the
+   deepest, oldest path; Oracle is a dashed "ghost" cell because it
+   doesn't exist yet, not hidden). */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(150px, auto);
+  align-items: stretch;
+  gap: 14px;
+}
+.bento .cell {
+  background: #fffdfb;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 6px 28px rgba(55, 38, 73, 0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.bento .cell:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(28,18,36,.06), 0 16px 32px rgba(28,18,36,.09); }
+.bento .cell h3 { font-size: 19px; margin: 0; }
+.bento .cell p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; margin: 8px 0 0; }
+.bento .cell .icon { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--sky); }
+.bento .cell.big { grid-column: span 3; grid-row: span 2; }
+.bento .cell.big h3 { font-size: 25px; }
+.bento .cell.med { grid-column: span 3; grid-row: span 1; }
+.bento .cell.small { grid-column: span 2; grid-row: span 1; }
+.bento .cell.ghost { border-style: dashed; opacity: .78; }
+.bento .cell.ghost .icon { color: var(--gold); }
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+  .bento .cell.big, .bento .cell.med { grid-column: span 2; }
+  .bento .cell.small { grid-column: span 1; }
+}
+
+/* The migration report, framed as a certificate rather than a code block —
+   the one artifact that's inherently unique to pgloader: a claim a
+   skeptical reader can go check themselves. */
+.report-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; text-align: left; }
+.report-wrap .report-copy p { text-align: left; }
+.report-wrap .report-copy h2 { text-align: left; }
+.report-wrap .report-copy .subtitle { text-align: left; }
+@media (max-width: 900px) {
+  .report-wrap .report-copy p,
+  .report-wrap .report-copy h2,
+  .report-wrap .report-copy .subtitle { text-align: center; }
+}
+.report {
+  background: var(--plum-deep);
+  border-radius: 16px;
+  padding: 26px 24px;
+  position: relative;
+  box-shadow: 0 20px 48px rgba(28, 18, 36, .22);
+}
+.report::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(232, 197, 104, .25);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.report .rtitle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  margin-bottom: 14px;
+}
+.report table { width: 100%; border-collapse: collapse; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; color: #e9dfee; }
+.report td { padding: 5px 0; border-bottom: 1px solid rgba(244, 238, 247, .08); }
+.report td.n { text-align: right; font-variant-numeric: tabular-nums; color: #c9bdd0; }
+.report tr.total td { border-top: 1px solid rgba(232, 197, 104, .4); border-bottom: none; padding-top: 9px; color: var(--gold-bright); font-weight: 600; }
+@media (max-width: 900px) { .report-wrap { grid-template-columns: 1fr; } }
+
+/* Trademark attribution the PostgreSQL policy asks for when the Slonik
+   mark appears (postgresql.org/about/policies/trademarks/) — factual
+   fair-use statement, no affiliation implied. */
+.trademark-note {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  opacity: .75;
+  margin-top: 10px;
+}
+
+/* ===========================================================================
+   Rework, phases 1-5 — audited against the live site with headless
+   Chromium after the card-fatigue fix: removing the boxes was correct
+   but left a page that's monotone in a new way (everything the same pale
+   tone, same centered type, same weight), the gold accent barely used,
+   the bento grid unbalanced, and buttons/nav still literally the
+   original theme's, untouched by any of this. Each phase below builds on
+   the last; none of it re-introduces a card.
+   =========================================================================== */
+
+/* ---- Phase 1: rhythm — an editorial left-aligned flow instead of
+   centered-everywhere. NN/g's F-pattern research: people scan a page
+   weighted top-left, not from a centered axis — stacking centered
+   columns section after section was producing monotony as much as the
+   card boxes were, just without borders this time. Left-align the
+   section's own reading flow (heading, subtitle, lead paragraph,
+   buttons); leave small self-contained cards (value_prop / bento cell)
+   centered internally where they already set their own alignment — a
+   centered icon+heading inside a compact card is a different, legitimate
+   pattern from a whole page of centered columns. Also widened the
+   paper/paper-2 gap so alternation is visible without squinting. */
+/* Second re-tune: the gold-tinted cream was the wrong instinct — gold is
+   supposed to be the one rare accent (Phase 3's whole rule), and pulling
+   it into a background wash both dilutes that and, desaturated down to
+   background-tint lightness, reads as a dingy yellow rather than warm.
+   Sky instead: cool, not the accent color, and already established
+   everywhere else (links, icons) as the second brand color, so a pale
+   tint of it reads as "the same family" rather than a new hue. */
+:root {
+  --paper: #f8f6f4;
+  --paper-2: #e6ecf0;
+}
+body.oss .section:not(.section_hero_dark) .content {
+  text-align: left;
+}
+body.oss .section:not(.section_hero_dark) .content > .buttons {
+  justify-content: flex-start;
+}
+body.oss .section:not(.section_hero_dark) .content > .section-icon {
+  text-align: left;
+  margin: 0 0 14px;
+}
+
+/* The icon belongs on the heading's own line, not stacked above it: as a
+   block of its own it read as an orphaned bullet with no obvious owner,
+   and cost a full line of vertical rhythm at every section boundary.
+   Flex on the h2 (rather than an inline-block icon) keeps the circle
+   vertically centred against a heading that wraps to two lines, and
+   `align-items: center` on a 46px circle beside 30-42px type needs no
+   per-size baseline nudging. */
+body.oss .section h2 > .section-icon,
+body.oss .section h1 > .section-icon {
+  margin: 0 16px 0 0;
+}
+body.oss .section .content h2:has(> .section-icon) {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+/* The lead heading is 42px; scale its badge with it so the pairing keeps
+   the same optical ratio as the 30px standard heading. */
+body.oss .section .content h2.h-lead > .section-icon {
+  width: 56px;
+  height: 56px;
+  font-size: 23px;
+}
+@media (max-width: 640px) {
+  body.oss .section .content h2 > .section-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    margin-right: 12px;
+  }
+  body.oss .section .content h2.h-lead > .section-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+}
+
+/* ---- Phase 2: an explicit type scale. Every section h2 defaulted to
+   the same 36px regardless of whether that section was carrying the
+   page's main claim or a reference footnote — nothing told a skimming
+   reader which was which. .h-lead promotes the one (rarely two) section
+   per page that actually is the claim; everything else steps back to a
+   slightly smaller standard size so the promoted one reads as bigger,
+   not just present. */
+body.oss .section:not(.section_hero_dark) .content h2 {
+  font-size: 30px;
+}
+body.oss .section:not(.section_hero_dark) .content h2.h-lead {
+  font-size: 42px;
+  line-height: 1.1;
+}
+
+/* ---- Phase 3: spend the gold accent on purpose. It's the one color
+   this palette reserves for "the thing to notice" — a primary button on
+   every page, scattered thin across small icons and step-numbers, was
+   spending it on everything and nothing. One rule: gold is the fill for
+   the single primary action per page, full stop; everywhere else it
+   stays reserved (numbers, icons) so it still reads as an accent, not
+   wallpaper. Plum-deep text on the gold fill keeps AA contrast; it works
+   identically on the paper background and inside the dark hero/fund-band,
+   so the same primary button reads as "the one thing to click" wherever
+   it appears, not just on light sections like the muted-plum fill it
+   replaces was accidentally implying. */
+body.oss .btn-primary {
+  background: var(--gold-soft);
+  color: var(--plum-deep);
+  border: none;
+  font-weight: 600;
+}
+body.oss .btn-primary:hover {
+  background: var(--gold-bright);
+  color: var(--plum-deep);
+}
+body.oss .header .sticky-cta {
+  background: var(--gold-soft) !important;
+  border-color: var(--gold-soft) !important;
+  color: var(--plum-deep) !important;
+}
+body.oss .header .sticky-cta:hover {
+  background: transparent !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, .6) !important;
+}
+
+/* ---- Phase 4: the bento grid's balance bug — MySQL's cell spans two
+   rows sized to match MS SQL Server + SQLite stacked beside it, leaving
+   a dead gap under its own (shorter) copy. Filling that space with real
+   content (the actual command, same one the "one pipeline" section
+   already teaches) beats either shrinking the cell or padding it with
+   nothing. */
+.bento .cell.big .cell-cmd {
+  margin-top: 18px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--sky);
+  background: rgba(47, 127, 163, .08);
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: inline-block;
+}
+
+/* ---- Phase 5: buttons got fixed in Phase 3; this is the rest of the
+   interactive chrome (header nav, links) that had never been touched by
+   any of this and still read as the original theme's. A gold underline
+   on hover ties every clickable nav item back to the same "gold means
+   act on this" rule Phase 3 established for buttons. */
+body.oss .header nav.plain-nav ul li a {
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color .15s ease;
+}
+body.oss .header nav.plain-nav ul li a:hover {
+  border-color: var(--gold-soft);
+}
+
+/* ===========================================================================
+   Support page rework — a funnel entry page, not a features brochure.
+   Tier cards (name, price, who-for, one benefit, one CTA) take their
+   structure from yesql.fr/en/members/ rather than a feature table: a
+   scannable card per tier over a dense comparison grid. Every selector
+   below is prefixed body.oss .section from the start — that trap has
+   bitten this file four times already (bare classes losing to
+   body.oss .section h2/p's higher specificity), so this time it's
+   deliberate up front rather than a follow-up fix. */
+body.oss .section .proof-line {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--ink);
+  max-width: 760px;
+  margin: 0 auto;
+}
+body.oss .section .proof-line cite {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 10px;
+}
+
+body.oss .section .tier-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 32px;
+}
+/* ---- Migration budget: four cost centres, weighed against each other.
+   The linear list this replaced implied a sequence that isn't there —
+   these are four simultaneous line items in one budget, and a 2x2 grid
+   lets the reader compare them at a glance (which is the point: the one
+   people underestimate is the biggest). Two columns fixed rather than
+   auto-fit, so it never degenerates into a 4-across strip on a wide
+   screen where the paragraphs would go too narrow to read. */
+body.oss .section .cost-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 26px;
+  text-align: left;
+}
+body.oss .section .cost-card {
+  background: #fffdfb;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 24px 24px 26px;
+}
+body.oss .section .cost-card i {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(47, 127, 163, .1);
+  color: var(--sky);
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+body.oss .section .cost-card h3 {
+  font-size: 19px;
+  margin: 0 0 8px;
+}
+body.oss .section .cost-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0;
+}
+@media (max-width: 720px) {
+  body.oss .section .cost-grid { grid-template-columns: 1fr; }
+}
+
+body.oss .section .tier-card {
+  background: #fffdfb;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  padding: 26px 22px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+body.oss .section .tier-card h3 { font-size: 20px; margin: 0; }
+body.oss .section .tier-price {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--plum);
+  margin: 0;
+}
+body.oss .section .tier-price span {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+body.oss .section .tier-for { font-size: 14px; color: var(--ink); font-weight: 600; margin: 0; }
+body.oss .section .tier-benefit { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 8px; line-height: 1.5; }
+body.oss .section .tier-card .btn { margin-top: auto; align-self: flex-start; padding: 10px 18px; font-size: 14px; }
+body.oss .section .tier-recommended {
+  border-color: var(--gold-soft);
+  border-width: 2px;
+  box-shadow: 0 8px 24px rgba(147, 105, 14, .12);
+}
+body.oss .section .tier-badge {
+  position: absolute;
+  top: -12px;
+  left: 22px;
+  background: var(--gold-soft);
+  color: var(--plum-deep);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 0;
+  font-weight: 600;
+}
+body.oss .section .tier-note { font-size: 13px; color: var(--ink-soft); margin-top: 20px; }
+@media (max-width: 900px) {
+  body.oss .section .tier-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  body.oss .section .tier-cards { grid-template-columns: 1fr; }
+}
+
+/* A visual hint that a link leaves the site — every external link on
+   this site already carries target="_blank" consistently, so hooking
+   the hint off that attribute covers all of them without hand-tagging
+   each one. Excluded from .btn: a button's own label plus an arrow
+   glyph is enough of a "this goes somewhere" signal already, and several
+   already end their own label in "→". */
+a[target="_blank"]:not(.btn)::after {
+  content: "\00A0\2197";
+  font-size: 0.85em;
+  opacity: 0.6;
+}

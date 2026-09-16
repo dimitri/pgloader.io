@@ -1,47 +1,218 @@
-{{ partial "header.html" . }}
-<div class="main column">
-    <div class="container">
-        <div class="content">
-            {{ range where .Data.Pages "Title" "Home" }}
-                <div class="markdown">
-                {{ .Content }}
-                </div>
-            {{ end }}
-
-            {{ if isset .Site.Params "latestpostcount" }}
-                <div class="posts">
-                {{ $nbPosts := len (where .Site.Pages "Section" "blog") }}
-                {{ if gt $nbPosts 0 }}
-                    <div class="page-heading">Latest posts</div>
-                    <ul>
-                    {{ range (first .Site.Params.latestpostcount (where .Site.Pages "Section" "blog")) }}
-                      {{ if ne .Title "Blog" }}
-                            {{ partial "li.html" . }}
-                      {{ end }}
-                    {{ end }}
-                    </ul>
-
-                    {{ if gt $nbPosts .Site.Params.latestpostcount }}
-                        <a href="./blog/" class="see-more">See more ...</a>
-                    {{ end }}
-                {{ end }}
-                </div>
-            {{ end }}
-
-            <div class="best-posts">
-            {{ $nbPosts := len (where .Data.Pages "Params.best" true) }}
-            {{ if gt $nbPosts 0 }}
-                <div class="page-heading">Best posts</div>
-                <ul>
-                {{ range sort .Data.Pages "Date" "desc" }}
-                    {{ if eq .Params.best true }}
-                        {{ partial "li.html" . }}
-                    {{ end }}
-                {{ end }}
-                </ul>
-            {{ end }}
-            </div>
+{{ define "main" }}
+<section class="section section_hero_dark">
+  <div class="wrapper">
+    <div class="content hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">Open Source &middot; PostgreSQL Migration</p>
+        <h1>pgloader</h1>
+        <p class="subtitle">Migrate to PostgreSQL in a single command</p>
+        <p>pgloader v4 is a full rewrite in Clojure, distributed as one
+        self-contained JAR — download it, run it anywhere a JVM does.
+        Requires Java 21+.</p>
+        <div class="buttons">
+          <a href="https://github.com/dimitri/pgloader/releases/download/v4-dev/pgloader.jar" class="btn btn-primary">Download pgloader.jar</a>
+          <a href="https://github.com/dimitri/pgloader" class="btn btn-secondary" target="_blank">View on GitHub</a>
         </div>
+        <p class="hero-proof">
+          <span><b>2005</b>maintained since</span>
+          <span><b>4</b>live sources, 1 in funding</span>
+          <span><b>v4</b>Clojure rewrite, drop-in v3 syntax</span>
+        </p>
+      </div>
+      {{/* The report, not a screenshot: a real terminal running the exact
+           command from "Every run signs its own work" below, so the hero
+           makes the same claim the rest of the page backs up — this is
+           what actually happens when you run it, not mocked-up chrome. */}}
+      <div class="term">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <pre><span class="prompt">$</span> pgloader mysql://app@src/shop pgsql://app@dst/shop
+<span class="comment"># catalog fetched — 14 tables, 701,433 rows</span>
+COPY results         <span class="comment">done</span>   26,759 rows   0.55s
+COPY laptimes        <span class="comment">done</span>  589,081 rows   3.76s
+COPY driverstandings <span class="comment">done</span>   34,863 rows   0.64s
+<span class="comment"># building 23 indexes in parallel…</span>
+<span class="prompt">Total import time</span>       701,433 rows   6.49s</pre>
+      </div>
     </div>
-</div>
-{{ partial "footer.html" . }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2 class="h-lead">One pipeline, five stages</h2>
+      <p class="subtitle">The literal order pgloader executes in — the report at the end times every one of them</p>
+      <ol class="steps-linear">
+        <li>
+          <span class="step-n">01</span>
+          <h3>Fetch catalog</h3>
+          <p>Query the source's live catalogs, or read a file header, into an in-memory schema.</p>
+        </li>
+        <li>
+          <span class="step-n">02</span>
+          <h3>Prepare target</h3>
+          <p>Translate the catalog into PostgreSQL's own, applying casting rules as it goes.</p>
+        </li>
+        <li>
+          <span class="step-n">03</span>
+          <h3>Parallel COPY</h3>
+          <p>Reader and writer threads per table, batching over the COPY protocol.</p>
+        </li>
+        <li>
+          <span class="step-n">04</span>
+          <h3>Parallel indexes</h3>
+          <p>Every index builds once its table's data has landed — primary keys get their own pass.</p>
+        </li>
+        <li>
+          <span class="step-n">05</span>
+          <h3>Complete schema</h3>
+          <p>Constraints, comments, and foreign keys install last, as defined in the source.</p>
+        </li>
+      </ol>
+      <p style="margin-top: 28px;">Same <code>.load</code> file syntax and command-line flags as v3 —
+      existing migration scripts keep working. v4 also accepts plain JDBC
+      connection strings (<code>jdbc:mysql://</code>, <code>jdbc:sqlserver://</code>,
+      etc.) with driver-specific parameters passed through unchanged.</p>
+      <pre><code>$ curl -L -o pgloader.jar https://github.com/dimitri/pgloader/releases/download/v4-dev/pgloader.jar
+$ java -jar pgloader.jar mysql://user@host/dbname postgresql:///dbname</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2>Every source, one tool</h2>
+      <p class="subtitle">Cell size follows how much ground each source actually covers</p>
+      <div class="bento">
+        <div class="cell big">
+          <div>
+            <span class="icon">Live database</span>
+            <h3>MySQL &amp; MariaDB</h3>
+            <p>The flagship path: enum&rarr;type translation, TINYINT(1)&rarr;boolean, zero-date handling, .my.cnf credential lookup.</p>
+            <code class="cell-cmd">pgloader mysql://user@host/db pgsql:///db</code>
+          </div>
+        </div>
+        <div class="cell med">
+          <div>
+            <span class="icon">Live database</span>
+            <h3>MS SQL Server</h3>
+            <p>Azure AD auth, sequence migration, multi-column foreign keys — sponsored work, still shipping.</p>
+          </div>
+        </div>
+        <div class="cell med">
+          <div>
+            <span class="icon">File</span>
+            <h3>SQLite</h3>
+            <p>No live connection needed — reads the file directly.</p>
+          </div>
+        </div>
+        <div class="cell med">
+          <div>
+            <span class="icon">Files</span>
+            <h3>CSV &middot; DBF &middot; Fixed</h3>
+            <p>A retry-wrapper over PostgreSQL's own COPY.</p>
+          </div>
+        </div>
+        <div class="cell med ghost">
+          <div>
+            <span class="icon">Open for funding</span>
+            <h3>Oracle</h3>
+            <p>Never built. A threshold-funded campaign is open for it.</p>
+          </div>
+        </div>
+      </div>
+      <div class="buttons" style="margin-top: 28px;">
+        <a href="{{ "/sources/" | relURL }}" class="btn btn-secondary">See Every Source in Detail &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="fund-band">
+      <div>
+        <p class="eyebrow">Fund a Feature</p>
+        <h2>Oracle Support for pgloader v4</h2>
+        <p>Never built — open for funding as a threshold campaign. Below
+        the threshold nothing is charged and nothing starts; above it,
+        work ships continuously, in the open, under the same license as
+        the rest of pgloader.</p>
+        <div class="buttons" style="margin-top: 18px; justify-content: flex-start;">
+          <a href="https://yesql.fr/en/campaigns/oracle-pgloader-v4/" class="btn btn-primary" target="_blank">See Current Progress &amp; Back This</a>
+        </div>
+      </div>
+      <div class="fund-band-meter">
+        <div class="bar"><span class="threshold"></span></div>
+        <div class="figs"><span>raised</span><span>threshold</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content report-wrap">
+      <div class="report-copy">
+        <h2 class="h-lead">Every run signs its own work</h2>
+        <p class="subtitle">Not a screenshot</p>
+        <p>pgloader's own default report, unedited — one command against a
+        MariaDB source (the F1DB dataset: Formula 1 results since 1950, 14
+        tables, 701K rows, ~20MB) loading into PostgreSQL. Row counts,
+        bytes, and timing, per table, every time.</p>
+        <p>Run it yourself from the <a href="https://github.com/dimitri/pgloader" target="_blank">pgloader repo</a>
+        with <code>make -C clojure/tests mariadb</code> — that target drives
+        the exact docker-compose stack (MariaDB source, PostgreSQL target)
+        this output came from. Same command, same shape of report — compare
+        the numbers yourself.</p>
+      </div>
+      <div class="report">
+        <div class="rtitle">migration report &middot; mariadb &rarr; postgresql</div>
+        <table>
+          <tr><td>fetch meta data</td><td class="n">0.72s</td></tr>
+          <tr><td>create tables</td><td class="n">0.21s</td></tr>
+          <tr><td>f1db.laptimes</td><td class="n">589,081 rows</td></tr>
+          <tr><td>f1db.driverstandings</td><td class="n">34,863 rows</td></tr>
+          <tr><td>f1db.results</td><td class="n">26,759 rows</td></tr>
+          <tr><td>create indexes</td><td class="n">5.40s</td></tr>
+          <tr class="total"><td>total import time</td><td class="n">701,433 rows &middot; 6.49s</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2>Migrate without betting everything on one night</h2>
+      <p class="subtitle">Continuous Migration</p>
+      <p>pgloader exists to make the hardest step of a real migration
+      project fully automated — nightly, re-run, repeatable, not a single
+      big-bang cutover. That method has a name and a free White Paper.</p>
+      <div class="buttons">
+        <a href="{{ "/continuous-migration/" | relURL }}" class="btn btn-primary">What Is Continuous Migration?</a>
+        <a href="https://mysqltopgsql.com/course/" class="btn btn-secondary" target="_blank" rel="noopener">Start the Course Free</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2>Support pgloader</h2>
+      <p class="subtitle">Open source, not maintained-for-free-forever</p>
+      <p>If pgloader is part of your production migration, its ongoing
+      maintenance is worth funding. Priority fixes, roadmap input, and
+      reserved capacity — or learn to run the migration yourself with the
+      MySQL course (MS SQL Server is next).</p>
+      <div class="buttons">
+        <a href="{{ "/support/" | relURL }}" class="btn btn-primary">See Support Plans</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

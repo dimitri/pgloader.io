@@ -1,124 +1,43 @@
-<div class="footer column">
-    <div class="container">
-
-        {{ if .Site.Params.githubRepo }}
-            <div class="copyright">
-            {{ $length := len ( split .Site.Params.githubRepo "/" ) }}
-            {{ if eq $length 2 }}
-                <a href="https://github.com/{{ .Site.Params.githubRepo }}/tree/master/content/{{ replace .File.Path "\\" "/" }}" target="_blank">View this post on GitHub</a>
-            {{ else }}
-                <a href="https://github.com/{{ .Site.Params.githubRepo }}/content/{{ replace .File.Path "\\" "/" }}" target="_blank">View this post on GitHub</a>
-            {{ end }}
-            </div>
-        {{ end }}
-
-        {{ if .Site.Params.gitlabRepo }}
-            <div class="copyright">
-            {{ $length := len ( split .Site.Params.gitlabRepo "/" ) }}
-            {{ if eq $length 2 }}
-                <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/tree/master/content/{{ replace .File.Path "\\" "/" }}" target="_blank">View this post on gitlab</a>
-            {{ else }}
-                <a href="https://gitlab.com/{{ .Site.Params.gitlabRepo }}/content/{{ replace .File.Path "\\" "/" }}" target="_blank">View this post on gitlab</a>
-            {{ end }}
-            </div>
-        {{ end }}
-
-        <div class="copyright">
-
-        {{ if .Site.Params.copyright }}
-            {{ if .Site.Params.copyrightUrl }}
-                <a href="{{ .Site.Params.copyrightUrl }}">{{ replace .Site.Params.copyright "{year}" now.Year }}</a>
-            {{ else }}
-                <a href="{{ .Site.BaseURL }}license">{{ replace .Site.Params.copyright "{year}" now.Year }}</a>
-            {{ end }}
-        {{ end }}
-
-        </div>
-        <div class="icons">
-
-        {{ if .Site.Params._500px }}
-            <a href="https://500px.com/{{ .Site.Params._500px }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/500px.svg" alt="500px" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.itch_io }}
-            <a href="https://{{ .Site.Params.itch_io }}.itch.io" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/itch.io.svg" alt="itch.io" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.gitlab }}
-            <a href="https://gitlab.com/{{ .Site.Params.gitlab }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/gitlab.svg" alt="gitlab" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.instagram }}
-            <a href="https://www.instagram.com/{{ .Site.Params.instagram }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/instagram.svg" alt="instagram" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.twitch }}
-            <a href="https://www.twitch.tv/{{ .Site.Params.twitch }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/twitch.png" alt="twitch" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.facebook }}
-            <a href="https://facebook.com/{{ .Site.Params.facebook }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/facebook.svg" alt="facebook" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.github }}
-            <a href="https://github.com/{{ .Site.Params.github }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/github.svg" alt="github" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.twitter }}
-            <a href="https://twitter.com/{{ .Site.Params.twitter }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/twitter.svg" alt="twitter" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.linkedin }}
-            <a href="https://www.linkedin.com/in/{{ .Site.Params.linkedin }}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/linkedin.svg" alt="linkedin" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.keybase }}
-            <a href="https://keybase.io/{{ .Site.Params.keybase}}" rel=me target="_blank">
-                <img class="icon" src="{{ .Site.BaseURL }}img/keybase.svg" alt="keybase" />
-            </a>
-        {{ end }}
-
-        {{ if .Site.Params.untappd }}
-        <a href="https://untappd.com/user/{{ .Site.Params.untappd}}" rel=me target="_blank">
-            <img class="icon" src="{{ .Site.BaseURL }}img/untappd.svg" alt="untappd" />
-        </a>
-        {{ end }}
-
-        {{ if .Site.Params.email }}
-            <a href="mailto:{{ .Site.Params.email }}">
-                <img class="icon" src="{{ .Site.BaseURL }}img/email.svg" alt="email" />
-            </a>
-        {{ end }}
-
-        {{ with .OutputFormats.Get "RSS" }}
-            <a href="{{ .Permalink }}">
-                <img class="icon" src="{{ $.Site.BaseURL }}img/rss.svg" alt="rss" />
-            </a>
-        {{ end }}
-
-        </div>
+<footer class="footer">
+  <div class="wrapper">
+    <div class="about_block">
+      <h6>about pgloader</h6>
+      <p>pgloader loads data into PostgreSQL from MySQL, SQLite, MS SQL Server, DBF, and CSV/fixed-format files — schema translation, casting rules, and parallel data loading in a single command line. Version 4 is a full rewrite in Clojure, distributed as one self-contained JAR.</p>
+      <p>Written and maintained by Dimitri Fontaine, with 25+ years of open source PostgreSQL contributions.</p>
+      <ul class="social_links">
+        <li><a target="_blank" href="mailto:{{ .Site.Params.email }}" title="Email"><i class="fa-solid fa-envelope"></i></a></li>
+        <li><a target="_blank" href="{{ .Site.Params.github }}" title="GitHub"><i class="fa-brands fa-github"></i></a></li>
+      </ul>
+      <ul class="project_links">
+        <li><a href="{{ "/about/" | relURL }}"><i class="fa-solid fa-user"></i> About</a></li>
+        <li><a href="{{ "/roadmap/" | relURL }}"><i class="fa-solid fa-map"></i> Roadmap</a></li>
+        <li><a target="_blank" href="https://github.com/dimitri/pgcopydb"><i class="fa-solid fa-copy"></i> pgcopydb</a></li>
+        <li><a target="_blank" href="https://github.com/hapostgres/pg_auto_failover"><i class="fa-solid fa-heart-pulse"></i> pg_auto_failover</a></li>
+        <li><a target="_blank" href="https://oss.theartofpostgresql.com/"><i class="fa-solid fa-layer-group"></i> All OSS projects</a></li>
+      </ul>
     </div>
-</div>
+    <div class="faq_block">
+      <h6>FAQ</h6>
+      <dl>
+        <dt>Is pgloader v4 ready for production?</dt>
+        <dd>v4 (Clojure/JVM) is pre-release, built from the <code>v4-clojure-rewrite</code> branch with its own CI. It's a drop-in replacement for v3's <code>.load</code> syntax and CLI flags. v3 (Common Lisp) remains the stable, packaged release.</dd>
+        <dt>What does pgloader cost?</dt>
+        <dd>pgloader itself is free and open source. Paid <a href="{{ "/support/" | relURL }}">support &amp; maintenance</a> plans exist for production use — priority fixes, roadmap input, and reserved capacity.</dd>
+        <dt>Can I learn to run a migration myself instead of buying support?</dt>
+        <dd>Yes — see the <a href="{{ "/support/" | relURL }}">Support page</a> for the MySQL migration course (MS SQL Server is next), the self-serve alternative to paying for prioritized support.</dd>
+        <dt>How does this relate to The Art of PostgreSQL?</dt>
+        <dd>pgloader's support program is part of The Art of PostgreSQL ecosystem — see <a target="_blank" href="https://theartofpostgresql.com">theartofpostgresql.com</a> for the book, courses, and masterclasses.</dd>
+      </dl>
+    </div>
+  </div>
+</footer>
 
-{{ partial "footer_scripts" . }}
+<div class="copyright">
+  <div class="wrapper">
+    <p>Copyright 2017-{{ now.Year }} &copy; Dimitri Fontaine. All rights reserved.</p>
+    <p class="trademark-note">Postgres, PostgreSQL and the Slonik Logo are trademarks or registered trademarks of the PostgreSQL Community Association of Canada. pgloader is an independent, unaffiliated project.</p>
+  </div>
+</div>
 
 </body>
 </html>

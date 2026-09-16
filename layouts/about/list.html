@@ -1,0 +1,99 @@
+{{ define "main" }}
+<section class="section section_hero_dark">
+  <div class="wrapper">
+    <div class="content">
+      <h1>Dimitri Fontaine</h1>
+      <p class="subtitle">PostgreSQL Major Contributor — the person behind pgloader since 2005</p>
+      <p>Two of the contributions — <code>CREATE EXTENSION</code> and Event
+      Triggers — now ship in every PostgreSQL installation in the world.
+      pgloader is one piece of a wider body of PostgreSQL work: consulting,
+      open source tools, and <a href="https://theartofpostgresql.com" target="_blank">a book</a>,
+      most of it public and independently verifiable.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2 class="h-lead"><i class="fa-solid fa-boxes-stacked section-icon"></i>A portfolio, not a side project</h2>
+      <p class="subtitle">Four tools, in production at teams I've never spoken to</p>
+      <p>pgloader is maintained alongside three other PostgreSQL tools —
+      the same author, the same standard of "public, readable, and
+      independently run in production." None of it depends on any one
+      customer, which is deliberate: a migration tool that only one company
+      funds is a tool that company can also defund.</p>
+      <div class="value_props">
+        <div class="value_prop">
+          <i class="fa-solid fa-database"></i>
+          <h3>pgloader</h3>
+          <p>Migration to PostgreSQL from MySQL, MS SQL Server, SQLite, and flat files — this project.</p>
+        </div>
+        <div class="value_prop">
+          <i class="fa-solid fa-copy"></i>
+          <h3>pgcopydb</h3>
+          <p>PostgreSQL-to-PostgreSQL copies with minimal downtime, built on logical replication.</p>
+        </div>
+        <div class="value_prop">
+          <i class="fa-solid fa-heart-pulse"></i>
+          <h3>pg_auto_failover</h3>
+          <p>Automated failover: one monitor, N Postgres nodes, no external consensus cluster.</p>
+        </div>
+        <div class="value_prop">
+          <i class="fa-solid fa-list-check"></i>
+          <h3>pgextwlist</h3>
+          <p>Extension whitelisting for cloud providers offering safe, non-superuser extension installs.</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <a href="https://oss.theartofpostgresql.com/" class="btn btn-secondary" target="_blank">See the Full OSS Program</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-clock-rotate-left section-icon"></i>Standing</h2>
+      <p class="subtitle">Twenty years, mostly the same subject</p>
+      <dl class="definition-list">
+        <div class="dl-row">
+          <dt>PostgreSQL core</dt>
+          <dd>Major Contributor — <code>CREATE EXTENSION</code> and Event Triggers, both now standard.</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Debian</dt>
+          <dd>Maintainer and co-builder of <code>apt.postgresql.org</code>.</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Companies</dt>
+          <dd>Founded Dalibo (2005) and 2ndQuadrant France (2012); later <a href="https://www.citusdata.com/blog/2018/01/12/dimitri-fontaine-postgresql-contributor-joins-citus-data/" target="_blank" rel="noopener">joined Citus Data</a>, acquired by Microsoft in 2019.</dd>
+        </div>
+        <div class="dl-row">
+          <dt>Conferences</dt>
+          <dd>Regular PostgreSQL conference speaker since 2008.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrapper">
+    <div class="content">
+      <h2><i class="fa-solid fa-hand-holding-heart section-icon"></i>How this gets funded</h2>
+      <p class="subtitle">Same model as the rest of the portfolio</p>
+      <p>pgloader is free and open source, and stays that way. Its ongoing
+      maintenance — priority fixes, roadmap input, reserved capacity — is
+      funded through <a href="https://oss.theartofpostgresql.com/pgloader/" target="_blank">the
+      same program</a> covering all four tools, plus the occasional
+      threshold-funded feature campaign for work nobody's sponsoring yet.</p>
+      <div class="buttons">
+        <a href="{{ "/support/" | relURL }}" class="btn btn-primary">See Support Plans</a>
+        <a href="{{ "/roadmap/" | relURL }}" class="btn btn-secondary">See What's Being Funded</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
