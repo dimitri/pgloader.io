@@ -1,82 +1,39 @@
-{{ define "main" }}
-<section class="section section_hero_dark">
-  <div class="wrapper">
-    <div class="content">
-      <h1>{{ .Title }}</h1>
-      <p class="subtitle">Migrating to PostgreSQL, Tools and Methodology</p>
-      <p>The white paper behind the Continuous Migration method — the
-      project methodology this tool exists to make possible, distilled from
-      years of migration projects.</p>
+{{/* Retired page, kept as a redirect.
 
-      {{/* Placeholder: same magic-link mechanism as taop.xyz's own
-           /login (see taop.xyz/layouts/section/login.html and
-           app.taop.xyz/internal/handlers/auth.go) — a plain GET with the
-           email as a query param, no JS, no password. There is no
-           white-paper-specific entry point on the API yet, so this signs
-           in to the general TAOP account and the White Paper PDF itself
-           is still linked directly below. Swap the form action for the
-           dedicated white-paper/course-sample entry point once it exists,
-           and drop the direct PDF link at that point. */}}
-      <form class="signup-form" method="get" action="https://api.theartofpostgresql.com/login">
-        <input type="email" name="email" required placeholder="you@example.com" autocomplete="email" aria-label="Email address">
-        <button type="submit" class="btn btn-primary">Send my sign-in link</button>
-      </form>
-      <p class="signup-note">No password, no spam — a one-time sign-in
-      link to <a href="https://theartofpostgresql.com" target="_blank">The
-      Art of PostgreSQL</a> platform, where this white paper lives
-      alongside the free course sample.</p>
+     The white paper is replaced by the free sample of the Migrating to
+     PostgreSQL course — modules 1-4, same ground covered better, still
+     free and still gated behind nothing but an email.
 
-      <div class="buttons">
-        <a href="/MigratingToPostgreSQL.pdf" class="btn btn-secondary">Download the PDF directly</a>
-        <a href="https://mysqltopgsql.com/continuous-migration/" class="btn btn-secondary">Read it online</a>
-      </div>
-    </div>
-  </div>
-</section>
+     The URL stays alive rather than 404ing: it carries an alias from the
+     old /blog/migrating-to-postgresql-the-white-paper/ URL, it is linked
+     from elsewhere on the web, and it had accumulated whatever ranking a
+     page from that era has. GitHub Pages serves static files only, so a
+     301 is not available — meta refresh plus a canonical pointing at the
+     destination is the usual substitute, and the visible link below means
+     it still works for anyone whose browser blocks the refresh.
 
-<section class="section">
-  <div class="wrapper">
-    <div class="content">
-      <h2 class="h-lead"><i class="fa-solid fa-route section-icon"></i>Continuous Migration</h2>
-      <p class="subtitle">Five steps, repeated until D-day</p>
-      <div class="value_props">
-        <div class="value_prop">
-          <i class="fa-solid fa-server"></i>
-          <h3>1. Target architecture</h3>
-          <p>Set up your target PostgreSQL environment first — not as an
-          afterthought once the migration is already underway.</p>
-        </div>
-        <div class="value_prop">
-          <i class="fa-solid fa-code-branch"></i>
-          <h3>2. Fork the CI</h3>
-          <p>Fork a Continuous Integration environment that runs against
-          PostgreSQL, alongside the one running against your current RDBMS.</p>
-        </div>
-        <div class="value_prop">
-          <i class="fa-solid fa-arrows-rotate"></i>
-          <h3>3. Migrate nightly</h3>
-          <p>Migrate the data over and over, every night, from current
-          production — this is the step
-          <a href="{{ "/" | relURL }}">pgloader</a> automates.</p>
-        </div>
-        <div class="value_prop">
-          <i class="fa-solid fa-flag-checkered"></i>
-          <h3>4. Schedule D-day</h3>
-          <p>As soon as the CI is consistently green against PostgreSQL,
-          schedule the cutover.</p>
-        </div>
-        <div class="value_prop">
-          <i class="fa-solid fa-champagne-glasses"></i>
-          <h3>5. Migrate, no surprises</h3>
-          <p>By D-day the migration has already run successfully many
-          times — the cutover itself is the boring part.</p>
-        </div>
-      </div>
-      <p>Breaking the effort into these five repeatable steps is what
-      makes a migration project pausable and resumable instead of a single
-      high-stakes event — see the <a href="{{ "/continuous-migration/" | relURL }}">Continuous
-      Migration</a> page for why that matters.</p>
-    </div>
-  </div>
-</section>
-{{ end }}
+     No {{ define "main" }} here on purpose: this renders standalone
+     instead of inheriting the site chrome, because there is no page left
+     to decorate. */}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moved — Migrating to PostgreSQL</title>
+<link rel="canonical" href="https://mysqltopgsql.com/course/">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=https://mysqltopgsql.com/course/">
+<style>
+  body { font: 16px/1.6 system-ui, sans-serif; background: #f8f6f4; color: #1c1224;
+         max-width: 34rem; margin: 18vh auto; padding: 0 1.5rem; }
+  a { color: #93690e; }
+</style>
+</head>
+<body>
+<h1 style="font-size:1.3rem">This white paper has moved</h1>
+<p>It has been replaced by the free sample of the
+<strong>Migrating to PostgreSQL</strong> course — the first four modules,
+covering the same method in more depth, still free.</p>
+<p><a href="https://mysqltopgsql.com/course/">Continue to the course &rarr;</a></p>
+</body>
+</html>

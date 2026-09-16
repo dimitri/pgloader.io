@@ -8,4 +8,3 @@ type = "white-paper"
 [sitemap]
   disable = true
 +++
-
